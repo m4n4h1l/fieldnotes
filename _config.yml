@@ -5,6 +5,7 @@ theme: minima
 markdown: kramdown
 plugins:
   - jekyll-feed
+
 sass:
   style: compressed
 
