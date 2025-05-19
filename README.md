@@ -21,7 +21,8 @@ my name is manahil. i study history, computer science, and policy. yeah, i like 
 
 <p align="center">
   <img src="assets/selfie.jpg" width="250" alt="a photo of me :)"
-  style="border: 3px solid #fce1e4; border-radius: 12px; padding: 4px;">
+  style="border: 3px solid #f8c8dc; border-radius: 12px; padding: 4px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);">
 </p>
 
 my life is spread across four countries (you’ll see this corny bit on my socials: 🇵🇰 but 🇦🇪🇯🇵🇺🇸). if you could guide me on anything, it’d probably be how to stay still.
