@@ -19,16 +19,7 @@ h1, h2, h3 {
   color: #ba6d92;
 }
 
-img {
-  border-radius: 12px;
-}
-
-.site-header {
+.site-header, .site-footer {
   background-color: #fce1ec;
-  border-bottom: none;
-}
-
-.site-footer {
-  background-color: #fce1ec;
-  color: #555;
+  border: none;
 }
