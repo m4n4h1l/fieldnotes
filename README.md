@@ -15,7 +15,7 @@ translating that morning **changed my life.**
 
 ---
 
-## 🌟 yes, this is she
+## 📞 yes, this is she
 
 my name is manahil. i study history, computer science, and policy. yeah, i like systems, but i **love** people.
 
