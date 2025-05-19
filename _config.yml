@@ -1,8 +1,13 @@
 title: "fieldnotes"
-description: "a public record of service work, research, and reflections... all grounded in non-zero days."
-author: manahil
+description: "a public record of service work, research, and reflections — all grounded in non-zero days."
+author: "manahil"
+email: mawan@gm.slc.edu
+baseurl: "" # for GitHub Pages
+url: "https://m4n4h1l.github.io"
+
 theme: minima
 markdown: kramdown
+
 plugins:
   - jekyll-feed
 
