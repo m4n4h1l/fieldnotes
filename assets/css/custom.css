@@ -2,7 +2,8 @@ body {
   font-family: 'Georgia', serif;
   background-color: #fffafc;
   color: #333;
-  line-height: 1.7;
+  line-height: 1.8;
+  padding: 0 1rem;
 }
 
 a {
@@ -14,12 +15,19 @@ a:hover {
   text-decoration: underline;
 }
 
-h1, h2, h3 {
-  font-family: 'Georgia', serif;
+h1, h2, h3, h4 {
   color: #ba6d92;
+  font-family: 'Georgia', serif;
 }
 
 .site-header, .site-footer {
   background-color: #fce1ec;
   border: none;
+  padding: 1rem;
+  text-align: center;
+}
+
+img {
+  border-radius: 12px;
+  max-width: 100%;
 }
