@@ -1,0 +1,92 @@
+/* Basic Reset & Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* A very light grey background */
+    color: #333; /* Dark grey text for readability */
+}
+
+/* Header Styling */
+header {
+    background-color: #fff; /* White background for header */
+    padding: 1em 2em;
+    border-bottom: 1px solid #ddd; /* Subtle border */
+    text-align: center; /* Center the title */
+}
+
+header h1 {
+    margin: 0;
+    color: #ff69b4; /* A pink color for the cherry blossom emoji theme */
+}
+
+/* Navigation Styling */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    margin-top: 0.5em;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #555;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #ff69b4; /* Pink on hover */
+}
+
+/* Main Content Area */
+main {
+    padding: 1em 2em; /* Padding around the main content */
+}
+
+/* Section Styling */
+section {
+    padding: 2em 1em;
+    margin-bottom: 2em; /* Space between sections */
+    background-color: #fff; /* White background for content sections */
+    border-radius: 8px; /* Slightly rounded corners for sections */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+section h2 {
+    color: #333;
+    border-bottom: 2px solid #ffc0cb; /* Light pink underline for section titles */
+    padding-bottom: 0.3em;
+    margin-top: 0;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 1.5em;
+    background-color: #333; /* Dark background for footer */
+    color: #fff; /* White text for footer */
+    font-size: 0.9em;
+}
+
+/* Responsive adjustments (very basic) */
+@media (max-width: 768px) {
+    header {
+        padding: 1em;
+    }
+    main {
+        padding: 1em;
+    }
+    section {
+        padding: 1.5em 0.5em;
+    }
+    nav ul li {
+        display: block; /* Stack navigation links on smaller screens */
+        margin-bottom: 10px;
+    }
+}
