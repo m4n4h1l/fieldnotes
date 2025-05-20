@@ -53,3 +53,56 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+// Inside the DOMContentLoaded event listener:
+
+    // 3. Active Navigation Link Highlighting (for index.html sections)
+    // This part should ideally only run on index.html or pages with these sections and nav links
+    const navLinks = document.querySelectorAll('header nav ul li a[href^="#"]'); // Links pointing to sections
+    const sections = [];
+
+    navLinks.forEach(link => {
+        const sectionId = link.getAttribute('href').substring(1);
+        const section = document.getElementById(sectionId);
+        if (section) {
+            sections.push({link: link, element: section});
+        }
+    });
+
+    // Only add scroll listener if we are on a page with these sections
+    // A simple check could be if the 'intro' section exists, assuming it's unique to index.html
+    if (document.getElementById('intro') && sections.length > 0) {
+        const offset = 100; // Adjust this offset as needed (e.g., height of your header)
+
+        window.addEventListener('scroll', () => {
+            let currentSectionId = null;
+            const scrollPosition = window.scrollY + offset;
+
+            sections.forEach(sectionObj => {
+                if (scrollPosition >= sectionObj.element.offsetTop &&
+                    scrollPosition < sectionObj.element.offsetTop + sectionObj.element.offsetHeight) {
+                    currentSectionId = sectionObj.element.id;
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-link');
+                if (link.getAttribute('href').substring(1) === currentSectionId) {
+                    link.classList.add('active-link');
+                }
+            });
+
+            // Special case for the top of the page (e.g., 'Home' or 'intro' link)
+            // If no section is actively "current" by the logic above (e.g., between sections or very top)
+            // you might want to ensure the first link is active if scrollPosition is near the top.
+            if (currentSectionId === null && window.scrollY < sections[0]?.element.offsetTop - offset) {
+                navLinks.forEach(link => link.classList.remove('active-link')); // Clear all
+                sections[0]?.link.classList.add('active-link'); // Activate the first link
+            }
+        });
+
+        // Trigger it once on load in case the page is loaded scrolled or with a hash
+        // Use a slight delay to ensure layout is fully stable
+        setTimeout(() => {
+             window.dispatchEvent(new Event('scroll'));
+        }, 100);
+    }
