@@ -223,3 +223,27 @@ section#about {
         margin-bottom: 15px; /* Space below image when stacked */
     }
 }
+
+/* style.css */
+#backToTopBtn {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100; /* Make sure it's on top of other elements */
+    border: none;
+    outline: none;
+    background-color: #FFC0CB; /* Your theme's Pink color */
+    color: white;
+    cursor: pointer;
+    padding: 12px 15px;
+    border-radius: 50%; /* Make it circular */
+    font-family: Georgia, serif;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+#backToTopBtn:hover {
+    background-color: #DB7093; /* Darker pink on hover - PaleVioletRed */
+}
