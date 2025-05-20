@@ -1,24 +1,28 @@
+/* Pastel Pink Georgia Cutesy Theme */
+
 /* Basic Reset & Body Styling */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    font-family: Georgia, serif; /* Georgia font */
+    line-height: 1.7; /* Slightly increased line-height for Georgia */
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9; /* A very light grey background */
-    color: #333; /* Dark grey text for readability */
+    background-color: #FFF0F5; /* LavenderBlush - very light pink page background */
+    color: #5D5D5D; /* Soft dark grey text for readability */
 }
 
 /* Header Styling */
 header {
-    background-color: #fff; /* White background for header */
-    padding: 1em 2em;
-    border-bottom: 1px solid #ddd; /* Subtle border */
-    text-align: center; /* Center the title */
+    background-color: #FFC0CB; /* Pink - for header background */
+    padding: 1.5em 2em; /* Slightly more padding */
+    border-bottom: 2px solid #FBC4AB; /* Pastel Pink-Orange - for a subtle, warm border */
+    text-align: center;
 }
 
 header h1 {
     margin: 0;
-    color: #ff69b4; /* A pink color for the cherry blossom emoji theme */
+    color: #FFFFFF; /* White text for the main title for contrast against pink bg */
+    font-weight: normal; /* Georgia can be heavy, normal weight might look softer */
+    font-size: 2.5em; /* Make the title prominent */
 }
 
 /* Navigation Styling */
@@ -26,67 +30,53 @@ nav ul {
     list-style-type: none;
     padding: 0;
     text-align: center;
-    margin-top: 0.5em;
+    margin-top: 0.75em;
 }
 
 nav ul li {
     display: inline;
-    margin-right: 20px;
+    margin-right: 25px; /* Slightly more spacing */
+}
+
+nav ul li:last-child {
+    margin-right: 0; /* No margin for the last item */
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #555;
-    font-weight: bold;
+    color: #FFF0F5; /* LavenderBlush (light text) for links on pink bg */
+    font-weight: normal; /* Georgia bold can be too much for nav links */
+    padding: 0.3em 0;
 }
 
-nav ul li a:hover {
-    color: #ff69b4; /* Pink on hover */
+nav ul li a:hover,
+nav ul li a:focus { /* Added focus for accessibility */
+    color: #FFFFFF; /* White on hover/focus */
+    border-bottom: 1px dashed #FFFFFF; /* Cute dashed underline on hover */
 }
 
 /* Main Content Area */
 main {
-    padding: 1em 2em; /* Padding around the main content */
+    padding: 1.5em 2em;
 }
 
 /* Section Styling */
 section {
-    padding: 2em 1em;
-    margin-bottom: 2em; /* Space between sections */
-    background-color: #fff; /* White background for content sections */
-    border-radius: 8px; /* Slightly rounded corners for sections */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    padding: 2em 1.5em;
+    margin-bottom: 2.5em;
+    background-color: #FFFAFA; /* Snow - almost white, very subtle pinkish tone for sections */
+    border-radius: 12px; /* Softer, more rounded corners */
+    box-shadow: 0 3px 6px rgba(219, 112, 147, 0.15); /* PaleVioletRed shadow, soft and pinkish */
+    border: 1px solid #FFE4E1; /* MistyRose border for sections */
 }
 
 section h2 {
-    color: #333;
-    border-bottom: 2px solid #ffc0cb; /* Light pink underline for section titles */
-    padding-bottom: 0.3em;
+    color: #DB7093; /* PaleVioletRed - for section titles */
+    border-bottom: 2px dotted #FBC4AB; /* Pastel Pink-Orange - dotted underline */
+    padding-bottom: 0.4em;
     margin-top: 0;
+    font-size: 1.8em; /* Slightly larger section headings */
+    font-weight: normal;
 }
 
-/* Footer Styling */
-footer {
-    text-align: center;
-    padding: 1.5em;
-    background-color: #333; /* Dark background for footer */
-    color: #fff; /* White text for footer */
-    font-size: 0.9em;
-}
-
-/* Responsive adjustments (very basic) */
-@media (max-width: 768px) {
-    header {
-        padding: 1em;
-    }
-    main {
-        padding: 1em;
-    }
-    section {
-        padding: 1.5em 0.5em;
-    }
-    nav ul li {
-        display: block; /* Stack navigation links on smaller screens */
-        margin-bottom: 10px;
-    }
-}
+/* Styling for project and goal items (cards
