@@ -26,36 +26,36 @@ header h1 {
     font-size: 2.5em; /* Make the title prominent */
 }
 
-/* Navigation Styling */
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    text-align: center;
-    margin-top: 0.75em;
-}
+/* style.css */
 
-nav ul li {
-    display: inline;
-    margin-right: 25px; /* Slightly more spacing */
-}
-
-nav ul li:last-child {
-    margin-right: 0; /* No margin for the last item */
-}
+/* ... (your other styles) ... */
 
 nav ul li a {
+    display: inline-block; /* Crucial for transform animations to work smoothly and for padding */
     text-decoration: none;
     color: #FFF0F5; /* LavenderBlush (light text) for links on pink bg */
-    font-weight: normal; /* Georgia bold can be too much for nav links */
-    padding: 0.3em 0;
+    font-weight: normal;
+    padding: 0.5em 0.5em; /* Adjusted padding slightly for better clickable area */
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Smooth transition for color and shadow */
 }
 
 nav ul li a:hover,
-nav ul li a:focus { /* Added focus for accessibility */
-    color: #FFFFFF; /* White on hover/focus */
-    border-bottom: 1px dashed #FFFFFF; /* Cute dashed underline on hover */
+nav ul li a:focus {
+    color: #FFFFFF; /* Bright White on hover/focus */
+    border-bottom: 1px dashed #FFFFFF; /* Keep your cute dashed underline */
+
+    /* Luminescent Effect */
+    text-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.9),  /* Inner strong white glow */
+        0 0 10px rgba(255, 255, 255, 0.8), /* Middle white glow */
+        0 0 15px rgba(219, 112, 147, 0.7), /* Outer PaleVioletRed glow */
+        0 0 20px rgba(219, 112, 147, 0.6); /* Fainter PaleVioletRed glow */
+
+    /* Wiggle Animation */
+    animation: wiggle 0.45s ease-in-out 1; /* animation-name, duration, timing-function, iteration-count (1 means it wiggles once) */
 }
 
+/* ... (rest of your styles, including the @keyframes wiggle rule if you haven't placed it already) ... */
 /* Main Content Area */
 main {
     padding: 1.5em 2em;
@@ -190,5 +190,18 @@ section#about {
         width: 120px; /* Slightly smaller image for mobile */
         height: 120px;
         margin-bottom: 15px; /* Space below image when stacked */
+    }
+}
+
+/* Keyframes for Wiggle Animation */
+@keyframes wiggle {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-4deg); /* A bit more rotation for visibility */
+    }
+    75% {
+        transform: rotate(4deg);
     }
 }
