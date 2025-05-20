@@ -3,7 +3,7 @@ description: "a public record of service work, research, and reflections — all
 author: "manahil"
 email: "mawan@gm.slc.edu"
 baseurl: ""
-url: "https://m4n4h1l.github.io/fieldnotes/"
+url: "https://m4n4h1l.github.io/fieldnotes"
 
 theme: minima
 markdown: kramdown
