@@ -247,3 +247,11 @@ section#about {
 #backToTopBtn:hover {
     background-color: #DB7093; /* Darker pink on hover - PaleVioletRed */
 }
+
+/* style.css */
+nav ul li a.active-link {
+    color: #FFFFFF !important; /* Brightest white */
+    font-weight: bold; /* Make it bold */
+    /* You can add a more prominent underline or different background if you wish */
+    border-bottom: 2px solid #FBC4AB !important; /* Pastel Pink-Orange, more prominent */
+}
