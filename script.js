@@ -1,42 +1,29 @@
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
-    // All our JavaScript code will go in here
-});
-
-// Inside the DOMContentLoaded event listener:
 
     // 1. Smooth Scrolling for internal links
     const internalLinks = document.querySelectorAll('a[href^="#"]');
-
     internalLinks.forEach(link => {
         link.addEventListener('click', function(event) {
             const href = this.getAttribute('href');
-
-            // Check if it's a simple hash link on the current page
             if (href.length > 1 && href.startsWith('#')) {
-                const targetId = href.substring(1); // Remove the '#'
+                const targetId = href.substring(1);
                 const targetElement = document.getElementById(targetId);
-
                 if (targetElement) {
-                    event.preventDefault(); // Prevent default jump
+                    event.preventDefault();
                     targetElement.scrollIntoView({
                         behavior: 'smooth'
                     });
                 }
             }
-            // If the link is just "#", do nothing or allow default (often reloads)
-            // If the link is like "index.html#section", this code won't interfere with page navigation
-            // and will only smooth scroll if the target is on the *current* page.
         });
     });
 
-// Inside the DOMContentLoaded event listener:
-
     // 2. "Back to Top" Button
     const backToTopButton = document.getElementById('backToTopBtn');
-    const scrollThreshold = 300; // Show button after scrolling this many pixels
+    const scrollThreshold = 300;
 
-    if (backToTopButton) { // Check if the button exists on the page
+    if (backToTopButton) {
         window.addEventListener('scroll', () => {
             if (window.scrollY > scrollThreshold) {
                 backToTopButton.style.display = 'block';
@@ -53,29 +40,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-// Inside the DOMContentLoaded event listener:
-
     // 3. Active Navigation Link Highlighting (for index.html sections)
-    // This part should ideally only run on index.html or pages with these sections and nav links
-    const navLinks = document.querySelectorAll('header nav ul li a[href^="#"]'); // Links pointing to sections
+    const navLinks = document.querySelectorAll('header nav ul li a[href^="#"]');
     const sections = [];
+    let headerOffset = 0;
+    const header = document.querySelector('header');
+    if(header) {
+        headerOffset = header.offsetHeight + 20; // Height of fixed header + some buffer
+    }
+
 
     navLinks.forEach(link => {
-        const sectionId = link.getAttribute('href').substring(1);
-        const section = document.getElementById(sectionId);
-        if (section) {
-            sections.push({link: link, element: section});
+        // Ensure the link is for a section on the current page, not a link to another page's section
+        if (document.querySelector(link.getAttribute('href'))) {
+            const sectionId = link.getAttribute('href').substring(1);
+            const section = document.getElementById(sectionId);
+            if (section) {
+                sections.push({link: link, element: section});
+            }
         }
     });
 
-    // Only add scroll listener if we are on a page with these sections
-    // A simple check could be if the 'intro' section exists, assuming it's unique to index.html
-    if (document.getElementById('intro') && sections.length > 0) {
-        const offset = 100; // Adjust this offset as needed (e.g., height of your header)
-
-        window.addEventListener('scroll', () => {
+    if (sections.length > 0 && sections.some(s => s.element.id === 'intro')) { // Check if we have sections and specifically 'intro'
+        const highlightActiveLink = () => {
             let currentSectionId = null;
-            const scrollPosition = window.scrollY + offset;
+            const scrollPosition = window.scrollY + headerOffset; // Add headerOffset
 
             sections.forEach(sectionObj => {
                 if (scrollPosition >= sectionObj.element.offsetTop &&
@@ -85,24 +74,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             navLinks.forEach(link => {
-                link.classList.remove('active-link');
-                if (link.getAttribute('href').substring(1) === currentSectionId) {
-                    link.classList.add('active-link');
+                // Only operate on links that are part of our 'sections' array
+                if (sections.find(s => s.link === link)) {
+                    link.classList.remove('active-link');
+                    if (link.getAttribute('href').substring(1) === currentSectionId) {
+                        link.classList.add('active-link');
+                    }
                 }
             });
 
-            // Special case for the top of the page (e.g., 'Home' or 'intro' link)
-            // If no section is actively "current" by the logic above (e.g., between sections or very top)
-            // you might want to ensure the first link is active if scrollPosition is near the top.
-            if (currentSectionId === null && window.scrollY < sections[0]?.element.offsetTop - offset) {
-                navLinks.forEach(link => link.classList.remove('active-link')); // Clear all
-                sections[0]?.link.classList.add('active-link'); // Activate the first link
+            // If at the very top, before the first section is "active" by the above logic
+            if (currentSectionId === null && window.scrollY < (sections[0]?.element.offsetTop - headerOffset || 0) ) {
+                 sections.forEach(s => s.link.classList.remove('active-link')); // Clear all relevant links
+                 if(sections[0]?.link.getAttribute('href') === '#intro'){ // Specifically activate 'intro' link if at top
+                     sections[0]?.link.classList.add('active-link');
+                 }
             }
-        });
+        };
 
-        // Trigger it once on load in case the page is loaded scrolled or with a hash
-        // Use a slight delay to ensure layout is fully stable
-        setTimeout(() => {
-             window.dispatchEvent(new Event('scroll'));
-        }, 100);
+        window.addEventListener('scroll', highlightActiveLink);
+        window.addEventListener('resize', highlightActiveLink); // Recalculate on resize
+        highlightActiveLink(); // Initial call
     }
+});
