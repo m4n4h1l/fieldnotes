@@ -4,7 +4,7 @@ author: "manahil"
 baseurl: "" # for root site
 url: "https://m4n4h1l.github.io"
 
-remote_theme: "jekyll/minima@1e8a445"
+theme: minima
 markdown: kramdown
 
 plugins:
