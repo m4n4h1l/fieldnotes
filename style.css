@@ -26,6 +26,23 @@ header h1 {
     font-size: 2.5em; /* Make the title prominent */
 }
 
+/* Navigation Styling */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    margin-top: 0.75em;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 25px; /* Slightly more spacing */
+}
+
+nav ul li:last-child {
+    margin-right: 0; /* No margin for the last item */
+}
+
 /* style.css */
 
 /* ... (your other styles) ... */
@@ -56,6 +73,20 @@ nav ul li a:focus {
 }
 
 /* ... (rest of your styles, including the @keyframes wiggle rule if you haven't placed it already) ... */
+
+/* Keyframes for Wiggle Animation */
+@keyframes wiggle {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-4deg); /* A bit more rotation for visibility */
+    }
+    75% {
+        transform: rotate(4deg);
+    }
+}
+
 /* Main Content Area */
 main {
     padding: 1.5em 2em;
@@ -190,18 +221,5 @@ section#about {
         width: 120px; /* Slightly smaller image for mobile */
         height: 120px;
         margin-bottom: 15px; /* Space below image when stacked */
-    }
-}
-
-/* Keyframes for Wiggle Animation */
-@keyframes wiggle {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(-4deg); /* A bit more rotation for visibility */
-    }
-    75% {
-        transform: rotate(4deg);
     }
 }
