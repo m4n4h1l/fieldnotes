@@ -15,4 +15,5 @@ sass:
   style: compressed
 
 include:
-  - assets/css
+  - /assets/css/custom.css
+
