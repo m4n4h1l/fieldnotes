@@ -30,4 +30,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+// Inside the DOMContentLoaded event listener:
+
+    // 2. "Back to Top" Button
+    const backToTopButton = document.getElementById('backToTopBtn');
+    const scrollThreshold = 300; // Show button after scrolling this many pixels
+
+    if (backToTopButton) { // Check if the button exists on the page
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > scrollThreshold) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 
