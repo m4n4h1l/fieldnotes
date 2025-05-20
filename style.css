@@ -1,4 +1,159 @@
-/* Styles for the About Me section with Selfie */
+
+/* Pastel Pink Georgia Cutesy Theme */
+
+/* Basic Reset & Body Styling */
+body {
+    font-family: Georgia, serif; /* Georgia font */
+    line-height: 1.7; /* Slightly increased line-height for Georgia */
+    margin: 0;
+    padding: 0;
+    background-color: #FFF0F5; /* LavenderBlush - very light pink page background */
+    color: #5D5D5D; /* Soft dark grey text for readability */
+}
+
+/* Header Styling */
+header {
+    background-color: #FFC0CB; /* Pink - for header background */
+    padding: 1.5em 2em; /* Slightly more padding */
+    border-bottom: 2px solid #FBC4AB; /* Pastel Pink-Orange - for a subtle, warm border */
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #FFFFFF; /* White text for the main title for contrast against pink bg */
+    font-weight: normal; /* Georgia can be heavy, normal weight might look softer */
+    font-size: 2.5em; /* Make the title prominent */
+}
+
+/* Navigation Styling */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    margin-top: 0.75em;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 25px; /* Slightly more spacing */
+}
+
+nav ul li:last-child {
+    margin-right: 0; /* No margin for the last item */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #FFF0F5; /* LavenderBlush (light text) for links on pink bg */
+    font-weight: normal; /* Georgia bold can be too much for nav links */
+    padding: 0.3em 0;
+}
+
+nav ul li a:hover,
+nav ul li a:focus { /* Added focus for accessibility */
+    color: #FFFFFF; /* White on hover/focus */
+    border-bottom: 1px dashed #FFFFFF; /* Cute dashed underline on hover */
+}
+
+/* Main Content Area */
+main {
+    padding: 1.5em 2em;
+}
+
+/* Section Styling */
+section {
+    padding: 2em 1.5em;
+    margin-bottom: 2.5em;
+    background-color: #FFFAFA; /* Snow - almost white, very subtle pinkish tone for sections */
+    border-radius: 12px; /* Softer, more rounded corners */
+    box-shadow: 0 3px 6px rgba(219, 112, 147, 0.15); /* PaleVioletRed shadow, soft and pinkish */
+    border: 1px solid #FFE4E1; /* MistyRose border for sections */
+}
+
+section h2 {
+    color: #DB7093; /* PaleVioletRed - for section titles */
+    border-bottom: 2px dotted #FBC4AB; /* Pastel Pink-Orange - dotted underline */
+    padding-bottom: 0.4em;
+    margin-top: 0;
+    font-size: 1.8em; /* Slightly larger section headings */
+    font-weight: normal;
+}
+
+/* Styling for project and goal items (cards) */
+.project-item, .goal-item {
+    background-color: #FFF5EE; /* SeaShell - very light warm pink for cards */
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+    border: 1px dashed #FFD1DC; /* Light Pink ("Pink Lace") dashed border for cutesy feel */
+    border-radius: 10px; /* Rounded corners for the item box */
+    box-shadow: 0 2px 4px rgba(219, 112, 147, 0.1); /* Softer PaleVioletRed shadow */
+}
+
+.project-item h3, .goal-item h3 {
+    margin-top: 0;
+    color: #DB7093; /* PaleVioletRed for item titles */
+    font-size: 1.4em;
+    font-weight: normal;
+}
+
+.project-item p, .goal-item p {
+    font-size: 0.95em; /* Slightly smaller text for descriptions if needed */
+    line-height: 1.6;
+}
+
+.project-item a {
+    color: #DB7093; /* PaleVioletRed for links */
+    text-decoration: none;
+    font-weight: bold; /* Bold for action links */
+}
+
+.project-item a:hover,
+.project-item a:focus {
+    color: #C15C7E; /* Darker shade of PaleVioletRed on hover */
+    text-decoration: underline;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 2em;
+    background-color: #FFC0CB; /* Pink - same as header for consistency */
+    color: #FFF0F5; /* LavenderBlush text on pink bg */
+    font-size: 0.9em;
+    border-top: 2px solid #FBC4AB; /* Pastel Pink-Orange - matching header's bottom border */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    header {
+        padding: 1em;
+    }
+    header h1 {
+        font-size: 2em;
+    }
+    main {
+        padding: 1em;
+    }
+    section {
+        padding: 1.5em 1em;
+        margin-bottom: 1.5em;
+    }
+    nav ul li {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+    nav ul li a {
+        padding: 0.5em 0; /* More touch area for mobile nav links */
+    }
+    section h2 {
+        font-size: 1.6em;
+    }
+    .project-item h3, .goal-item h3 {
+        font-size: 1.3em;
+    }
+}/* Styles for the About Me section with Selfie */
 section#about {
     display: flex; /* Enables flexbox layout */
     align-items: flex-start; /* Aligns items to the top */
