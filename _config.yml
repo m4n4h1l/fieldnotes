@@ -2,8 +2,8 @@ title: "fieldnotes"
 description: "a public record of service work, research, and reflections — all grounded in non-zero days."
 author: "manahil"
 email: "mawan@gm.slc.edu"
-baseurl: "" # leave blank for GitHub Pages at root
-url: "https://m4n4h1l.github.io"
+baseurl: ""
+url: "https://m4n4h1l.github.io/fieldnotes/"
 
 theme: minima
 markdown: kramdown
