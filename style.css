@@ -890,3 +890,85 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     border-bottom: none; /* Overrides default section h3 border */
     margin-bottom: 0.5em; /* Adjust spacing to the sticky note */
 }
+
+/* =================================== */
+/* Yellow Notepad Reflection Styles    */
+/* =================================== */
+
+.notepad-reflection-container { /* Optional: Use this to center the notepad or control its placement */
+    display: flex;
+    justify-content: center;
+    padding: 1em 0;
+}
+
+.notepad-reflection {
+    background-color: var(--color-bg-notepad);
+    border: 1px solid #E5E0C6; /* Softer border for the notepad */
+    border-top: 1px solid #DAD5BC; /* Slightly darker top edge */
+    padding: 1.5em; /* Overall padding */
+    padding-top: calc(var(--line-height-notepad) * 2.5); /* Extra top padding for "header space" */
+    box-shadow: 2px 2px 7px var(--color-notepad-shadow);
+    width: 100%; /* Or fit-content */
+    max-width: 500px; /* Adjust as needed */
+    margin: 1.5em auto; /* Center it if it's a standalone element */
+    font-family: var(--font-primary); /* Or a more handwritten/monospaced font */
+    position: relative; /* For pseudo-elements (header/margin lines) */
+    line-height: var(--line-height-notepad); /* Crucial for aligning text with ruled lines */
+}
+
+/* Notepad "Binding" or top double red lines */
+.notepad-reflection::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--line-height-notepad) * 1.2); /* Position the first red line */
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--color-notepad-line-red);
+    box-shadow: 0 3px 0 var(--color-notepad-line-red); /* Creates the second red line below the first */
+}
+
+/* Red vertical margin line */
+.notepad-reflection::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 2.5em; /* Position of the margin line from the left */
+    width: 1px;
+    background-color: var(--color-notepad-line-red);
+}
+
+.notepad-title {
+    font-size: 1.2em;
+    color: var(--color-text-body);
+    margin-top: calc(-1 * var(--line-height-notepad) * 0.5); /* Pull title slightly up into header space */
+    margin-bottom: var(--line-height-notepad); /* Space before first paragraph */
+    font-weight: bold;
+    text-align: left;
+    padding-left: calc(2.5em + 10px); /* Ensure title is to the right of the margin line */
+    position: relative; /* To ensure it's above the ::before element */
+}
+
+.notepad-content {
+    padding-left: calc(2.5em + 10px); /* Content starts to the right of the red margin line */
+                                     /* 2.5em for margin line, 10px for space */
+    background-image: repeating-linear-gradient(
+        var(--color-bg-notepad) 0,
+        var(--color-bg-notepad) calc(var(--line-height-notepad) - 1px),
+        var(--color-notepad-line-blue) calc(var(--line-height-notepad) - 1px),
+        var(--color-notepad-line-blue) var(--line-height-notepad)
+    );
+    background-size: 100% var(--line-height-notepad);
+    background-position-y: 0.4em; /* Fine-tune vertical position of lines relative to text */
+}
+
+.notepad-content p {
+    margin-bottom: var(--line-height-notepad); /* Space between paragraphs, aligns with lines */
+    color: var(--color-text-body);
+    font-size: 1em; /* Or your preferred reading size */
+}
+
+.notepad-content p:last-child {
+    margin-bottom: 0;
+}
