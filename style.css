@@ -305,6 +305,24 @@ nav ul li a.active-link {
     margin-bottom: 0.5em;
 }
 
+/* In style.css, within the "CSS for the Goals Flowchart Section" */
+
+.flowchart-node .node-title {
+    font-weight: bold;
+    color: #DB7093; /* PaleVioletRed for titles */
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+}
+
+/* New style for the goal subheadings */
+.goal-subheading {
+    font-style: italic;
+    font-size: 0.95em; /* Slightly smaller than the main node text, or adjust as desired */
+    color: #505050; /* Slightly darker than default for emphasis, or keep #5D5D5D */
+    line-height: 1.6; /* Ensure good readability for potentially longer text */
+    margin-top: 0.25em; /* A little space below the node-title */
+}
+
 .purpose-node {
     flex: 0 0 28%; /* Adjusted flex-basis (e.g., 28% or a fixed pixel value) */
     min-width: 180px; /* Adjusted minimum width */
