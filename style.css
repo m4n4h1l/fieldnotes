@@ -13,6 +13,17 @@
     --color-text-accent: #DB7093;   /* PaleVioletRed */
     --color-text-accent-darker: #C15C7E;
 
+    --color-bg-sticky-note: #FFFACD;  /* LemonChiffon - a classic sticky note yellow */
+    --color-sticky-note-shadow: rgba(0, 0, 0, 0.1); /* Softer shadow to match cards */
+    --color-todo-checkmark: var(--color-text-accent); /* Use your theme's accent color */
+    --color-todo-label-disabled: #aaa;
+    --color-todo-label-checked: #888;
+    --color-todo-checkbox-border: var(--color-text-accent-darker);
+    --color-todo-checkbox-border-hover: var(--color-text-accent);
+    --color-todo-checkbox-focus-outline: var(--color-text-accent);
+    --color-todo-checkbox-disabled-border: #ccc;
+    --color-todo-checkbox-disabled-bg: #f0f0f0;
+    
     /* Background Colors */
     --color-bg-body: #FFF0F5;       /* LavenderBlush */
     --color-bg-header-footer: #FFC0CB; /* Pink */
@@ -733,4 +744,136 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
 .skills-list li strong { /* If you use <strong> within list items */
     color: var(--color-text-body);
     font-weight: bold;
+}
+
+/* =================================== */
+/* Sticky Note To-Do List Styles       */
+/* =================================== */
+
+.sticky-note-todo-container {
+    /* Use this if you want to center the sticky note or control its placement */
+    display: flex;
+    justify-content: center; /* Example: centers the sticky note if it's narrower than container */
+    padding: 1em 0; /* Add some space around the sticky note area */
+}
+
+.sticky-note-todo {
+    background-color: var(--color-bg-sticky-note);
+    padding: 1em 1.5em 1.5em 1.5em;
+    border-radius: 4px;
+    box-shadow: 3px 3px 8px var(--color-sticky-note-shadow);
+    transform: rotate(-1.5deg);
+    width: fit-content;
+    min-width: 260px; /* Ensure it has some presence */
+    max-width: 320px;
+    margin: 1em; /* Margin for the note itself, if not centered by container */
+    font-family: var(--font-primary);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    position: relative;
+}
+
+.sticky-note-todo:hover {
+    transform: rotate(0deg) scale(1.03);
+    box-shadow: 6px 6px 12px var(--color-sticky-note-shadow);
+    z-index: 10;
+}
+
+.sticky-note-title {
+    font-size: 1.1em;
+    color: var(--color-text-body);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px dashed var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.4));
+    font-weight: bold;
+}
+
+.todo-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.todo-list li {
+    margin-bottom: 0.75em;
+    display: flex;
+    align-items: flex-start;
+    font-size: 0.95em;
+    color: var(--color-text-body);
+    position: relative;
+}
+
+/* Custom Checkbox Styling */
+.todo-checkbox {
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+}
+
+.todo-list label {
+    cursor: pointer;
+    padding-left: 28px;
+    position: relative;
+    line-height: 1.4;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.todo-list label::before { /* The custom checkbox box */
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--color-todo-checkbox-border);
+    background-color: var(--color-text-white);
+    border-radius: 3px;
+    position: absolute;
+    left: 0;
+    top: 0.15em;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.todo-list li:hover label::before {
+    border-color: var(--color-todo-checkbox-border-hover);
+}
+
+.todo-checkbox:checked + label {
+    text-decoration: line-through;
+    color: var(--color-todo-label-checked);
+}
+
+.todo-checkbox:checked + label::before { /* Checked state box */
+    background-color: var(--color-todo-checkmark);
+    border-color: var(--color-todo-checkmark);
+}
+
+.todo-checkbox:checked + label::after { /* The checkmark itself */
+    content: '✔';
+    position: absolute;
+    left: 3px; /* Adjust for checkmark alignment in box */
+    top: 0.05em; /* Adjust for checkmark alignment in box */
+    font-size: 13px;
+    color: var(--color-text-white);
+    font-weight: bold;
+}
+
+.todo-checkbox:focus + label::before { /* Accessibility */
+    outline: 2px solid var(--color-todo-checkbox-focus-outline);
+    outline-offset: 1px;
+}
+
+.todo-label-disabled {
+    color: var(--color-todo-label-disabled);
+    text-decoration: none !important;
+}
+
+.todo-checkbox:disabled + label {
+    cursor: not-allowed;
+}
+
+.todo-checkbox:disabled + label::before {
+    border-color: var(--color-todo-checkbox-disabled-border);
+    background-color: var(--color-todo-checkbox-disabled-bg);
 }
