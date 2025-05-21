@@ -322,7 +322,6 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     max-width: 800px;
     margin-bottom: 1.5em;
     text-align: center;
-    border: none; /* Override .flowchart-node border */
     padding: 1em 1.5em; /* Symmetrical padding */
 }
 
