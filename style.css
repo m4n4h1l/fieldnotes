@@ -306,9 +306,17 @@ section#goals h2 { /* Specific to goals H2 */
 
 /* Projects Showcase Section (merged from projects.html) */
 section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" heading */
-    text-align: center;
+    text-align: left;
     margin-bottom: 1em; /* More space before the intro paragraph */
     /* It inherits other styles from the general 'section h2' rule */
+}
+
+.projects-intro-text {
+    text-align: left; /* Align text to the left */
+    max-width: 70ch;  /* Keep max-width for readability, it will now align left */
+    margin-bottom: 2em; /* Keep the bottom margin */
+    /* margin-left: 0; by default for left-aligned block */
+    /* margin-right: auto; or 0, by default for left-aligned block */
 }
 
 .goal-group { /* Container for a goal header + its projects */
