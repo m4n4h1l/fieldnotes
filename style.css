@@ -190,15 +190,6 @@ section#intro p {
     text-decoration: underline;
 }
 
-/* Footer Styling */
-footer {
-    text-align: center;
-    padding: 2em;
-    background-color: #FFC0CB; /* Pink - same as header for consistency */
-    color: #FFF0F5; /* LavenderBlush text on pink bg */
-    font-size: 0.9em;
-    border-top: 2px solid #FBC4AB; /* Pastel Pink-Orange - matching header's bottom border */
-}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
