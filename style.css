@@ -929,14 +929,28 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
 }
 
 /* Red vertical margin line */
-.notepad-reflection::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 2.5em; /* Position of the margin line from the left */
-    width: 1px;
-    background-color: var(--color-notepad-line-red);
+/* In your style.css, find the .notepad-reflection rule */
+.notepad-reflection {
+    background-color: var(--color-bg-notepad);
+    border: 1px solid #E5E0C6; /* Softer border for the notepad */
+    border-top: 1px solid #DAD5BC; /* Slightly darker top edge */
+    padding: 1.5em; /* Overall padding */
+    padding-top: calc(var(--line-height-notepad) * 2.5); /* Extra top padding for "header space" */
+    box-shadow: 2px 2px 7px var(--color-notepad-shadow);
+    width: 100%; 
+    max-width: 500px; /* Adjust as needed */
+    margin: 1.5em auto; /* Center it if it's a standalone element */
+    font-family: var(--font-primary);
+    position: relative; 
+    line-height: var(--line-height-notepad);
+    transition: transform 0.25s ease-out, box-shadow 0.25s ease-out; /* ADD THIS LINE */
+}
+
+/* Add this new rule for the hover effect */
+.notepad-reflection:hover {
+    transform: scale(1.02) translateY(-4px); /* Slight scale up and lift */
+    box-shadow: 4px 6px 12px var(--color-notepad-shadow); /* Slightly more pronounced shadow */
+    z-index: 10; /* Ensure it comes to the front if there are overlapping elements */
 }
 
 .notepad-title {
