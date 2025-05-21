@@ -53,6 +53,13 @@
     /* Transitions & Animations */
     --transition-duration: 0.3s;
     --animation-wiggle-duration: 0.45s;
+    
+    --color-bg-notepad: #FEF9E7; /* A soft, classic notepad yellow (LightGoldenrodYellow) */
+    /* Or you could use --color-bg-sticky-note: #FFFACD; if you prefer LemonChiffon */
+    --color-notepad-line-blue: #A9CCE3; /* Light blue for ruled lines */
+    --color-notepad-line-red: #E74C3C;  /* Red for margin/header lines */
+    --color-notepad-shadow: rgba(0, 0, 0, 0.1);
+    --line-height-notepad: 1.8em; /* Controls spacing between lines of text AND ruled lines */
 }
 
 html {
