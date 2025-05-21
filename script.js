@@ -6,7 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     internalLinks.forEach(link => {
         link.addEventListener('click', function(event) {
             const href = this.getAttribute('href');
-            if (href.length > 1 && href.startsWith('#')) {
+            // Check if it's a simple hash link on the current page (e.g. #about, not projects.html#project-goal-1)
+            // This ensures it only tries to smooth scroll for same-page anchors.
+            // Cross-page anchors will navigate normally and then potentially be handled by highlight on arrival.
+            if (href.length > 1 && href.startsWith('#') && !this.pathname.includes('.html') && (window.location.pathname === this.pathname || "/" + window.location.pathname.split('/').pop() === this.pathname)) {
                 const targetId = href.substring(1);
                 const targetElement = document.getElementById(targetId);
                 if (targetElement) {
@@ -21,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. "Back to Top" Button
     const backToTopButton = document.getElementById('backToTopBtn');
-    const scrollThreshold = 300;
+    const scrollThreshold = 300; // Show button after scrolling this many pixels
 
     if (backToTopButton) {
         window.addEventListener('scroll', () => {
@@ -40,31 +43,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Active Navigation Link Highlighting (for index.html sections)
-    const navLinks = document.querySelectorAll('header nav ul li a[href^="#"]');
+    // 3. Active Navigation Link Highlighting (primarily for index.html sections)
+    const navLinks = document.querySelectorAll('header nav ul li a[href^="#"], header nav ul li a[href^="index.html#"]');
     const sections = [];
     let headerOffset = 0;
     const header = document.querySelector('header');
-    if(header) {
-        headerOffset = header.offsetHeight + 20; // Height of fixed header + some buffer
+
+    if (header) {
+        // headerOffset is useful if you have a fixed/sticky header that obscures the top of sections.
+        // If your header scrolls away, you might want a smaller offset (e.g., 20) or 0.
+        headerOffset = header.offsetHeight + 20;
     }
 
-
     navLinks.forEach(link => {
-        // Ensure the link is for a section on the current page, not a link to another page's section
-        if (document.querySelector(link.getAttribute('href'))) {
-            const sectionId = link.getAttribute('href').substring(1);
-            const section = document.getElementById(sectionId);
+        const href = link.getAttribute('href');
+        let targetId;
+
+        if (href.includes('#')) {
+            targetId = href.substring(href.indexOf('#') + 1);
+        }
+
+        // Only process links that are for the current page's sections (primarily for index.html)
+        // This check assumes index.html links are like '#section' or 'index.html#section'
+        // and we are on index.html (or a page that behaves like it).
+        if (targetId && (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html'))) {
+            const section = document.getElementById(targetId);
             if (section) {
-                sections.push({link: link, element: section});
+                sections.push({ link: link, element: section });
             }
         }
     });
 
-    if (sections.length > 0 && sections.some(s => s.element.id === 'intro')) { // Check if we have sections and specifically 'intro'
+    // Only add scroll listener if we are on index.html (or a similar page) and have sections to track
+    if (sections.length > 0 && (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html'))) {
         const highlightActiveLink = () => {
             let currentSectionId = null;
-            const scrollPosition = window.scrollY + headerOffset; // Add headerOffset
+            const scrollPosition = window.scrollY + headerOffset;
 
             sections.forEach(sectionObj => {
                 if (scrollPosition >= sectionObj.element.offsetTop &&
@@ -73,27 +87,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            navLinks.forEach(link => {
-                // Only operate on links that are part of our 'sections' array
-                if (sections.find(s => s.link === link)) {
-                    link.classList.remove('active-link');
-                    if (link.getAttribute('href').substring(1) === currentSectionId) {
-                        link.classList.add('active-link');
-                    }
+            sections.forEach(sectionObj => { // Iterate through tracked sections/links
+                sectionObj.link.classList.remove('active-link');
+                if (sectionObj.element.id === currentSectionId) {
+                    sectionObj.link.classList.add('active-link');
                 }
             });
 
-            // If at the very top, before the first section is "active" by the above logic
-            if (currentSectionId === null && window.scrollY < (sections[0]?.element.offsetTop - headerOffset || 0) ) {
-                 sections.forEach(s => s.link.classList.remove('active-link')); // Clear all relevant links
-                 if(sections[0]?.link.getAttribute('href') === '#intro'){ // Specifically activate 'intro' link if at top
-                     sections[0]?.link.classList.add('active-link');
-                 }
+            // If at the very top, before the first section is "active"
+            if (currentSectionId === null && window.scrollY < (sections[0]?.element.offsetTop - headerOffset || 0)) {
+                sections.forEach(s => s.link.classList.remove('active-link'));
+                if (sections[0]?.link.getAttribute('href').includes('#intro')) { // Specifically activate 'intro' link if at top
+                    sections[0]?.link.classList.add('active-link');
+                }
             }
         };
 
         window.addEventListener('scroll', highlightActiveLink);
         window.addEventListener('resize', highlightActiveLink); // Recalculate on resize
-        highlightActiveLink(); // Initial call
+        highlightActiveLink(); // Initial call to set active link on page load
     }
-});
+
+    // 4. Highlight section/element on projects.html if linked via hash
+    // This checks if we're on projects.html and there's a hash in the URL
+    if (window.location.pathname.includes('projects.html') && window.location.hash) {
+        const elementId = window.location.hash.substring(1); // Get ID from URL hash (e.g., #project-goal-1 -> project-goal-1)
+        const targetElement = document.getElementById(elementId);
+
+        if (targetElement) {
+            // Smooth scroll to the element and center it in the viewport
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Add the class that triggers the highlight animation in your CSS
+            targetElement.classList.add('highlighted-project'); // Ensure this class is styled in CSS
+
+            // Remove the class after the animation duration so it can be re-triggered
+            // The animation 'temporaryHighlight' in your CSS has a duration of 2.5s
+            setTimeout(() => {
+                targetElement.classList.remove('highlighted-project');
+            }, 2500);
+        }
+    }
+
+}); // End of DOMContentLoaded
