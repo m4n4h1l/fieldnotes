@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>manahil's fieldnotes 🌸</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="assets/favicon.ico" sizes="32x32">
-</head>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"> </head>
 <body>
     <header>
         <h1>🌸 manahil's fieldnotes 🌸</h1>
         <nav>
             <ul>
-                <li><a href="index.html#intro">home</a></li> 
-                <li><a href="index.html#about">about</a></li>
-                <li><a href="index.html#goals">goals</a></li>
-                <li><a href="projects.html">projects</a></li> 
-            </ul>
+                <li><a href="#intro">home</a></li>
+                <li><a href="#about">about</a></li>
+                <li><a href="#goals">goals</a></li>
+                <li><a href="#projects-showcase">projects</a></li> </ul>
         </nav>
     </header>
 
@@ -36,34 +34,86 @@
         </section>
 
         <section id="goals">
-            <h2>[🎯] goals</h2> <div class="goals-flowchart">
+            <h2>[🎯] goals</h2>
+            <div class="goals-flowchart">
                 <div class="flowchart-node purpose-node">
                     <p class="node-title">guiding principle</p>
                     <p>absorbing knowledge to build a life of service</p>
                 </div>
-        
-                <div class="flowchart-connectors">
-                    </div>
-        
                 <div class="goal-nodes-container">
                     <div class="flowchart-node goal-node">
-                        <p class="node-title"><a href="projects.html#project-goal-1"><u>goal 1:</u> build deep, interdisciplinary knowledge</a></p>
-                        <p class="goal-subheading">commit to lifelong learning across history, technology, and policy to understand the systems that shape people’s lives.</p>
+                        <p class="node-title"><a href="#project-goal-1"><u>goal 1:</u> build deep, interdisciplinary knowledge</a></p> <p class="goal-subheading">commit to lifelong learning across history, technology, and policy to understand the systems that shape people’s lives.</p>
                     </div>
                     <div class="flowchart-node goal-node">
-                        <p class="node-title"><a href="projects.html#project-goal-2"><u>goal 2:</u> translate learning into public understanding</a></p>
-                        <p class="goal-subheading">communicate complex ideas clearly and accessibly through writing, teaching, or design.</p>
+                        <p class="node-title"><a href="#project-goal-2"><u>goal 2:</u> translate learning into public understanding</a></p> <p class="goal-subheading">communicate complex ideas clearly and accessibly through writing, teaching, or design.</p>
                     </div>
                     <div class="flowchart-node goal-node">
-                        <p class="node-title"><a href="projects.html#project-goal-3"><u>goal 3:</u> work in service of marginalized or transitional communities</a></p>
-                        <p class="goal-subheading">use your skills in research, storytelling, or systems-thinking to support those in flux: migrants, youth, stateless peoples.</p>
+                        <p class="node-title"><a href="#project-goal-3"><u>goal 3:</u> work in service of marginalized or transitional communities</a></p> <p class="goal-subheading">use your skills in research, storytelling, or systems-thinking to support those in flux: migrants, youth, stateless peoples.</p>
                     </div>
-                
+                    </div>
+            </div>
+        </section>
+
+        <section id="projects-showcase"> {/* New wrapper section with ID for navigation */}
+            <h2>[🛠️] projects</h2> {/* Changed H2 text from projects.html for consistency */}
+            <p style="text-align: center; max-width: 70ch; margin-left: auto; margin-right: auto; margin-bottom: 2em;">
+                each project is an opportunity to learn, serve, and reflect.
+            </p>
+
+            <div class="goal-group">
+                <div class="flowchart-node goal-node goal-as-header" id="project-goal-1"> {/* This ID is now targeted by links from the flowchart above */}
+                    <p class="node-title">~ 1 ~</p>
+                    <p class="goal-subheading">build deep, interdisciplinary knowledge</p>
+                </div>
+                <div class="projects-under-goal">
+                    <div class="project-item" id="project-interdisciplinary-research">
+                        <h3>bachelor's degree @ sarah lawrence</h3>
+                        <p>a look at academia in my life</p>
+                        <p><a href="project-tech-ethics-feed.html">View Progress & Feed &raquo;</a></p>
+                    </div>
+                    <div class="project-item" id="project-systems-thinking-workshops">
+                        <h3>mandarin chinese language learning</h3>
+                        <p>my progress in learching mandarin chinese</p>
+                        <p><a href="project-systems-workshops-feed.html">View Progress & Feed &raquo;</a></p>
                     </div>
                 </div>
             </div>
-         </section>
 
-            <script src="script.js"></script>
-            <button id="backToTopBtn" title="Go to top">🌸 Top</button>
-</body>
+            <div class="goal-group">
+                <div class="flowchart-node goal-node goal-as-header" id="project-goal-2"> {/* This ID is now targeted by links from the flowchart above */}
+                    <p class="node-title">~ 2 ~</p>
+                    <p class="goal-subheading">translate learning into public understanding</p>
+                </div>
+                <div class="projects-under-goal">
+                   <div class="project-item" id="project-fieldnotes-blog">
+                        <h3>"fieldnotes" public writing</h3>
+                        <p>this very website serves as a platform for sharing reflections and translating learnings into accessible narratives.</p>
+                        <p><a href="#intro">explore fieldnotes &raquo;</a></p> {/* Changed to internal link */}
+                    </div>
+                </div>
+            </div>
+
+            <div class="goal-group">
+                <div class="flowchart-node goal-node goal-as-header" id="project-goal-3"> {/* This ID is now targeted by links from the flowchart above */}
+                    <p class="node-title">~ 3 ~</p>
+                    <p class="goal-subheading">work in service of marginalized or transitional communities</p>
+                </div>
+                <div class="projects-under-goal">
+                    <div class="project-item" id="project-migrant-support-initiative">
+                        <h3>interning @ alliance for african assistance</h3>
+                        <p>what have I done as an immigration support services intern @ the aaa?</p>
+                        <p><a href="project-migrant-support-feed.html">View Progress & Feed &raquo;</a></p>
+                    </div>
+                </div>
+            </div>
+            </section>
+        </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> Manahil. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js" defer></script> {/* Added defer attribute back */}
+    <button id="backToTopBtn" title="Go to top">🌸 Top</button>
+    </body>
+</html>
