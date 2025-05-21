@@ -481,3 +481,222 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     /* Project cards on projects showcase */
     .projects-under-goal { grid-template-columns: 1fr; }
 }
+
+/* ============================================= */
+/* Styles for Project Detail Pages (e.g., bachelors-degree-slc.html)
+/* Add these rules to your main style.css file
+/* ============================================= */
+
+.project-detail-page {
+    /* You can set a max-width for the main article content if desired */
+    /* Example:
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    */
+    margin-bottom: 2em; /* Space before the site footer */
+}
+
+.project-page-header {
+    text-align: center;
+    margin-bottom: 2.5em;
+    padding-bottom: 1.5em;
+    border-bottom: 1px dashed var(--color-border-card); /* Using a theme color */
+}
+
+.project-title-main { /* This is the <h2> for the project title */
+    color: var(--color-section-h2); /* Match other main section titles */
+    font-size: 2em; /* Adjust as needed for project page title */
+    margin-bottom: 0.25em;
+    font-weight: normal;
+    /* Ensure it doesn't inherit the dotted border from general section h2 if not desired */
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.project-subheading {
+    font-size: 1.1em;
+    font-style: italic;
+    color: var(--color-text-body);
+    margin-bottom: 1em;
+}
+
+.back-link-container { /* Container for the "back to all projects" link */
+    margin-top: 1em;
+    font-size: 0.9em;
+}
+
+.back-to-projects-link {
+    color: var(--color-text-accent);
+    text-decoration: none;
+    font-weight: bold;
+}
+.back-to-projects-link:hover,
+.back-to-projects-link:focus {
+    color: var(--color-text-accent-darker);
+    text-decoration: underline;
+}
+
+/* Styling for sections within the project detail page */
+.project-detail-page section {
+    /* Override general section styles if you want them to look different */
+    /* For example, to make them less "boxed" than main page sections: */
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 1.5em 0; /* More focused padding, less horizontal */
+    margin-bottom: 2em;
+    border-bottom: 1px solid var(--color-border-section); /* Separator line */
+}
+.project-detail-page section:last-of-type {
+    border-bottom: none; /* No border for the last section */
+}
+
+
+.project-detail-page section h3 { /* These are the main headings for subsections like Overview, Progress Feed */
+    color: var(--color-section-h2);
+    border-bottom: 1px dotted var(--color-border-section-h2); /* Thinner dotted line */
+    padding-bottom: 0.4em;
+    margin-top: 0;
+    margin-bottom: 1.2em;
+    font-size: 1.6em; /* Adjust size for these sub-section titles */
+    font-weight: normal;
+}
+
+/* Timeline styles for Progress Feed */
+.timeline {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.timeline > li { /* Represents a semester block */
+    margin-bottom: 2em;
+}
+
+.timeline h4 { /* Semester titles (e.g., "fall 2024") */
+    color: var(--color-text-accent);
+    font-size: 1.3em; /* Made slightly larger */
+    margin-bottom: 0.75em;
+    font-weight: normal; /* Consistent with other headings */
+}
+
+.course-list {
+    list-style-type: none; /* Removing default bullets for a cleaner look */
+    padding-left: 1em; /* Indent course items slightly */
+    margin-top: 0.5em;
+}
+
+.course-list li {
+    margin-bottom: 1em;
+    padding-left: 1.2em; /* Indent further for a cleaner look */
+    position: relative; /* For custom bullet/marker */
+}
+
+/* Custom "bullet" for course list items for a touch of the theme */
+.course-list li::before {
+    content: '🌸'; /* Or '▹', '▸', '•' etc. */
+    color: var(--color-text-accent);
+    position: absolute;
+    left: 0;
+    top: 0.1em; /* Adjust vertical alignment */
+    font-size: 0.8em; /* Size of the emoji/bullet */
+}
+
+
+.course-list li strong { /* Course titles */
+    color: var(--color-text-body);
+    font-weight: bold; /* Ensure it stands out */
+}
+
+.course-list li span { /* For "brief description of course" */
+    font-size: 0.9em;
+    color: #777; /* Lighter text */
+    font-style: italic;
+}
+
+.placeholder-text { /* You already have this, ensure it's styled as you like */
+    font-style: italic;
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 0.3em;
+    padding-left: 0.5em; /* Align with course content if needed */
+}
+
+/* Portfolio items section */
+.portfolio-items {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.portfolio-items li {
+    margin-bottom: 1.2em;
+    padding-bottom: 1em;
+    border-bottom: 1px dotted var(--color-border-card); /* Thematic separator */
+}
+
+.portfolio-items li:last-child {
+    border-bottom: none;
+}
+
+.portfolio-items li strong { /* For "[Essay Sample]:" etc. */
+    color: var(--color-text-body);
+    display: block; /* Make it block to have description on new line easily */
+    margin-bottom: 0.25em;
+}
+
+/* Related work links */
+.project-links { /* Used in "Related Work" section */
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.project-links li {
+    margin-bottom: 0.5em;
+}
+
+.project-links li a {
+    color: var(--color-card-link); /* Using card link color from your variables */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.project-links li a:hover,
+.project-links li a:focus {
+    color: var(--color-card-link-hover);
+    text-decoration: underline;
+}
+
+/* Responsive adjustments for project detail page elements */
+@media (max-width: 768px) {
+    .project-title-main {
+        font-size: 1.8em; /* Adjust for smaller screens */
+    }
+    .project-detail-page section h3 {
+        font-size: 1.4em; /* Adjust for smaller screens */
+    }
+    .timeline h4 {
+        font-size: 1.15em;
+    }
+    .course-list {
+        padding-left: 0.5em;
+    }
+    .course-list li {
+        padding-left: 1em; /* Adjust for custom bullet */
+    }
+    .course-list li::before {
+        top: 0.15em; /* May need slight adjustment */
+    }
+}
+
+@media (max-width: 480px) {
+    .project-title-main {
+        font-size: 1.6em;
+    }
+    .project-detail-page section h3 {
+        font-size: 1.3em;
+    }
+    .project-subheading {
+        font-size: 1em;
+    }
+}
