@@ -928,22 +928,47 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     box-shadow: 0 3px 0 var(--color-notepad-line-red); /* Creates the second red line below the first */
 }
 
-/* Red vertical margin line */
-/* In your style.css, find the .notepad-reflection rule */
-.notepad-reflection {
-    background-color: var(--color-bg-notepad);
-    border: 1px solid #E5E0C6; /* Softer border for the notepad */
-    border-top: 1px solid #DAD5BC; /* Slightly darker top edge */
-    padding: 1.5em; /* Overall padding */
-    padding-top: calc(var(--line-height-notepad) * 2.5); /* Extra top padding for "header space" */
-    box-shadow: 2px 2px 7px var(--color-notepad-shadow);
-    width: 100%; 
-    max-width: 500px; /* Adjust as needed */
-    margin: 1.5em auto; /* Center it if it's a standalone element */
-    font-family: var(--font-primary);
-    position: relative; 
-    line-height: var(--line-height-notepad);
-    transition: transform 0.25s ease-out, box-shadow 0.25s ease-out; /* ADD THIS LINE */
+/* Add these new rules to your style.css */
+/* You can place them near your existing .notepad-reflection styles */
+
+.notepad-layout-container {
+    display: flex;
+    justify-content: space-around; /* Distributes space around notepads */
+    align-items: flex-start;    /* Aligns the tops of the notepads */
+    flex-wrap: wrap;            /* Allows notepads to wrap to the next line on smaller screens */
+    gap: 2em;                   /* Space between notepads if they wrap or if using space-between */
+    margin-top: 1.5em;          /* Space above the container */
+    margin-bottom: 2em;         /* Space below the container */
+}
+
+/* Adjustments for .notepad-reflection when inside the layout container */
+.notepad-layout-container .notepad-reflection {
+    flex: 1 1 calc(50% - 2em); /* Allows notepads to grow/shrink, aiming for two per row */
+                               /* calc(50% - 2em) accounts for the gap. Adjust if gap changes. */
+    min-width: 280px;          /* Minimum width before a notepad wraps or shrinks too much */
+    margin: 0;                 /* Remove the auto margins, as flexbox handles positioning */
+    /* max-width: 45%; */      /* Alternative to flex-basis if you prefer fixed percentage */
+                               /* The existing max-width: 500px on .notepad-reflection will still apply */
+}
+
+/* Responsive adjustments for the two-notepad layout */
+@media (max-width: 800px) { /* Adjust this breakpoint as needed */
+    .notepad-layout-container {
+        flex-direction: column; /* Stack notepads vertically */
+        align-items: center;    /* Center notepads when stacked */
+        gap: 0; /* Reset gap for column layout, margin on items will handle space */
+    }
+
+    .notepad-layout-container .notepad-reflection {
+        flex-basis: auto;    /* Reset flex-basis */
+        width: 90%;          /* Make notepads take more width when stacked */
+        max-width: 500px;    /* Ensure they don't get too wide on medium screens */
+        margin: 0 auto 2em auto; /* Center and add bottom margin */
+    }
+
+    .notepad-layout-container .notepad-reflection:last-child {
+        margin-bottom: 0; /* No bottom margin for the last stacked notepad */
+    }
 }
 
 /* Add this new rule for the hover effect */
