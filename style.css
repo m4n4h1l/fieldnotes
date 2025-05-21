@@ -255,3 +255,144 @@ nav ul li a.active-link {
     /* You can add a more prominent underline or different background if you wish */
     border-bottom: 2px solid #FBC4AB !important; /* Pastel Pink-Orange, more prominent */
 }
+
+/* style.css - Add these new rules */
+
+.goals-flowchart {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the purpose node and the goals container */
+    padding: 2em 0;
+    font-family: Georgia, serif; /* Ensuring theme font */
+}
+
+.flowchart-node {
+    background-color: #FFF5EE; /* SeaShell - from your theme for cards */
+    border: 2px dashed #FFD1DC; /* Light Pink ("Pink Lace") dashed border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 1em 1.5em;
+    margin: 1em;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(219, 112, 147, 0.1); /* Softer PaleVioletRed shadow */
+    position: relative; /* Needed for positioning connecting lines */
+    color: #5D5D5D; /* Soft dark grey text */
+}
+
+.flowchart-node .node-title {
+    font-weight: bold;
+    color: #DB7093; /* PaleVioletRed for titles */
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+}
+
+.purpose-node {
+    width: 60%; /* Adjust as needed */
+    max-width: 450px;
+    margin-bottom: 70px; /* Space for lines to connect from below */
+}
+
+.goal-nodes-container {
+    display: flex;
+    justify-content: space-around; /* Distribute goal nodes evenly */
+    flex-wrap: wrap; /* Allow goals to wrap on smaller screens */
+    width: 100%;
+    max-width: 1000px; /* Max width for the goals row */
+    position: relative; /* For positioning the lines correctly */
+}
+
+.goal-node {
+    width: 22%; /* Approx width for 4 items in a row, adjust if needed */
+    min-width: 200px; /* Minimum width before wrapping */
+    margin-top: 50px; /* Space for the connecting line from above */
+    /* ensure text inside is also centered if not by default */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content if heights vary */
+}
+
+/* --- Connecting Lines --- */
+
+/* Horizontal line coming down from the Purpose node */
+.purpose-node::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -40px; /* Position it below the purpose node */
+    transform: translateX(-50%);
+    width: 2px; /* Thickness of the vertical part of the line */
+    height: 40px; /* Length of the vertical stem */
+    background-color: #DB7093; /* PaleVioletRed line color */
+}
+
+/* Vertical line going up from each Goal node */
+.goal-node::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -50px; /* Position it above the goal node */
+    transform: translateX(-50%);
+    width: 2px; /* Thickness of the line */
+    height: 50px; /* Length of the line, adjust to meet the conceptual horizontal connector */
+    background-color: #DB7093; /* PaleVioletRed line color */
+}
+
+/* Horizontal connecting line above the goal nodes */
+/* This will be a pseudo-element on the .goal-nodes-container */
+.goal-nodes-container::before {
+    content: '';
+    position: absolute;
+    left: 10%; /* Start from the first potential goal area */
+    right: 10%; /* End at the last potential goal area */
+    top: 0px; /* Position it at the very top of the container, where vertical lines from goals will meet */
+    height: 2px; /* Thickness of the horizontal line */
+    background-color: #DB7093; /* PaleVioletRed line color */
+    z-index: -1; /* Place it behind goal nodes if any overlap, though should be fine with padding */
+}
+
+/* Responsive adjustments for the flowchart */
+@media (max-width: 900px) { /* Adjust breakpoint as needed */
+    .goal-nodes-container {
+        flex-direction: column; /* Stack goals vertically */
+        align-items: center; /* Center them when stacked */
+    }
+
+    .goal-node {
+        width: 70%; /* Allow stacked goals to be wider */
+        max-width: 400px;
+        margin-top: 60px; /* Adjust spacing for vertical lines */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* Adjust line connections for stacked layout */
+    .goal-nodes-container::before { /* Hide the main horizontal connector */
+        display: none;
+    }
+
+    .goal-node::before { /* Vertical lines from goals now go further up towards the purpose node */
+        top: -60px;
+        height: 60px;
+        /* They will now visually connect towards the vertical stem of the purpose node */
+    }
+     .purpose-node {
+        margin-bottom: 60px;
+    }
+    .purpose-node::after { /* The stem from purpose is still needed */
+        bottom: -30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .purpose-node {
+        width: 85%;
+    }
+    .goal-node {
+        width: 85%;
+        min-width: unset;
+        padding: 0.8em 1em;
+    }
+    .flowchart-node .node-title {
+        font-size: 1em;
+    }
+}
