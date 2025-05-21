@@ -108,25 +108,19 @@ document.addEventListener('DOMContentLoaded', () => {
         highlightActiveLink(); // Initial call to set active link on page load
     }
 
-    // 4. Highlight section/element on projects.html if linked via hash
+// 4. Highlight section/element on projects.html if linked via hash
     // This checks if we're on projects.html and there's a hash in the URL
     if (window.location.pathname.includes('projects.html') && window.location.hash) {
-        const elementId = window.location.hash.substring(1); // Get ID from URL hash (e.g., #project-goal-1 -> project-goal-1)
+        const elementId = window.location.hash.substring(1);
         const targetElement = document.getElementById(elementId);
 
         if (targetElement) {
-            // Smooth scroll to the element and center it in the viewport
             targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            // Add the class that triggers the highlight animation in your CSS
-            targetElement.classList.add('highlighted-project'); // Ensure this class is styled in CSS
-
-            // Remove the class after the animation duration so it can be re-triggered
-            // The animation 'temporaryHighlight' in your CSS has a duration of 2.5s
+            targetElement.classList.add('highlighted-project');
             setTimeout(() => {
                 targetElement.classList.remove('highlighted-project');
             }, 2500);
         }
     }
-
+    
 }); // End of DOMContentLoaded
