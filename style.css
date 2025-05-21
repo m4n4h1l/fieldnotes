@@ -546,3 +546,17 @@ nav ul li a.active-link {
         grid-template-columns: 1fr; /* Stack projects in a single column */
     }
 }
+
+/* In style.css */
+
+.flowchart-node .node-title a {
+    color: inherit; /* Inherits the color from .node-title (which is #DB7093) */
+    text-decoration: none; /* Removes the default underline */
+    display: block; /* Optional: Makes the entire paragraph area clickable */
+}
+
+.flowchart-node .node-title a:hover,
+.flowchart-node .node-title a:focus {
+    text-decoration: underline; /* Adds an underline on hover/focus for visual feedback */
+    color: #C15C7E; /* Optional: A slightly darker shade on hover, like your project links */
+}
