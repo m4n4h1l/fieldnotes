@@ -111,6 +111,51 @@ section h2 {
     font-weight: normal;
 }
 
+/* In style.css */
+
+/* You can add these new rules, or modify existing ones if you had placeholders */
+
+/* Specific styles for the Intro Section */
+section#intro {
+    /* Override general section box styling */
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0; /* Or 'initial' if you prefer */
+
+    /* Center its content */
+    text-align: center;
+
+    /* Optional: Adjust padding for this "unboxed" section */
+    /* The original 'section' rule has padding: 2em 1.5em; */
+    /* You might want different vertical padding here: */
+    padding-top: 3em;    /* Example: More top space */
+    padding-bottom: 3em; /* Example: More bottom space */
+    /* Horizontal padding (1.5em) from the general 'section' rule will still apply unless overridden here */
+    /* margin-bottom: 2.5em; /* This is from the general section rule, adjust if needed */
+}
+
+/* Adjustments for the H2 within the centered intro section */
+section#intro h2 {
+    display: inline-block; /* Makes the h2 only as wide as its content, so border is too */
+    /* The color, font-size, font-weight are inherited from the general 'section h2' rule */
+    /* The border-bottom and padding-bottom are also inherited. */
+    /* If you wanted NO border for this specific h2: */
+    /* border-bottom: none; */
+    /* padding-bottom: 0; */ /* Remove padding if border is removed */
+}
+
+/* Styling for the paragraph in the intro section (already centered by text-align on section#intro) */
+section#intro p {
+    /* Optional: If you want to control its width for readability when centered */
+    max-width: 65ch; /* Limits line length to about 65 characters */
+    margin-left: auto;  /* Centers the paragraph block if max-width is applied */
+    margin-right: auto; /* Centers the paragraph block if max-width is applied */
+    /* The font-style: italic; will come from your HTML <em> tag */
+    font-size: 1.1em; /* Optional: Make the tagline a bit larger */
+    color: #5D5D5D;   /* Ensure it uses the main text color or a specific one */
+}
+
 /* Styling for project and goal items (cards) */
 .project-item, .goal-item {
     background-color: #FFF5EE; /* SeaShell - very light warm pink for cards */
