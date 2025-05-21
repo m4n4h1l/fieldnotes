@@ -75,7 +75,7 @@ header h1 {
     margin: 0;
     color: var(--color-text-white);
     font-weight: normal;
-    font-size: 2.5em; /* Consider making this a variable if changed often */
+    font-size: 2.5em;
 }
 
 nav ul {
@@ -110,12 +110,12 @@ nav ul li a:focus {
     text-shadow:
         0 0 5px rgba(255, 255, 255, 0.9),
         0 0 10px rgba(255, 255, 255, 0.8),
-        0 0 15px rgba(219, 112, 147, 0.7), /* Consider var(--color-text-accent) with alpha */
-        0 0 20px rgba(219, 112, 147, 0.6);
+        0 0 15px var(--color-text-accent-rgba, rgba(219, 112, 147, 0.7)), /* Using accent with alpha */
+        0 0 20px var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.6));
     animation: wiggle var(--animation-wiggle-duration) ease-in-out 1;
 }
 
-/* Active link style - !important might be needed due to hover/focus specificity. Review if possible. */
+/* Active link style - !important might be needed. Review if possible. */
 nav ul li a.active-link {
     color: var(--color-text-white) !important;
     font-weight: bold;
@@ -127,7 +127,7 @@ main {
 }
 
 section {
-    padding: var(--padding-section-vertical, 2em) var(--padding-section-horizontal, 1.5em);
+    padding: 2em 1.5em; /* Default section padding */
     margin-bottom: 2.5em;
     background-color: var(--color-bg-section);
     border-radius: 12px;
@@ -135,7 +135,7 @@ section {
     border: 1px solid var(--color-border-section);
 }
 
-section h2 {
+section h2 { /* Default style for H2 within sections */
     color: var(--color-section-h2);
     border-bottom: 2px dotted var(--color-border-section-h2);
     padding-bottom: 0.4em;
@@ -168,8 +168,12 @@ section#intro {
     padding-bottom: 3em;
 }
 
-section#intro h2 {
-    display: inline-block;
+section#intro h2 { /* Specific to intro H2 */
+    display: inline-block; /* Makes border only span text */
+    /* It inherits color, font-size, font-weight, border-bottom from general section h2 */
+    /* If you want NO border for this specific h2, uncomment below: */
+    /* border-bottom: none; */
+    /* padding-bottom: 0; */
 }
 
 section#intro p {
@@ -177,10 +181,10 @@ section#intro p {
     margin-left: auto;
     margin-right: auto;
     font-size: 1.1em;
-    /* color is inherited from body, or var(--color-text-body) */
+    /* color: var(--color-text-body); /* Inherited */
 }
 
-/* About Me Section with Selfie (index.html) */
+/* About Me Section (index.html) */
 section#about {
     display: flex;
     align-items: flex-start;
@@ -201,62 +205,32 @@ section#about {
     flex: 1;
 }
 
-.about-text h2 {
+.about-text h2 { /* Specific to about H2, though it also falls under general section h2 */
     margin-top: 0;
-}
-
-/* Project Item Cards (used on projects.html, potentially other places) */
-/* Assuming .goal-item is not used for this card style anymore, removed it from selector */
-.project-item {
-    background-color: var(--color-card-bg);
-    padding: 1.5em;
-    /* margin-bottom is handled by grid gap in .projects-under-goal */
-    border: 1px dashed var(--color-card-border);
-    border-radius: 10px;
-    box-shadow: 0 2px 4px var(--color-shadow-card);
-}
-
-.project-item h3 {
-    margin-top: 0;
-    color: var(--color-card-h3);
-    font-size: 1.4em;
-    font-weight: normal;
-}
-
-.project-item p {
-    font-size: 0.95em;
-    line-height: 1.6;
-}
-
-.project-item a {
-    color: var(--color-card-link);
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.project-item a:hover,
-.project-item a:focus {
-    color: var(--color-card-link-hover);
-    text-decoration: underline;
+    /* Styling for [☎️] etc. will be inherited or can be made specific here */
 }
 
 /* Goals Flowchart Section (index.html) */
+section#goals h2 { /* Specific to goals H2 */
+    /* Styling for [🎯] etc. will be inherited or can be made specific here */
+    /* If you want it centered: text-align: center; margin-bottom: 0.5em; */
+}
+
 .goals-flowchart {
     display: flex;
     align-items: flex-start;
     gap: 20px;
     padding: 2em 0;
-    /* font-family is inherited */
     width: 100%;
 }
 
 .flowchart-node {
-    background-color: var(--color-card-bg); /* Reusing card background */
-    border: 2px dashed var(--color-card-border); /* Reusing card border style */
+    background-color: var(--color-bg-card);
+    border: 2px dashed var(--color-border-card);
     border-radius: 10px;
     padding: 1em 1.5em;
     text-align: left;
-    box-shadow: 0 2px 4px var(--color-shadow-card); /* Reusing card shadow */
+    box-shadow: 0 2px 4px var(--color-shadow-card);
     position: relative;
     color: var(--color-text-body);
 }
@@ -270,32 +244,32 @@ section#about {
 
 .flowchart-node .node-title a {
     color: inherit;
-    text-decoration: none;
+    text-decoration: none; /* The <u> tag in HTML will still cause an underline */
     display: block;
 }
 
 .flowchart-node .node-title a:hover,
 .flowchart-node .node-title a:focus {
-    text-decoration: underline;
+    text-decoration: underline; /* This will interact with the <u> tag */
     color: var(--color-text-accent-darker);
 }
 
-.goal-subheading { /* Used in flowchart nodes */
+.goal-subheading { /* Used in flowchart nodes on index.html AND project goal headers */
     font-style: italic;
     font-size: 0.95em;
-    color: #505050; /* Slightly darker, could be a variable too */
+    color: #505050; /* Could be a variable: --color-text-subtle or similar */
     line-height: 1.6;
     margin-top: 0.25em;
 }
 
-.purpose-node { /* Flowchart specific */
+.purpose-node { /* Flowchart specific on index.html */
     flex: 0 0 28%;
     min-width: 180px;
     align-self: center;
     text-align: center;
 }
 
-.goal-nodes-container { /* Flowchart specific */
+.goal-nodes-container { /* Flowchart specific on index.html */
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -303,7 +277,7 @@ section#about {
 }
 
 .goal-node { /* Flowchart specific node on index.html */
-    width: 100%;
+    width: 100%; /* Takes full width of .goal-nodes-container */
     padding-left: 45px; /* For connector line */
 }
 
@@ -330,17 +304,18 @@ section#about {
     background-color: var(--color-flowchart-line);
 }
 
-/* Projects by Goal Page (projects.html) */
-#projects-by-goal h2 {
+/* Projects Showcase Section (merged from projects.html) */
+section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" heading */
     text-align: center;
-    margin-bottom: 0.5em;
+    margin-bottom: 1em; /* More space before the intro paragraph */
+    /* It inherits other styles from the general 'section h2' rule */
 }
 
-.goal-group { /* projects.html */
+.goal-group { /* Container for a goal header + its projects */
     margin-bottom: 3em;
 }
 
-.flowchart-node.goal-as-header { /* Goal headers on projects.html */
+.flowchart-node.goal-as-header { /* Goal headers on projects showcase */
     margin-left: auto;
     margin-right: auto;
     width: 90%;
@@ -348,26 +323,57 @@ section#about {
     margin-bottom: 1.5em;
     text-align: center;
     border: none; /* Override .flowchart-node border */
-    padding: 1em 1.5em; /* Reset padding to be symmetrical */
+    padding: 1em 1.5em; /* Symmetrical padding */
 }
 
-.flowchart-node.goal-as-header::before { /* Remove connector line for these headers */
+.flowchart-node.goal-as-header::before { /* Remove connector line for these */
     display: none;
 }
 
-.flowchart-node.goal-as-header .goal-subheading {
-    font-size: 1em; /* Ensure readability */
+.flowchart-node.goal-as-header .goal-subheading { /* Subheading under ~1~, ~2~ */
+    font-size: 1em; /* Ensure readability, may differ from flowchart's .goal-subheading */
+    font-style: italic; /* Explicitly ensuring it's italic if not inherited */
+    color: #505050;
 }
 
-.projects-under-goal { /* projects.html */
+.projects-under-goal {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5em;
-    padding: 0 1em;
+    padding: 0 1em; /* Optional padding for the group of project items */
 }
 
-.project-item { /* On projects.html, ensure margin-bottom is handled by grid gap */
-    margin-bottom: 0;
+.project-item {
+    background-color: var(--color-card-bg);
+    padding: 1.5em;
+    border: 1px dashed var(--color-card-border);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px var(--color-shadow-card);
+    margin-bottom: 0; /* Grid gap handles spacing */
+}
+
+.project-item h3 {
+    margin-top: 0;
+    color: var(--color-card-h3);
+    font-size: 1.4em;
+    font-weight: normal;
+}
+
+.project-item p {
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+.project-item a {
+    color: var(--color-card-link);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.project-item a:hover,
+.project-item a:focus {
+    color: var(--color-card-link-hover);
+    text-decoration: underline;
 }
 
 /* Back to Top Button */
@@ -399,28 +405,15 @@ section#about {
 /* =================================== */
 
 @keyframes wiggle {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(-4deg);
-    }
-    75% {
-        transform: rotate(4deg);
-    }
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-4deg); }
+    75% { transform: rotate(4deg); }
 }
 
-/* Highlight animation (used by JS for project cards and goal headers on projects.html) */
 @keyframes temporaryHighlight {
-    0% {
-        box-shadow: 0 0 0 0 rgba(219, 112, 147, 0.4); /* Base on var(--color-text-accent) */
-    }
-    50% {
-        box-shadow: 0 0 20px 8px rgba(219, 112, 147, 0.7);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(219, 112, 147, 0);
-    }
+    0% { box-shadow: 0 0 0 0 var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.4)); }
+    50% { box-shadow: 0 0 20px 8px var(--color-text-accent-rgba, rgba(219, 112, 147, 0.7)); }
+    100% { box-shadow: 0 0 0 0 var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0)); }
 }
 
 .project-item.highlighted-project,
@@ -432,118 +425,52 @@ section#about {
 /* 5. Responsive Adjustments         */
 /* =================================== */
 
-/* General Responsive (Tablet size and down) */
 @media (max-width: 768px) {
-    header {
-        padding: 1em;
-    }
-    header h1 {
-        font-size: 2em;
-    }
-    main {
-        padding: 1em;
-    }
-    section {
-        padding: 1.5em 1em;
-        margin-bottom: 1.5em;
-    }
-    section h2 {
-        font-size: 1.6em;
-    }
+    header { padding: 1em; }
+    header h1 { font-size: 2em; }
+    main { padding: 1em; }
+    section { padding: 1.5em 1em; margin-bottom: 1.5em; }
+    section h2 { font-size: 1.6em; }
 
-    nav ul li {
-        display: block;
-        margin-right: 0;
-        margin-bottom: 12px;
-    }
-    nav ul li a {
-        padding: 0.5em 0;
-    }
+    nav ul li { display: block; margin-right: 0; margin-bottom: 12px; }
+    nav ul li a { padding: 0.5em 0; }
 
-    .project-item h3 { /* Assuming .goal-item is not used for cards */
-        font-size: 1.3em;
-    }
+    .project-item h3 { font-size: 1.3em; }
 
     /* Flowchart on index.html - stacked */
-    .goals-flowchart {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    .purpose-node {
-        flex-basis: auto;
-        width: 85%;
-        max-width: 400px;
-        margin-bottom: 40px;
-        align-self: center;
-    }
-    .goal-nodes-container { /* For index.html flowchart */
-        width: 100%;
-        align-items: center;
-        gap: 35px;
-    }
-    .goal-node { /* For index.html flowchart */
-        width: 85%;
-        max-width: 400px;
-        padding-left: 1.5em; /* Reset for stacked */
-        padding-top: 30px;
-        text-align: center;
+    .goals-flowchart { flex-direction: column; align-items: center; gap: 10px; }
+    .purpose-node { flex-basis: auto; width: 85%; max-width: 400px; margin-bottom: 40px; align-self: center; }
+    .goal-nodes-container { width: 100%; align-items: center; gap: 35px; }
+    .goal-node { /* For index.html flowchart nodes when stacked */
+        width: 85%; max-width: 400px; padding-left: 1.5em; padding-top: 30px; text-align: center;
     }
     .purpose-node::after { /* Line from purpose goes down */
         top: auto; bottom: -20px; left: 50%; right: auto;
-        transform: translateX(-50%);
-        width: 2px; height: 20px;
+        transform: translateX(-50%); width: 2px; height: 20px;
     }
-    .goal-node::before { /* Line from goal goes up, for index.html flowchart */
-        top: -20px; left: 50%;
-        transform: translateX(-50%);
-        width: 2px; height: 20px;
+    .goal-node::before { /* Line from goal goes up (index.html flowchart) */
+        top: -20px; left: 50%; transform: translateX(-50%); width: 2px; height: 20px;
     }
 
-    /* Projects page goal headers */
-    .flowchart-node.goal-as-header { /* On projects.html */
-        width: 95%;
-    }
-    .projects-under-goal { /* On projects.html */
-        padding: 0 0.5em;
-    }
+    /* Projects Showcase Section - Goal Headers */
+    .flowchart-node.goal-as-header { width: 95%; }
+    .projects-under-goal { padding: 0 0.5em; }
 }
 
-/* About Section Responsive (Smaller tablets/Large phones) */
-@media (max-width: 600px) {
-    section#about {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .about-selfie {
-        width: 120px;
-        height: 120px;
-        margin-bottom: 15px;
-    }
+@media (max-width: 600px) { /* About Section Responsive */
+    section#about { flex-direction: column; align-items: center; text-align: center; }
+    .about-selfie { width: 120px; height: 120px; margin-bottom: 15px; }
 }
 
-/* Small Mobile screens */
 @media (max-width: 480px) {
-    .purpose-node, .goal-node { /* For index.html flowchart */
-        width: 90%;
-        padding: 0.8em 1em;
-    }
-    .goal-node { /* For index.html flowchart when stacked */
-        padding-left: 1em; /* Reset for mobile */
-        padding-top: 25px;
-    }
-    .purpose-node::after, .goal-node::before { /* For index.html flowchart lines */
-        height: 15px;
-    }
+    /* Flowchart nodes on index.html */
+    .purpose-node, .goal-node { width: 90%; padding: 0.8em 1em; }
+    .goal-node { padding-left: 1em; padding-top: 25px; }
+    .purpose-node::after, .goal-node::before { height: 15px; }
     .purpose-node::after { bottom: -15px; }
     .goal-node::before { top: -15px; }
+    .flowchart-node .node-title { font-size: 1em; }
 
-    .flowchart-node .node-title { /* General flowchart node title */
-        font-size: 1em;
-    }
-
-    .projects-under-goal { /* On projects.html */
-        grid-template-columns: 1fr; /* Stack project cards */
-    }
+    /* Project cards on projects showcase */
+    .projects-under-goal { grid-template-columns: 1fr; }
 }
