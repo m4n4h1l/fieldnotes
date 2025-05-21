@@ -108,18 +108,29 @@ document.addEventListener('DOMContentLoaded', () => {
         highlightActiveLink(); // Initial call to set active link on page load
     }
 
-// 4. Highlight section/element on projects.html if linked via hash
-    // This checks if we're on projects.html and there's a hash in the URL
-    if (window.location.pathname.includes('projects.html') && window.location.hash) {
+// 4. Highlight section/element if linked via hash on the current page
+    if (window.location.hash) { // Check if there's any hash in the URL
         const elementId = window.location.hash.substring(1);
         const targetElement = document.getElementById(elementId);
 
         if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Smooth scroll to the element and center it.
+            // The smooth scroll for same-page links (part 1 of script) might also handle this if clicked,
+            // but this ensures it happens on direct load with a hash.
+            // We need to be careful not to have two scrollIntoView calls fighting.
+            // Let's make this one conditional or ensure it doesn't conflict.
+            // For now, the browser's default jump to hash + this smooth scroll will likely resolve okay.
+            // A more robust solution might integrate this into the smooth scroll handler.
+
+            // We'll use a slight delay for scrollIntoView to ensure the page has settled from the hash jump
+            setTimeout(() => {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100); // Small delay
+
             targetElement.classList.add('highlighted-project');
             setTimeout(() => {
                 targetElement.classList.remove('highlighted-project');
-            }, 2500);
+            }, 2500); // Match animation duration
         }
     }
     
