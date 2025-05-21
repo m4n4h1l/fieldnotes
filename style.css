@@ -499,6 +499,15 @@ nav ul li a.active-link {
     max-width: 800px;
     margin-bottom: 1.5em; /* Space between the goal box and the projects below it */
     text-align: center; /* Center the text within the goal box */
+
+        /* ADD/MODIFY Padding: Reset left padding, ensure symmetrical padding */
+    padding-top: 1em;    /* Matches .flowchart-node */
+    padding-bottom: 1em; /* Matches .flowchart-node */
+    padding-left: 1.5em; /* Matches .flowchart-node's horizontal padding */
+    padding-right: 1.5em;/* Matches .flowchart-node's horizontal padding */
+    /* Or, more concisely, if you want to match .flowchart-node exactly: */
+    /* padding: 1em 1.5em; */
+
 }
 
 .flowchart-node.goal-as-header .goal-subheading {
@@ -559,4 +568,8 @@ nav ul li a.active-link {
 .flowchart-node .node-title a:focus {
     text-decoration: underline; /* Adds an underline on hover/focus for visual feedback */
     color: #C15C7E; /* Optional: A slightly darker shade on hover, like your project links */
+}
+
+.flowchart-node.goal-as-header::before {
+    display: none; /* This will remove the pseudo-element line */
 }
