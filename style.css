@@ -877,3 +877,9 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     border-color: var(--color-todo-checkbox-disabled-border);
     background-color: var(--color-todo-checkbox-disabled-bg);
 }
+/* Optional: Styling for the heading of the sticky note section */
+.sticky-note-section h3 {
+    text-align: center;
+    border-bottom: none; /* Overrides default section h3 border */
+    margin-bottom: 0.5em; /* Adjust spacing to the sticky note */
+}
