@@ -700,3 +700,37 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
         font-size: 1em;
     }
 }
+
+/* Add to your style.css */
+
+/* Internship Page - Contributions & Skills Lists */
+.contributions-list,
+.skills-list {
+    list-style-type: none; /* Or your preferred bullet, e.g., 'disc' */
+    padding-left: 0;
+    margin-top: 0.5em;
+}
+
+.contributions-list li,
+.skills-list li {
+    margin-bottom: 1em;
+    padding-left: 1.5em; /* Indent for custom bullet or spacing */
+    position: relative;
+}
+
+/* Custom "bullet" for these lists */
+.contributions-list li::before,
+.skills-list li::before {
+    content: '▹'; /* Or '✔', '➔', '🌸' */
+    color: var(--color-text-accent);
+    position: absolute;
+    left: 0;
+    top: 0.05em; /* Adjust vertical alignment */
+    font-size: 1em;
+}
+
+.contributions-list li strong,
+.skills-list li strong { /* If you use <strong> within list items */
+    color: var(--color-text-body);
+    font-weight: bold;
+}
