@@ -1,32 +1,83 @@
+/* =================================== */
+/* 0. Global Settings & Custom Properties
+/* =================================== */
 
-/* Pastel Pink Georgia Cutesy Theme */
+:root {
+    /* Fonts */
+    --font-primary: Georgia, serif;
 
-/* Basic Reset & Body Styling */
-body {
-    font-family: Georgia, serif; /* Georgia font */
-    line-height: 1.7; /* Slightly increased line-height for Georgia */
-    margin: 0;
-    padding: 0;
-    background-color: #FFF0F5; /* LavenderBlush - very light pink page background */
-    color: #5D5D5D; /* Soft dark grey text for readability */
+    /* Core Colors */
+    --color-text-body: #5D5D5D;
+    --color-text-light: #FFF0F5;    /* LavenderBlush for text on dark backgrounds */
+    --color-text-white: #FFFFFF;
+    --color-text-accent: #DB7093;   /* PaleVioletRed */
+    --color-text-accent-darker: #C15C7E;
+
+    /* Background Colors */
+    --color-bg-body: #FFF0F5;       /* LavenderBlush */
+    --color-bg-header-footer: #FFC0CB; /* Pink */
+    --color-bg-section: #FFFAFA;    /* Snow */
+    --color-bg-card: #FFF5EE;       /* SeaShell */
+
+    /* Border Colors */
+    --color-border-header-footer: #FBC4AB; /* Pastel Pink-Orange */
+    --color-border-section: #FFE4E1;      /* MistyRose */
+    --color-border-section-h2: #FBC4AB;  /* Pastel Pink-Orange (dotted) */
+    --color-border-card: #FFD1DC;         /* Light Pink "Pink Lace" (dashed) */
+    --color-border-selfie: #FFC0CB;       /* Pink */
+    --color-border-nav-active: #FBC4AB;   /* Pastel Pink-Orange */
+    --color-border-nav-hover: #FFFFFF;
+
+    /* Shadow Colors (using rgba for opacity) */
+    --color-shadow-section: rgba(219, 112, 147, 0.15); /* PaleVioletRed base */
+    --color-shadow-card: rgba(219, 112, 147, 0.1);
+    --color-shadow-selfie: rgba(219, 112, 147, 0.2);
+    --color-shadow-button: rgba(0, 0, 0, 0.2);
+
+    /* Component Specific Colors */
+    --color-button-btt-bg: #FFC0CB;           /* Pink */
+    --color-button-btt-bg-hover: #DB7093;    /* PaleVioletRed */
+    --color-flowchart-line: #DB7093;         /* PaleVioletRed */
+
+    /* Transitions & Animations */
+    --transition-duration: 0.3s;
+    --animation-wiggle-duration: 0.45s;
 }
 
-/* Header Styling */
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg-body);
+    color: var(--color-text-body);
+}
+
+/* =================================== */
+/* 2. Layout: Header, Nav, Main, Footer
+/* =================================== */
+
 header {
-    background-color: #FFC0CB; /* Pink - for header background */
-    padding: 1.5em 2em; /* Slightly more padding */
-    border-bottom: 2px solid #FBC4AB; /* Pastel Pink-Orange - for a subtle, warm border */
+    background-color: var(--color-bg-header-footer);
+    padding: 1.5em 2em;
+    border-bottom: 2px solid var(--color-border-header-footer);
     text-align: center;
 }
 
 header h1 {
     margin: 0;
-    color: #FFFFFF; /* White text for the main title for contrast against pink bg */
-    font-weight: normal; /* Georgia can be heavy, normal weight might look softer */
-    font-size: 2.5em; /* Make the title prominent */
+    color: var(--color-text-white);
+    font-weight: normal;
+    font-size: 2.5em; /* Consider making this a variable if changed often */
 }
 
-/* Navigation Styling */
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -36,162 +87,352 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin-right: 25px; /* Slightly more spacing */
+    margin-right: 25px;
 }
 
 nav ul li:last-child {
-    margin-right: 0; /* No margin for the last item */
+    margin-right: 0;
 }
 
-/* style.css */
-
-/* ... (your other styles) ... */
-
 nav ul li a {
-    display: inline-block; /* Crucial for transform animations to work smoothly and for padding */
+    display: inline-block;
     text-decoration: none;
-    color: #FFF0F5; /* LavenderBlush (light text) for links on pink bg */
+    color: var(--color-nav-link);
     font-weight: normal;
-    padding: 0.5em 0.5em; /* Adjusted padding slightly for better clickable area */
-    transition: color 0.3s ease, text-shadow 0.3s ease; /* Smooth transition for color and shadow */
+    padding: 0.5em 0.5em;
+    transition: color var(--transition-duration) ease, text-shadow var(--transition-duration) ease;
 }
 
 nav ul li a:hover,
 nav ul li a:focus {
-    color: #FFFFFF; /* Bright White on hover/focus */
-    border-bottom: 1px dashed #FFFFFF; /* Keep your cute dashed underline */
-
-    /* Luminescent Effect */
-    text-shadow: 
-        0 0 5px rgba(255, 255, 255, 0.9),  /* Inner strong white glow */
-        0 0 10px rgba(255, 255, 255, 0.8), /* Middle white glow */
-        0 0 15px rgba(219, 112, 147, 0.7), /* Outer PaleVioletRed glow */
-        0 0 20px rgba(219, 112, 147, 0.6); /* Fainter PaleVioletRed glow */
-
-    /* Wiggle Animation */
-    animation: wiggle 0.45s ease-in-out 1; /* animation-name, duration, timing-function, iteration-count (1 means it wiggles once) */
+    color: var(--color-nav-link-hover);
+    border-bottom: 1px dashed var(--color-border-nav-hover);
+    text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.9),
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 15px rgba(219, 112, 147, 0.7), /* Consider var(--color-text-accent) with alpha */
+        0 0 20px rgba(219, 112, 147, 0.6);
+    animation: wiggle var(--animation-wiggle-duration) ease-in-out 1;
 }
 
-/* ... (rest of your styles, including the @keyframes wiggle rule if you haven't placed it already) ... */
+/* Active link style - !important might be needed due to hover/focus specificity. Review if possible. */
+nav ul li a.active-link {
+    color: var(--color-text-white) !important;
+    font-weight: bold;
+    border-bottom: 2px solid var(--color-border-nav-active) !important;
+}
 
-/* Keyframes for Wiggle Animation */
+main {
+    padding: 1.5em 2em;
+}
+
+section {
+    padding: var(--padding-section-vertical, 2em) var(--padding-section-horizontal, 1.5em);
+    margin-bottom: 2.5em;
+    background-color: var(--color-bg-section);
+    border-radius: 12px;
+    box-shadow: 0 3px 6px var(--color-shadow-section);
+    border: 1px solid var(--color-border-section);
+}
+
+section h2 {
+    color: var(--color-section-h2);
+    border-bottom: 2px dotted var(--color-border-section-h2);
+    padding-bottom: 0.4em;
+    margin-top: 0;
+    font-size: 1.8em;
+    font-weight: normal;
+}
+
+footer {
+    text-align: center;
+    padding: 2em;
+    background-color: var(--color-bg-header-footer);
+    color: var(--color-footer-text);
+    font-size: 0.9em;
+    border-top: 2px solid var(--color-footer-border);
+}
+
+/* =================================== */
+/* 3. Specific Page Sections & Components
+/* =================================== */
+
+/* Intro Section (index.html) */
+section#intro {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    text-align: center;
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
+
+section#intro h2 {
+    display: inline-block;
+}
+
+section#intro p {
+    max-width: 65ch;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1em;
+    /* color is inherited from body, or var(--color-text-body) */
+}
+
+/* About Me Section with Selfie (index.html) */
+section#about {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+}
+
+.about-selfie {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-border-selfie);
+    box-shadow: 0 2px 5px var(--color-shadow-selfie);
+    flex-shrink: 0;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text h2 {
+    margin-top: 0;
+}
+
+/* Project Item Cards (used on projects.html, potentially other places) */
+/* Assuming .goal-item is not used for this card style anymore, removed it from selector */
+.project-item {
+    background-color: var(--color-card-bg);
+    padding: 1.5em;
+    /* margin-bottom is handled by grid gap in .projects-under-goal */
+    border: 1px dashed var(--color-card-border);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px var(--color-shadow-card);
+}
+
+.project-item h3 {
+    margin-top: 0;
+    color: var(--color-card-h3);
+    font-size: 1.4em;
+    font-weight: normal;
+}
+
+.project-item p {
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+.project-item a {
+    color: var(--color-card-link);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.project-item a:hover,
+.project-item a:focus {
+    color: var(--color-card-link-hover);
+    text-decoration: underline;
+}
+
+/* Goals Flowchart Section (index.html) */
+.goals-flowchart {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 2em 0;
+    /* font-family is inherited */
+    width: 100%;
+}
+
+.flowchart-node {
+    background-color: var(--color-card-bg); /* Reusing card background */
+    border: 2px dashed var(--color-card-border); /* Reusing card border style */
+    border-radius: 10px;
+    padding: 1em 1.5em;
+    text-align: left;
+    box-shadow: 0 2px 4px var(--color-shadow-card); /* Reusing card shadow */
+    position: relative;
+    color: var(--color-text-body);
+}
+
+.flowchart-node .node-title {
+    font-weight: bold;
+    color: var(--color-text-accent);
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+}
+
+.flowchart-node .node-title a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+.flowchart-node .node-title a:hover,
+.flowchart-node .node-title a:focus {
+    text-decoration: underline;
+    color: var(--color-text-accent-darker);
+}
+
+.goal-subheading { /* Used in flowchart nodes */
+    font-style: italic;
+    font-size: 0.95em;
+    color: #505050; /* Slightly darker, could be a variable too */
+    line-height: 1.6;
+    margin-top: 0.25em;
+}
+
+.purpose-node { /* Flowchart specific */
+    flex: 0 0 28%;
+    min-width: 180px;
+    align-self: center;
+    text-align: center;
+}
+
+.goal-nodes-container { /* Flowchart specific */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.goal-node { /* Flowchart specific node on index.html */
+    width: 100%;
+    padding-left: 45px; /* For connector line */
+}
+
+/* Flowchart Connecting Lines (index.html - Purpose Left, Goals Stacked Right) */
+.purpose-node::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 2px;
+    background-color: var(--color-flowchart-line);
+}
+
+.goal-node::before { /* This is for goal nodes on index.html flowchart */
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 2px;
+    background-color: var(--color-flowchart-line);
+}
+
+/* Projects by Goal Page (projects.html) */
+#projects-by-goal h2 {
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+.goal-group { /* projects.html */
+    margin-bottom: 3em;
+}
+
+.flowchart-node.goal-as-header { /* Goal headers on projects.html */
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    max-width: 800px;
+    margin-bottom: 1.5em;
+    text-align: center;
+    border: none; /* Override .flowchart-node border */
+    padding: 1em 1.5em; /* Reset padding to be symmetrical */
+}
+
+.flowchart-node.goal-as-header::before { /* Remove connector line for these headers */
+    display: none;
+}
+
+.flowchart-node.goal-as-header .goal-subheading {
+    font-size: 1em; /* Ensure readability */
+}
+
+.projects-under-goal { /* projects.html */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5em;
+    padding: 0 1em;
+}
+
+.project-item { /* On projects.html, ensure margin-bottom is handled by grid gap */
+    margin-bottom: 0;
+}
+
+/* Back to Top Button */
+#backToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+    border: none;
+    outline: none;
+    background-color: var(--color-button-btt-bg);
+    color: var(--color-text-white);
+    cursor: pointer;
+    padding: 12px 15px;
+    border-radius: 50%;
+    font-family: var(--font-primary);
+    font-size: 16px;
+    box-shadow: 0 4px 8px var(--color-shadow-button);
+    transition: background-color var(--transition-duration) ease, opacity var(--transition-duration) ease;
+}
+
+#backToTopBtn:hover {
+    background-color: var(--color-button-btt-bg-hover);
+}
+
+/* =================================== */
+/* 4. Animations                     */
+/* =================================== */
+
 @keyframes wiggle {
     0%, 100% {
         transform: rotate(0deg);
     }
     25% {
-        transform: rotate(-4deg); /* A bit more rotation for visibility */
+        transform: rotate(-4deg);
     }
     75% {
         transform: rotate(4deg);
     }
 }
 
-/* Main Content Area */
-main {
-    padding: 1.5em 2em;
+/* Highlight animation (used by JS for project cards and goal headers on projects.html) */
+@keyframes temporaryHighlight {
+    0% {
+        box-shadow: 0 0 0 0 rgba(219, 112, 147, 0.4); /* Base on var(--color-text-accent) */
+    }
+    50% {
+        box-shadow: 0 0 20px 8px rgba(219, 112, 147, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(219, 112, 147, 0);
+    }
 }
 
-/* Section Styling */
-section {
-    padding: 2em 1.5em;
-    margin-bottom: 2.5em;
-    background-color: #FFFAFA; /* Snow - almost white, very subtle pinkish tone for sections */
-    border-radius: 12px; /* Softer, more rounded corners */
-    box-shadow: 0 3px 6px rgba(219, 112, 147, 0.15); /* PaleVioletRed shadow, soft and pinkish */
-    border: 1px solid #FFE4E1; /* MistyRose border for sections */
+.project-item.highlighted-project,
+.flowchart-node.goal-as-header.highlighted-project {
+    animation: temporaryHighlight 2.5s ease-out;
 }
 
-section h2 {
-    color: #DB7093; /* PaleVioletRed - for section titles */
-    border-bottom: 2px dotted #FBC4AB; /* Pastel Pink-Orange - dotted underline */
-    padding-bottom: 0.4em;
-    margin-top: 0;
-    font-size: 1.8em; /* Slightly larger section headings */
-    font-weight: normal;
-}
+/* =================================== */
+/* 5. Responsive Adjustments         */
+/* =================================== */
 
-/* In style.css */
-
-/* You can add these new rules, or modify existing ones if you had placeholders */
-
-/* Specific styles for the Intro Section */
-section#intro {
-    /* Override general section box styling */
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
-    border-radius: 0; /* Or 'initial' if you prefer */
-
-    /* Center its content */
-    text-align: center;
-
-    /* Optional: Adjust padding for this "unboxed" section */
-    /* The original 'section' rule has padding: 2em 1.5em; */
-    /* You might want different vertical padding here: */
-    padding-top: 3em;    /* Example: More top space */
-    padding-bottom: 3em; /* Example: More bottom space */
-    /* Horizontal padding (1.5em) from the general 'section' rule will still apply unless overridden here */
-    /* margin-bottom: 2.5em; /* This is from the general section rule, adjust if needed */
-}
-
-/* Adjustments for the H2 within the centered intro section */
-section#intro h2 {
-    display: inline-block; /* Makes the h2 only as wide as its content, so border is too */
-    /* The color, font-size, font-weight are inherited from the general 'section h2' rule */
-    /* The border-bottom and padding-bottom are also inherited. */
-    /* If you wanted NO border for this specific h2: */
-    /* border-bottom: none; */
-    /* padding-bottom: 0; */ /* Remove padding if border is removed */
-}
-
-/* Styling for the paragraph in the intro section (already centered by text-align on section#intro) */
-section#intro p {
-    /* Optional: If you want to control its width for readability when centered */
-    max-width: 65ch; /* Limits line length to about 65 characters */
-    margin-left: auto;  /* Centers the paragraph block if max-width is applied */
-    margin-right: auto; /* Centers the paragraph block if max-width is applied */
-    /* The font-style: italic; will come from your HTML <em> tag */
-    font-size: 1.1em; /* Optional: Make the tagline a bit larger */
-    color: #5D5D5D;   /* Ensure it uses the main text color or a specific one */
-}
-
-/* Styling for project and goal items (cards) */
-.project-item, .goal-item {
-    background-color: #FFF5EE; /* SeaShell - very light warm pink for cards */
-    padding: 1.5em;
-    margin-bottom: 1.5em;
-    border: 1px dashed #FFD1DC; /* Light Pink ("Pink Lace") dashed border for cutesy feel */
-    border-radius: 10px; /* Rounded corners for the item box */
-    box-shadow: 0 2px 4px rgba(219, 112, 147, 0.1); /* Softer PaleVioletRed shadow */
-}
-
-.project-item h3, .goal-item h3 {
-    margin-top: 0;
-    color: #DB7093; /* PaleVioletRed for item titles */
-    font-size: 1.4em;
-    font-weight: normal;
-}
-
-.project-item p, .goal-item p {
-    font-size: 0.95em; /* Slightly smaller text for descriptions if needed */
-    line-height: 1.6;
-}
-
-.project-item a {
-    color: #DB7093; /* PaleVioletRed for links */
-    text-decoration: none;
-    font-weight: bold; /* Bold for action links */
-}
-
-.project-item a:hover,
-.project-item a:focus {
-    color: #C15C7E; /* Darker shade of PaleVioletRed on hover */
-    text-decoration: underline;
-}
-
-
-/* Responsive adjustments */
+/* General Responsive (Tablet size and down) */
 @media (max-width: 768px) {
     header {
         padding: 1em;
@@ -206,370 +447,103 @@ section#intro p {
         padding: 1.5em 1em;
         margin-bottom: 1.5em;
     }
+    section h2 {
+        font-size: 1.6em;
+    }
+
     nav ul li {
         display: block;
         margin-right: 0;
         margin-bottom: 12px;
     }
     nav ul li a {
-        padding: 0.5em 0; /* More touch area for mobile nav links */
+        padding: 0.5em 0;
     }
-    section h2 {
-        font-size: 1.6em;
-    }
-    .project-item h3, .goal-item h3 {
+
+    .project-item h3 { /* Assuming .goal-item is not used for cards */
         font-size: 1.3em;
     }
-}/* Styles for the About Me section with Selfie */
-section#about {
-    display: flex; /* Enables flexbox layout */
-    align-items: flex-start; /* Aligns items to the top */
-    gap: 25px; /* Space between the image and the text block */
-}
 
-.about-selfie {
-    width: 150px; /* Adjust width as desired */
-    height: 150px; /* Same as width for a base circle */
-    border-radius: 50%; /* Makes the image circular */
-    object-fit: cover; /* Ensures the image covers the area without distortion */
-    border: 3px solid #FFC0CB; /* Pink border, matching your theme */
-    box-shadow: 0 2px 5px rgba(219, 112, 147, 0.2); /* Softer pinkish shadow */
-    flex-shrink: 0; /* Prevents the image from shrinking if text is long */
-}
-
-.about-text {
-    flex: 1; /* Allows the text block to take up the remaining space */
-}
-
-.about-text h2 {
-    margin-top: 0; /* Removes default top margin from h2 if it's the first child */
-}
-
-/* Responsive adjustment for the About section */
-@media (max-width: 600px) { /* Adjust breakpoint as needed */
-    section#about {
-        flex-direction: column; /* Stack image and text vertically */
-        align-items: center; /* Center items when stacked */
-        text-align: center; /* Center text under the image */
-    }
-
-    .about-selfie {
-        width: 120px; /* Slightly smaller image for mobile */
-        height: 120px;
-        margin-bottom: 15px; /* Space below image when stacked */
-    }
-}
-
-/* style.css */
-#backToTopBtn {
-    display: none; /* Hidden by default */
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 100; /* Make sure it's on top of other elements */
-    border: none;
-    outline: none;
-    background-color: #FFC0CB; /* Your theme's Pink color */
-    color: white;
-    cursor: pointer;
-    padding: 12px 15px;
-    border-radius: 50%; /* Make it circular */
-    font-family: Georgia, serif;
-    font-size: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, opacity 0.3s ease;
-}
-
-#backToTopBtn:hover {
-    background-color: #DB7093; /* Darker pink on hover - PaleVioletRed */
-}
-
-/* style.css */
-nav ul li a.active-link {
-    color: #FFFFFF !important; /* Brightest white */
-    font-weight: bold; /* Make it bold */
-    /* You can add a more prominent underline or different background if you wish */
-    border-bottom: 2px solid #FBC4AB !important; /* Pastel Pink-Orange, more prominent */
-}
-
-/* =================================== */
-/* CSS for the Goals Flowchart Section */
-/* =================================== */
-
-/* Apply box-sizing to flowchart elements for easier layout */
-.goals-flowchart,
-.goals-flowchart * { /* A bit broad, but ensures all children are covered */
-    box-sizing: border-box;
-}
-/* More targeted:
-.goals-flowchart,
-.flowchart-node,
-.purpose-node,
-.goal-nodes-container,
-.goal-node {
-    box-sizing: border-box;
-}
-*/
-
-
-.goals-flowchart {
-    display: flex;
-    /* flex-direction: row; // Default */
-    align-items: flex-start; /* Align items to the top */
-    gap: 20px; /* Reduced gap between purpose and goals column */
-    padding: 2em 0; /* Vertical padding for the flowchart area */
-    font-family: Georgia, serif; /* Ensure theme font */
-    width: 100%; /* Try to fit within its parent section's padding */
-}
-
-.flowchart-node { /* Common styling for all nodes */
-    background-color: #FFF5EE; /* SeaShell */
-    border: 2px dashed #FFD1DC; /* Light Pink ("Pink Lace") dashed border */
-    border-radius: 10px; /* Rounded corners */
-    padding: 1em 1.5em;
-    text-align: left; /* Default text alignment */
-    box-shadow: 0 2px 4px rgba(219, 112, 147, 0.1); /* Softer PaleVioletRed shadow */
-    position: relative; /* Needed for positioning connecting lines */
-    color: #5D5D5D; /* Soft dark grey text */
-    /* box-sizing: border-box; is applied via the rule above */
-}
-
-.flowchart-node .node-title {
-    font-weight: bold;
-    color: #DB7093; /* PaleVioletRed for titles */
-    font-size: 1.1em;
-    margin-bottom: 0.5em;
-}
-
-/* In style.css, within the "CSS for the Goals Flowchart Section" */
-
-.flowchart-node .node-title {
-    font-weight: bold;
-    color: #DB7093; /* PaleVioletRed for titles */
-    font-size: 1.1em;
-    margin-bottom: 0.5em;
-}
-
-/* New style for the goal subheadings */
-.goal-subheading {
-    font-style: italic;
-    font-size: 0.95em; /* Slightly smaller than the main node text, or adjust as desired */
-    color: #505050; /* Slightly darker than default for emphasis, or keep #5D5D5D */
-    line-height: 1.6; /* Ensure good readability for potentially longer text */
-    margin-top: 0.25em; /* A little space below the node-title */
-}
-
-.purpose-node {
-    flex: 0 0 28%; /* Adjusted flex-basis (e.g., 28% or a fixed pixel value) */
-    min-width: 180px; /* Adjusted minimum width */
-    align-self: center; /* Vertically center purpose box relative to goals column */
-    text-align: center; /* Center text within the purpose box */
-}
-
-.goal-nodes-container {
-    flex: 1; /* Takes up the remaining space */
-    display: flex;
-    flex-direction: column; /* Stack goal nodes vertically */
-    gap: 25px; /* Space between stacked goal nodes */
-}
-
-.goal-node {
-    width: 100%; /* Each goal node takes full width of its container */
-    padding-left: 45px; /* Space for the incoming line/arrow (adjust with ::before) */
-}
-
-/* --- Connecting Lines (Purpose Left, Goals Stacked Right) --- */
-
-/* Connector arm from purpose node (right side) */
-.purpose-node::after {
-    content: '';
-    position: absolute;
-    top: 50%; /* Vertically centered on the purpose node */
-    right: -10px; /* Extends from the right edge of purpose node, adjust based on gap */
-    transform: translateY(-50%);
-    width: 10px; /* Length of the horizontal arm, adjust based on gap */
-    height: 2px; /* Thickness of the line */
-    background-color: #DB7093; /* PaleVioletRed line color */
-}
-
-/* Incoming line for each goal node (left side) */
-.goal-node::before {
-    content: '';
-    position: absolute;
-    left: 15px; /* Start position of the line from the left of goal node */
-                 /* (should be less than padding-left of .goal-node) */
-    top: 50%;
-    transform: translateY(-50%); /* Vertically center the line */
-    width: 15px; /* Length of the line connecting to the goal (padding-left - left - some_buffer) */
-    height: 2px; /* Thickness of the line */
-    background-color: #DB7093;
-}
-
-/* --- Responsive adjustments for the flowchart --- */
-@media (max-width: 768px) { /* Breakpoint for stacking Purpose and Goals */
+    /* Flowchart on index.html - stacked */
     .goals-flowchart {
-        flex-direction: column; /* Stack purpose on top of goals */
-        align-items: center; /* Center items when stacked */
-        gap: 10px; /* Reduce gap when stacked */
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
     }
-
     .purpose-node {
-        flex-basis: auto; /* Reset flex-basis */
+        flex-basis: auto;
         width: 85%;
-        max-width: 400px; /* Max width for better readability */
-        margin-bottom: 40px; /* Space before goals start, for the line */
-        align-self: center; /* Ensure it's centered */
+        max-width: 400px;
+        margin-bottom: 40px;
+        align-self: center;
     }
-
-    .goal-nodes-container {
-        width: 100%; /* Goals container takes full width */
-        align-items: center; /* Center goal nodes within their container */
-        gap: 35px; /* Space between goal nodes, including their top padding for lines */
+    .goal-nodes-container { /* For index.html flowchart */
+        width: 100%;
+        align-items: center;
+        gap: 35px;
     }
-
-    .goal-node {
+    .goal-node { /* For index.html flowchart */
         width: 85%;
-        max-width: 400px; /* Max width for better readability */
-        padding-left: 1.5em; /* Reset horizontal padding for lines */
-        padding-top: 30px; /* Add padding at the top for the incoming line */
-        text-align: center; /* Center text for stacked goals */
+        max-width: 400px;
+        padding-left: 1.5em; /* Reset for stacked */
+        padding-top: 30px;
+        text-align: center;
     }
-
-    /* Adjust lines for STACKED layout (top-down) */
     .purpose-node::after { /* Line from purpose goes down */
-        top: auto; /* Reset top */
-        bottom: -20px; /* Position below the purpose node */
-        left: 50%;
-        right: auto; /* Reset right */
+        top: auto; bottom: -20px; left: 50%; right: auto;
         transform: translateX(-50%);
-        width: 2px; /* Vertical line */
-        height: 20px; /* Length of stem */
+        width: 2px; height: 20px;
+    }
+    .goal-node::before { /* Line from goal goes up, for index.html flowchart */
+        top: -20px; left: 50%;
+        transform: translateX(-50%);
+        width: 2px; height: 20px;
     }
 
-    .goal-node::before { /* Line from goal goes up */
-        top: -20px; /* Position above the goal node */
-        left: 50%;
-        right: auto; /* Reset right */
-        transform: translateX(-50%);
-        width: 2px; /* Vertical line */
-        height: 20px; /* Length of line */
+    /* Projects page goal headers */
+    .flowchart-node.goal-as-header { /* On projects.html */
+        width: 95%;
+    }
+    .projects-under-goal { /* On projects.html */
+        padding: 0 0.5em;
     }
 }
 
+/* About Section Responsive (Smaller tablets/Large phones) */
+@media (max-width: 600px) {
+    section#about {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .about-selfie {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 15px;
+    }
+}
+
+/* Small Mobile screens */
 @media (max-width: 480px) {
-    .purpose-node, .goal-node {
-        width: 90%; /* Allow them to be slightly wider on very small screens */
-        padding: 0.8em 1em; /* Adjust padding */
+    .purpose-node, .goal-node { /* For index.html flowchart */
+        width: 90%;
+        padding: 0.8em 1em;
     }
-
-    .goal-node { /* Specific adjustment for goal node on very small screens if stacked */
-        padding-left: 1em; /* May need to remove line or make it very simple */
-        padding-top: 25px; /* Adjust top padding for line */
+    .goal-node { /* For index.html flowchart when stacked */
+        padding-left: 1em; /* Reset for mobile */
+        padding-top: 25px;
     }
-
-    .purpose-node::after, .goal-node::before { /* Make lines slightly shorter if needed */
+    .purpose-node::after, .goal-node::before { /* For index.html flowchart lines */
         height: 15px;
     }
     .purpose-node::after { bottom: -15px; }
     .goal-node::before { top: -15px; }
 
-    .flowchart-node .node-title {
-        font-size: 1em; /* Adjust title size */
+    .flowchart-node .node-title { /* General flowchart node title */
+        font-size: 1em;
     }
-}
 
-/* In style.css */
-
-/* Styling for the new Projects by Goal page structure */
-#projects-by-goal h2 {
-    text-align: center; /* Center the main "Projects Aligned with My Goals" title */
-    margin-bottom: 0.5em; /* Adjust spacing */
-}
-
-.goal-group {
-    margin-bottom: 3em; /* Space between each goal and its set of projects */
-}
-
-.flowchart-node.goal-as-header { /* Styles for the goal box when used as a header on projects page */
-    /* It inherits most styles from .flowchart-node and .goal-node */
-    /* You might want to make it slightly different or add more bottom margin if needed */
-    margin-left: auto;  /* Center the goal box itself if its width is not 100% */
-    margin-right: auto;
-    width: 90%; /* Or a max-width, to control how wide the goal header is */
-    max-width: 800px;
-    margin-bottom: 1.5em; /* Space between the goal box and the projects below it */
-    text-align: center; /* Center the text within the goal box */
-
-        /* ADD/MODIFY Padding: Reset left padding, ensure symmetrical padding */
-    padding-top: 1em;    /* Matches .flowchart-node */
-    padding-bottom: 1em; /* Matches .flowchart-node */
-    padding-left: 1.5em; /* Matches .flowchart-node's horizontal padding */
-    padding-right: 1.5em;/* Matches .flowchart-node's horizontal padding */
-    /* Or, more concisely, if you want to match .flowchart-node exactly: */
-    /* padding: 1em 1.5em; */
-
-}
-
-.flowchart-node.goal-as-header .goal-subheading {
-    font-size: 1em; /* Ensure subheading is clearly readable */
-}
-
-.projects-under-goal {
-    display: grid; /* Use grid for project items */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 1.5em; /* Space between project items */
-    padding: 0 1em; /* Optional padding for the project items container */
-}
-
-/* Ensure .project-item styles (which you already have) work well within the grid.
-   Your existing .project-item styles should be fine.
-   You might want to ensure they don't have excessive horizontal margins
-   that would fight with the grid gap.
-   The existing `margin-bottom: 1.5em;` on .project-item is fine.
-*/
-.project-item {
-    /* Your existing styles for .project-item:
-       background-color: #FFF5EE;
-       padding: 1.5em;
-       margin-bottom: 1.5em; // This will now be controlled by grid 'gap' mostly for vertical
-       border: 1px dashed #FFD1DC;
-       border-radius: 10px;
-       box-shadow: 0 2px 4px rgba(219, 112, 147, 0.1);
-    */
-    margin-bottom: 0; /* Let grid gap handle spacing primarily */
-}
-
-
-/* Responsive adjustments for project listing, if needed */
-@media (max-width: 768px) {
-    .flowchart-node.goal-as-header {
-        width: 95%; /* Adjust width for smaller screens */
+    .projects-under-goal { /* On projects.html */
+        grid-template-columns: 1fr; /* Stack project cards */
     }
-    .projects-under-goal {
-        padding: 0 0.5em; /* Reduce padding on smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .projects-under-goal {
-        grid-template-columns: 1fr; /* Stack projects in a single column */
-    }
-}
-
-/* In style.css */
-
-.flowchart-node .node-title a {
-    color: inherit; /* Inherits the color from .node-title (which is #DB7093) */
-    text-decoration: none; /* Removes the default underline */
-    display: block; /* Optional: Makes the entire paragraph area clickable */
-}
-
-.flowchart-node .node-title a:hover,
-.flowchart-node .node-title a:focus {
-    text-decoration: underline; /* Adds an underline on hover/focus for visual feedback */
-    color: #C15C7E; /* Optional: A slightly darker shade on hover, like your project links */
-}
-
-.flowchart-node.goal-as-header::before {
-    display: none; /* This will remove the pseudo-element line */
 }
