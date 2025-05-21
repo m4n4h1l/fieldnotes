@@ -499,6 +499,7 @@ nav ul li a.active-link {
     max-width: 800px;
     margin-bottom: 1.5em; /* Space between the goal box and the projects below it */
     text-align: center; /* Center the text within the goal box */
+    border: none;
 }
 
 .flowchart-node.goal-as-header .goal-subheading {
