@@ -260,140 +260,166 @@ nav ul li a.active-link {
 /* CSS for the Goals Flowchart Section */
 /* =================================== */
 
+/* Apply box-sizing to flowchart elements for easier layout */
 .goals-flowchart,
-.goals-flowchart * {
+.goals-flowchart * { /* A bit broad, but ensures all children are covered */
     box-sizing: border-box;
 }
+/* More targeted:
+.goals-flowchart,
+.flowchart-node,
+.purpose-node,
+.goal-nodes-container,
+.goal-node {
+    box-sizing: border-box;
+}
+*/
+
 
 .goals-flowchart {
     display: flex;
-    align-items: flex-start;
-    gap: 30px; /* Adjusted gap, can be tweaked */
-    padding: 2em 0;
-    font-family: Georgia, serif;
-    width: 100%;
+    /* flex-direction: row; // Default */
+    align-items: flex-start; /* Align items to the top */
+    gap: 20px; /* Reduced gap between purpose and goals column */
+    padding: 2em 0; /* Vertical padding for the flowchart area */
+    font-family: Georgia, serif; /* Ensure theme font */
+    width: 100%; /* Try to fit within its parent section's padding */
 }
 
-.flowchart-node {
-    background-color: #FFF5EE;
-    border: 2px dashed #FFD1DC;
-    border-radius: 10px;
+.flowchart-node { /* Common styling for all nodes */
+    background-color: #FFF5EE; /* SeaShell */
+    border: 2px dashed #FFD1DC; /* Light Pink ("Pink Lace") dashed border */
+    border-radius: 10px; /* Rounded corners */
     padding: 1em 1.5em;
-    text-align: left;
-    box-shadow: 0 2px 4px rgba(219, 112, 147, 0.1);
-    position: relative;
-    color: #5D5D5D;
+    text-align: left; /* Default text alignment */
+    box-shadow: 0 2px 4px rgba(219, 112, 147, 0.1); /* Softer PaleVioletRed shadow */
+    position: relative; /* Needed for positioning connecting lines */
+    color: #5D5D5D; /* Soft dark grey text */
+    /* box-sizing: border-box; is applied via the rule above */
 }
 
 .flowchart-node .node-title {
     font-weight: bold;
-    color: #DB7093;
+    color: #DB7093; /* PaleVioletRed for titles */
     font-size: 1.1em;
     margin-bottom: 0.5em;
 }
 
 .purpose-node {
-    width: fit-content; /* UPDATED: Width based on content */
-    max-width: 300px; /* ADDED: Max width to prevent it from getting too wide */
-    min-width: 150px; /* Optional: if you want a minimum presence */
-    align-self: center;
-    text-align: center;
-    /* Removed flex-basis and specific min-width that was percentage based */
+    flex: 0 0 28%; /* Adjusted flex-basis (e.g., 28% or a fixed pixel value) */
+    min-width: 180px; /* Adjusted minimum width */
+    align-self: center; /* Vertically center purpose box relative to goals column */
+    text-align: center; /* Center text within the purpose box */
 }
 
 .goal-nodes-container {
-    flex: 1; /* Still takes remaining space */
+    flex: 1; /* Takes up the remaining space */
     display: flex;
-    flex-direction: column;
-    gap: 30px; /* Increased gap slightly for variable width boxes */
-    align-items: flex-start; /* ADDED: Align variable-width goal boxes to their start (left) */
+    flex-direction: column; /* Stack goal nodes vertically */
+    gap: 25px; /* Space between stacked goal nodes */
 }
 
 .goal-node {
-    width: fit-content; /* UPDATED: Width based on content */
-    max-width: 450px;   /* ADDED: Max width for goal text, adjust as needed */
-                        /* Ensures it doesn't get wider than its container if text is very long */
-    padding-left: 45px;
+    width: 100%; /* Each goal node takes full width of its container */
+    padding-left: 45px; /* Space for the incoming line/arrow (adjust with ::before) */
 }
 
 /* --- Connecting Lines (Purpose Left, Goals Stacked Right) --- */
-/* These should still work, as they are positioned relative to the boxes */
 
+/* Connector arm from purpose node (right side) */
 .purpose-node::after {
     content: '';
     position: absolute;
-    top: 50%;
-    right: -15px; /* Adjusted based on new gap in .goals-flowchart */
+    top: 50%; /* Vertically centered on the purpose node */
+    right: -10px; /* Extends from the right edge of purpose node, adjust based on gap */
     transform: translateY(-50%);
-    width: 15px; /* Adjusted based on new gap */
-    height: 2px;
-    background-color: #DB7093;
+    width: 10px; /* Length of the horizontal arm, adjust based on gap */
+    height: 2px; /* Thickness of the line */
+    background-color: #DB7093; /* PaleVioletRed line color */
 }
 
+/* Incoming line for each goal node (left side) */
 .goal-node::before {
     content: '';
     position: absolute;
-    left: 15px;
+    left: 15px; /* Start position of the line from the left of goal node */
+                 /* (should be less than padding-left of .goal-node) */
     top: 50%;
-    transform: translateY(-50%);
-    width: 15px;
-    height: 2px;
+    transform: translateY(-50%); /* Vertically center the line */
+    width: 15px; /* Length of the line connecting to the goal (padding-left - left - some_buffer) */
+    height: 2px; /* Thickness of the line */
     background-color: #DB7093;
 }
 
 /* --- Responsive adjustments for the flowchart --- */
-@media (max-width: 768px) {
+@media (max-width: 768px) { /* Breakpoint for stacking Purpose and Goals */
     .goals-flowchart {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+        flex-direction: column; /* Stack purpose on top of goals */
+        align-items: center; /* Center items when stacked */
+        gap: 10px; /* Reduce gap when stacked */
     }
 
     .purpose-node {
-        width: 85%; /* Revert to percentage width for better control on mobile */
-        max-width: 400px; /* Keep max-width */
-        min-width: unset; /* Remove desktop min-width */
-        margin-bottom: 40px;
-        align-self: center;
+        flex-basis: auto; /* Reset flex-basis */
+        width: 85%;
+        max-width: 400px; /* Max width for better readability */
+        margin-bottom: 40px; /* Space before goals start, for the line */
+        align-self: center; /* Ensure it's centered */
     }
 
     .goal-nodes-container {
-        width: 100%;
-        align-items: center; /* Center the stacked goal boxes */
-        gap: 35px;
+        width: 100%; /* Goals container takes full width */
+        align-items: center; /* Center goal nodes within their container */
+        gap: 35px; /* Space between goal nodes, including their top padding for lines */
     }
 
     .goal-node {
-        width: 85%; /* Revert to percentage width */
-        max-width: 400px; /* Keep max-width */
+        width: 85%;
+        max-width: 400px; /* Max width for better readability */
         padding-left: 1.5em; /* Reset horizontal padding for lines */
-        padding-top: 30px;
-        text-align: center;
+        padding-top: 30px; /* Add padding at the top for the incoming line */
+        text-align: center; /* Center text for stacked goals */
     }
 
     /* Adjust lines for STACKED layout (top-down) */
-    .purpose-node::after {
-        top: auto;
-        bottom: -20px;
+    .purpose-node::after { /* Line from purpose goes down */
+        top: auto; /* Reset top */
+        bottom: -20px; /* Position below the purpose node */
         left: 50%;
-        right: auto;
+        right: auto; /* Reset right */
         transform: translateX(-50%);
-        width: 2px;
-        height: 20px;
+        width: 2px; /* Vertical line */
+        height: 20px; /* Length of stem */
     }
 
-    .goal-node::before {
-        top: -20px;
+    .goal-node::before { /* Line from goal goes up */
+        top: -20px; /* Position above the goal node */
         left: 50%;
+        right: auto; /* Reset right */
         transform: translateX(-50%);
-        width: 2px;
-        height: 20px;
+        width: 2px; /* Vertical line */
+        height: 20px; /* Length of line */
     }
 }
 
 @media (max-width: 480px) {
     .purpose-node, .goal-node {
-        width: 90%;
+        width: 90%; /* Allow them to be slightly wider on very small screens */
+        padding: 0.8em 1em; /* Adjust padding */
     }
-    /* Other mobile styles remain similar */
+
+    .goal-node { /* Specific adjustment for goal node on very small screens if stacked */
+        padding-left: 1em; /* May need to remove line or make it very simple */
+        padding-top: 25px; /* Adjust top padding for line */
+    }
+
+    .purpose-node::after, .goal-node::before { /* Make lines slightly shorter if needed */
+        height: 15px;
+    }
+    .purpose-node::after { bottom: -15px; }
+    .goal-node::before { top: -15px; }
+
+    .flowchart-node .node-title {
+        font-size: 1em; /* Adjust title size */
+    }
 }
