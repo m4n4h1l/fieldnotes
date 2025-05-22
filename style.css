@@ -1011,3 +1011,73 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
 .notepad-content p:last-child {
     margin-bottom: 0;
 }
+
+/* In style.css */
+
+/* Navigation Dropdown Styles */
+.nav-item.has-dropdown {
+    position: relative; /* Establishes a positioning context for the dropdown */
+}
+
+.dropdown-arrow {
+    font-size: 0.8em;
+    margin-left: 0.3em;
+    display: inline-block;
+    transition: transform 0.2s ease-in-out;
+}
+
+.nav-item.has-dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg); /* Flips arrow on hover */
+}
+
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position below the parent "projects" link */
+    left: 50%; /* Start from center of parent */
+    transform: translateX(-50%); /* Adjust to truly center under parent */
+    background-color: var(--color-bg-header-footer); /* Use header background color */
+    border: 1px solid var(--color-border-header-footer);
+    border-top: none; /* Avoid double border with parent's bottom border */
+    border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+    padding: 0.5em 0;
+    list-style-type: none;
+    margin: 0; /* Reset margin */
+    min-width: 200px; /* Minimum width of the dropdown */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000; /* Ensure it's above other content */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
+.nav-item.has-dropdown:hover .dropdown-menu,
+.nav-item.has-dropdown:focus-within .dropdown-menu { /* Show on hover or when an item inside is focused */
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown-menu li {
+    display: block; /* Make list items take full width */
+    margin-right: 0; /* Override general nav li margin */
+}
+
+.dropdown-menu li a {
+    display: block; /* Make the entire list item area clickable */
+    padding: 0.6em 1.2em;
+    color: var(--color-nav-link); /* Use your nav link color */
+    text-decoration: none;
+    white-space: nowrap; /* Prevent links from wrapping */
+    font-size: 0.95em; /* Slightly smaller font for dropdown items */
+    transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li a:focus {
+    background-color: var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.2)); /* Subtle hover background */
+    color: var(--color-nav-link-hover); /* Use nav link hover color */
+    border-bottom: none; /* Remove main nav link hover border */
+    text-shadow: none; /* Remove main nav link text shadow */
+    animation: none; /* Remove main nav link wiggle animation */
+}
