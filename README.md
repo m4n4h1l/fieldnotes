@@ -1,4 +1,6 @@
-# 🌸 fieldnotes 🌸 https://m4n4h1l.github.io/fieldnotes/
+# 🌸 fieldnotes 🌸 
+
+https://m4n4h1l.github.io/fieldnotes/
 
 *a public record of service work, research and reflections... all grounded in non-zero days.*
 
