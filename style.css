@@ -5,6 +5,7 @@
 :root {
     /* Fonts */
     --font-primary: Georgia, serif;
+    --font-handwritten: 'Beth Ellen', cursive;
 
     /* Core Colors */
     --color-text-body: #5D5D5D;
@@ -325,14 +326,39 @@ section#about {
     gap: 25px;
 }
 
-.about-selfie {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--color-border-selfie);
-    box-shadow: 0 2px 5px var(--color-shadow-selfie);
-    flex-shrink: 0;
+/* In style.css, find and modify this rule */
+/* Add these new styles to your style.css */
+/* You can place them after your existing #about styles */
+
+.polaroid-frame {
+    background-color: var(--color-bg-section); /* Using your "Snow" background color */
+    border: 2.5px solid var(--color-border-section); /* Using your "MistyRose" border color */
+    padding: 15px 15px 60px 15px; /* Top, Right, Bottom, Left padding - Bottom is thickest */
+    box-shadow: 3px 3px 8px var(--color-shadow-card);
+    width: 200px; /* Set the total width of the polaroid */
+    transform: rotate(2.5deg); /* A slight, playful rotation */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.polaroid-frame:hover {
+    transform: rotate(0deg) scale(1.05); /* Straighten and lift on hover */
+    box-shadow: 5px 5px 12px var(--color-shadow-card);
+    z-index: 10;
+}
+
+.polaroid-frame img {
+    width: 100%; /* Image fills the content area of the frame */
+    display: block; /* Removes any extra space below the image */
+    border: 1px solid #ddd; /* Optional thin inner border for the photo itself */
+}
+
+.polaroid-caption {
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--color-text-body);
+    font-family: var(--font-handwritten); /* Or a cursive/handwritten font if you add one */
+    margin-top: 15px; /* Space between photo and caption */
+    margin-bottom: 0;
 }
 
 .about-text {
@@ -358,18 +384,45 @@ section#goals h2 { /* Specific to goals H2 */
     width: 100%;
 }
 
-.flowchart-node {
+/* In style.css - Find the "Goals Flowchart Section" and replace with this */
+
+/* Goals Flowchart Section (index.html) - NEW VERTICAL LAYOUT */
+.goals-flowchart {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;    /* Center them horizontally */
+    gap: 0;                 /* No gap needed, lines will create space */
+    padding: 2em 0;
+    width: 100%;
+}
+
+.flowchart-node { /* This base class is mostly the same, but we add states for animation */
     background-color: var(--color-bg-card);
     border: 2px dashed var(--color-border-card);
     border-radius: 10px;
     padding: 1em 1.5em;
-    text-align: left;
     box-shadow: 0 2px 4px var(--color-shadow-card);
     position: relative;
+    color: var(--color-card-h3);
     color: var(--color-text-body);
+    width: 90%; /* Give nodes a consistent width */
+    max-width: 550px; /* Max width for readability */
+    margin-bottom: 2.5em; /* Space between nodes */
+
+    /* For Scroll Animation */
+    opacity: 0; /* Initially hidden */
+    transform: translateY(20px); /* Initially slightly lower */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Smooth transition */
+}
+
+/* The state when the element becomes visible */
+.flowchart-node.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .flowchart-node .node-title {
+    /* Existing styles are fine */
     font-weight: bold;
     color: var(--color-text-accent);
     font-size: 1.1em;
@@ -377,64 +430,57 @@ section#goals h2 { /* Specific to goals H2 */
 }
 
 .flowchart-node .node-title a {
-    color: inherit;
-    text-decoration: none; /* The <u> tag in HTML will still cause an underline */
-    display: block;
+    color: inherit; /* This is the key property */
+    text-decoration: none; /* This attempts to remove the underline */
+    display: block; /* Optional: Makes the entire paragraph area clickable */
 }
 
 .flowchart-node .node-title a:hover,
 .flowchart-node .node-title a:focus {
-    text-decoration: underline; /* This will interact with the <u> tag */
-    color: var(--color-text-accent-darker);
+    text-decoration: underline; /* Adds an underline on hover/focus */
+    color: var(--color-text-accent-darker); /* Optional: Darker shade on hover */
 }
 
-.goal-subheading { /* Used in flowchart nodes on index.html AND project goal headers */
-    font-style: italic;
-    font-size: 0.95em;
-    color: #505050; /* Could be a variable: --color-text-subtle or similar */
-    line-height: 1.6;
-    margin-top: 0.25em;
-}
-
-.purpose-node { /* Flowchart specific on index.html */
-    flex: 0 0 28%;
-    min-width: 180px;
-    align-self: center;
+.purpose-node { /* Was flex item, now just a block in a column */
     text-align: center;
+    /* Removed old flex-basis and min-width */
 }
 
-.goal-nodes-container { /* Flowchart specific on index.html */
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+.goal-nodes-container {
+    /* This container isn't strictly needed for layout anymore but is a good semantic wrapper */
+    display: contents; /* Makes the container "disappear" for layout purposes,
+                          so its children (.goal-node) are treated as direct children of .goals-flowchart */
 }
 
-.goal-node { /* Flowchart specific node on index.html */
-    width: 100%; /* Takes full width of .goal-nodes-container */
-    padding-left: 45px; /* For connector line */
+.goal-node {
+    text-align: center; /* Center text in goal nodes */
+    /* Removed old width and padding-left rules */
 }
 
-/* Flowchart Connecting Lines (index.html - Purpose Left, Goals Stacked Right) */
+
+/* --- NEW Vertical Connecting Lines --- */
+
+/* Line coming DOWN from the Purpose node */
 .purpose-node::after {
     content: '';
     position: absolute;
-    top: 50%;
-    right: -10px;
-    transform: translateY(-50%);
-    width: 10px;
-    height: 2px;
+    bottom: -1.5em; /* Position below the node */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 1.5em; /* Length of the line connecting to the next node */
     background-color: var(--color-flowchart-line);
 }
 
-.goal-node::before { /* This is for goal nodes on index.html flowchart */
+/* Line going UP from each Goal node */
+.goal-node::before {
     content: '';
     position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 15px;
-    height: 2px;
+    top: -1.25em; /* Position above the node */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 1.25em; /* Length of the line connecting to the node above */
     background-color: var(--color-flowchart-line);
 }
 
@@ -890,7 +936,7 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     min-width: 260px; /* Ensure it has some presence */
     max-width: 320px;
     margin: 1em; /* Margin for the note itself, if not centered by container */
-    font-family: var(--font-primary);
+    font-family: var(--font-handwritten);;
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
     position: relative;
 }
