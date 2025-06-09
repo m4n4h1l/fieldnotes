@@ -1258,45 +1258,37 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     transform: translateY(0);
 }
 
-/* Add to style.css */
+/* Add this to your style.css, e.g., in the "Specific Page Sections & Components" area */
+
+/* For the Drop Cap on the origin story */
 .origin-story::first-letter {
     color: var(--color-text-accent);
     font-weight: bold;
-    font-size: 4em; /* Adjust size as needed */
+    font-size: 4em;
     float: left;
-    line-height: 0.8; /* Adjust vertical spacing */
+    line-height: 0.8;
     margin-right: 0.05em;
     margin-top: 0.05em;
 }
 
-/* We need to clear the float for any following paragraphs if needed,
-   but since this is likely the last paragraph, it should be fine. */
-
-   /* Add to style.css */
+/* For the Pull Quote */
 .pull-quote {
-    display: block; /* Makes it take its own line */
+    display: block;
     text-align: center;
     font-size: 1.2em;
     font-weight: bold;
     font-style: italic;
     color: var(--color-text-accent);
-    margin: 1.5em 0; /* Add space above and below */
+    margin: 1.5em 0;
 }
 
-/* You can add this inside your existing @media (max-width: 600px) block */
-
+/* Responsive adjustments for these elements */
 @media (max-width: 600px) {
-    /* ... your existing styles for section#about and .about-selfie ... */
-
-    /* Responsive adjustments for Drop Cap and Pull Quote */
     .origin-story::first-letter {
-        font-size: 3.2em; /* Reduce the size of the drop cap on smaller screens */
-        line-height: 0.8; /* Adjust line height accordingly if needed */
-        margin-top: 0;  /* Fine-tune vertical position on mobile */
+        font-size: 3.2em;
     }
-
     .pull-quote {
-        font-size: 1.1em; /* Make the pull quote slightly smaller */
-        margin: 1.2em 0;  /* Reduce the vertical space it takes up */
+        font-size: 1.1em;
+        margin: 1.2em 0;
     }
 }
