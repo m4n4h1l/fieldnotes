@@ -1260,17 +1260,6 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
 
 /* Add this to your style.css, e.g., in the "Specific Page Sections & Components" area */
 
-/* For the Drop Cap on the origin story */
-.origin-story::first-letter {
-    color: var(--color-text-accent);
-    font-weight: bold;
-    font-size: 4em;
-    float: left;
-    line-height: 0.8;
-    margin-right: 0.05em;
-    margin-top: 0.05em;
-}
-
 /* For the Pull Quote */
 .pull-quote {
     display: block;
