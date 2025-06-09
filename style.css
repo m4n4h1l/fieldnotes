@@ -1243,3 +1243,42 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     text-shadow: none; /* Remove main nav link text shadow */
     animation: none; /* Remove main nav link wiggle animation */
 }
+
+/* Add near your other component styles */
+/* Animation state for any element that will fade in on scroll */
+.anim-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition-delay: var(--delay, 0s); /* Use delay variable from inline style */
+}
+
+.anim-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add to style.css */
+.origin-story::first-letter {
+    color: var(--color-text-accent);
+    font-weight: bold;
+    font-size: 4em; /* Adjust size as needed */
+    float: left;
+    line-height: 0.8; /* Adjust vertical spacing */
+    margin-right: 0.05em;
+    margin-top: 0.05em;
+}
+
+/* We need to clear the float for any following paragraphs if needed,
+   but since this is likely the last paragraph, it should be fine. */
+
+   /* Add to style.css */
+.pull-quote {
+    display: block; /* Makes it take its own line */
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-style: italic;
+    color: var(--color-text-accent);
+    margin: 1.5em 0; /* Add space above and below */
+}

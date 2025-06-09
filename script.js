@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 5. Animate elements on scroll (for flowchart nodes)
-    const animatedElements = document.querySelectorAll('.flowchart-node');
+    const animatedElements = document.querySelectorAll('.flowchart-node, .anim-on-scroll');
     if (animatedElements.length > 0) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
