@@ -1282,3 +1282,21 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     color: var(--color-text-accent);
     margin: 1.5em 0; /* Add space above and below */
 }
+
+/* You can add this inside your existing @media (max-width: 600px) block */
+
+@media (max-width: 600px) {
+    /* ... your existing styles for section#about and .about-selfie ... */
+
+    /* Responsive adjustments for Drop Cap and Pull Quote */
+    .origin-story::first-letter {
+        font-size: 3.2em; /* Reduce the size of the drop cap on smaller screens */
+        line-height: 0.8; /* Adjust line height accordingly if needed */
+        margin-top: 0;  /* Fine-tune vertical position on mobile */
+    }
+
+    .pull-quote {
+        font-size: 1.1em; /* Make the pull quote slightly smaller */
+        margin: 1.2em 0;  /* Reduce the vertical space it takes up */
+    }
+}
