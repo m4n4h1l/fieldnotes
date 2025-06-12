@@ -1278,3 +1278,125 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
         margin: 1.2em 0;
     }
 }
+
+/* In style.css */
+
+/* =================================== */
+/* Connect Links & Enhanced Footer
+/* =================================== */
+
+/* Connect links under the Intro section on index.html */
+.intro-connect-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5em; /* Space between icons */
+    margin-top: 2em;
+}
+
+.intro-connect-links a {
+    color: var(--color-text-accent); /* Use your theme's accent color for the icons */
+    transition: transform 0.2s ease-out;
+}
+
+.intro-connect-links a:hover,
+.intro-connect-links a:focus {
+    color: var(--color-text-accent-darker);
+    transform: translateY(-3px); /* Slight lift on hover */
+}
+
+/* Enhanced Footer Styles */
+.site-footer { /* Replaces your old 'footer' selector for more specificity */
+    text-align: left; /* Change default alignment for the new structure */
+    padding: 3em 2em; /* More vertical padding */
+    background-color: var(--color-bg-header-footer);
+    color: var(--color-footer-text);
+    font-size: 0.9em;
+    border-top: 2px solid var(--color-footer-border);
+}
+
+.footer-content {
+    max-width: 800px; /* Constrain the width of footer content for readability */
+    margin: 0 auto; /* Center the content container */
+}
+
+.footer-connect {
+    text-align: center; /* Center the text and links within the connect section */
+    margin-bottom: 2em;
+}
+
+.footer-title {
+    font-size: 1.5em;
+    font-weight: normal;
+    color: var(--color-text-white);
+    margin: 0 0 0.75em 0;
+    text-transform: lowercase; /* Matches your aesthetic */
+    letter-spacing: 1px;
+}
+
+.connect-text {
+    max-width: 65ch;
+    margin: 0 auto 1.5em auto;
+    line-height: 1.6;
+    font-size: 1.05em; /* Make text slightly larger */
+    opacity: 0.9;
+}
+
+.footer-social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow links to wrap on small screens */
+    gap: 1.5em;
+}
+
+.footer-social-links a {
+    display: flex;
+    align-items: center;
+    gap: 0.6em; /* Space between icon and text */
+    color: var(--color-footer-text);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 0.5em 1.2em; /* Padding for the button-like link */
+    border: 1px solid var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.3));
+    border-radius: 20px; /* Pill shape */
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.footer-social-links a:hover,
+.footer-social-links a:focus {
+    background-color: var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.2));
+    border-color: var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.5));
+}
+
+.footer-social-links svg {
+    fill: var(--color-text-white); /* Ensure SVGs are the correct color */
+}
+
+.footer-copyright {
+    text-align: center;
+    margin-top: 2.5em;
+    padding-top: 1.5em;
+    border-top: 1px solid var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.3));
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* In style.css */
+
+/* Add these rules to prevent SVG distortion */
+
+/* For the icons in the intro section */
+.intro-connect-links svg {
+    width: 28px;  /* Explicitly set width */
+    height: 28px; /* Explicitly set height */
+}
+
+/* For the icons in the footer section */
+.footer-social-links svg {
+    width: 32px;  /* Explicitly set width */
+    height: 32px; /* Explicitly set height */
+    
+    /* This is crucial for items in a flex container.
+       It prevents the SVG from being squished if space is tight. */
+    flex-shrink: 0; 
+}
