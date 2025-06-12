@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bachelor's degree @ sarah lawrence - manahil's fieldnotes 🌸</title> <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <title>bachelor's degree @ sarah lawrence - manahil's fieldnotes 🌸</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Beth+Ellen&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <h1><a href="index.html" style="color: inherit; text-decoration: none;">🌸 manahil's fieldnotes 🌸</a></h1>
-        <nav>
+        <nav class="main-navigation">
             <ul>
                 <li><a href="index.html#intro">home</a></li>
                 <li><a href="index.html#about">about</a></li>
@@ -21,8 +27,9 @@
                         <li><a href="bachelors.html">bachelor's degree @ slc</a></li>
                         <li><a href="chinese.html">mandarin learning</a></li>
                         <li><a href="internship-aaa.html">internship @ aaa</a></li>
-                        </ul>
-                </li>            
+                    </ul>
+                </li>
+                <li><a href="assets/manahil-resume.pdf" target="_blank" class="nav-resume-link">resumé</a></li>            
             </ul>
         </nav>
     </header>
@@ -36,39 +43,42 @@
             </header>
 
             <section id="overview">
-                <h3>what am I studying and why?</h3>
-                <p>I’m pursuing a B.A. in history, computer science, and public policy at sarah lawrence college. this page documents my academic journey: what I'm learning, how I'm growing, and why it matters to me. the guiding question: how do we learn across disciplines and still stay rooted in purpose?</p>
-                </section>
+                <h3>weaving the threads: history, code, and policy</h3>
+                <p>how do you build a more just future without understanding the past? how do you serve people without understanding the systems that shape their lives?</p>
+                <p>these are the questions that drive my academic journey at sarah lawrence college. I don't believe the answers can be found in a single discipline. that's why I'm weaving together three seemingly disparate threads: the deep, human context of history; the ethical framework of public policy; and the tangible, tool-building power of computer science.</p> 
+                <p>for someone whose life has been a tapestry of different cultures and countries, a single thread was never enough (something I've written extensively about in my college admission essays). this page documents my attempt to braid them together, exploring what I'm learning, how I'm growing, and why it all matters. it is my working answer to a guiding question: how do we learn across disciplines and still stay rooted in purpose?</p>
+            </section>
             
-        <section id="current-academic-tasks" class="sticky-note-section">
-            <h3 style="text-align: center; border-bottom: none; margin-bottom: 0.5em;">current focus</h3>
-            <div class="sticky-note-todo-container">
-                <div class="sticky-note-todo">
-                    <h5 class="sticky-note-title">academic to-do</h5>
-                    <ul class="todo-list">
-                        <li>
-                            <input type="checkbox" id="bachelors_task1" name="bachelors_task1" class="todo-checkbox">
-                            <label for="bachelors_task1">shortlist fall '25 courses</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="bachelors_task2" name="bachelors_task2" class="todo-checkbox" checked>
-                            <label for="bachelors_task2">do some python exercises (prep for intro to cs)</label>
-                        </li>
-                        <input type="checkbox" id="bachelors_task3" name="bachelors_task3" class="todo-checkbox">
-                            <label for="bachelors_task3">...</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="bachelors_task4" name="bachelors_task4" class="todo-checkbox">
-                            <label for="bachelors_task4">...</label>
-                        </li>            
-                        <li>
-                            <input type="checkbox" id="bachelors_task5" name="bachelors_task5" class="todo-checkbox" disabled>
-                            <label for="bachelors_task5" class="todo-label-disabled"><em>(on hold) don't cry</em></label>
-                        </li>
-                    </ul>
+            <section id="current-academic-tasks" class="sticky-note-section">
+                <h3 style="text-align: center; border-bottom: none; margin-bottom: 0.5em;">current focus</h3>
+                <div class="sticky-note-todo-container">
+                    <div class="sticky-note-todo">
+                        <h5 class="sticky-note-title">academic to-do 🎓</h5>
+                        <ul class="todo-list">
+                            <li>
+                                <input type="checkbox" id="bachelors_task1" name="bachelors_task1" class="todo-checkbox">
+                                <label for="bachelors_task1">shortlist fall '25 courses</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="bachelors_task2" name="bachelors_task2" class="todo-checkbox" checked>
+                                <label for="bachelors_task2">do some python exercises (prep for intro to cs)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="bachelors_task3" name="bachelors_task3" class="todo-checkbox">
+                                <label for="bachelors_task3">...</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="bachelors_task4" name="bachelors_task4" class="todo-checkbox">
+                                <label for="bachelors_task4">...</label>
+                            </li>            
+                            <li>
+                                <input type="checkbox" id="bachelors_task5" name="bachelors_task5" class="todo-checkbox" disabled>
+                                <label for="bachelors_task5" class="todo-label-disabled"><em>(on hold) don't cry</em></label>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
             
             <section id="progress-feed">
                 <h3>progress feed & key learnings</h3>
@@ -77,12 +87,12 @@
                         <h4>fall 2024</h4>
                         <ul class="course-list">
                             <li>
-                                <strong>the qur'an and its interpretation</strong> - <span>brief description of course.</span>
-                                <p class="placeholder-text"><em>placeholder</em></p>
+                                <strong>the qur'an and its interpretation</strong>
+                                <p class="placeholder-text"><em>this seminar explored the Qur’an not just as a book, but as a source of art, theology, and profound inspiration. we examined its core themes, from divine will and human relations to the nature of the cosmos, alongside the rich, centuries-long tradition of interpretation it sparked, connecting its 7th-century origins to contemporary Muslim thought and exegesis.</em></p>
                             </li>
                             <li>
-                                <strong>reform and revolution: china's 20th century (first year studies)</strong> - <span>brief description of course.</span>
-                                <p class="placeholder-text"><em>placeholder</em></p>
+                                <strong>reform and revolution: china's 20th century (first year studies)</strong>
+                                <p class="placeholder-text"><em>this course traced china's tumultuous 20th-century transformation from a faltering empire, the so-called "Sick Man of Asia," into a modern global power. through the historical analysis of primary documents, fiction, and film, we investigated the key events, pivotal figures like Sun Yat-sen and Mao Zedong, and wrenching social changes that shaped the nation, providing a deep understanding of the historical foundations of contemporary china.</em></p>
                             </li>
                         </ul>
                     </li>
@@ -90,24 +100,24 @@
                         <h4>spring 2025</h4>
                         <ul class="course-list">
                             <li>
-                                <strong>reform and revolution: china's 20th century (first year studies)</strong> - <span>brief description of course.</span>
-                                <p class="placeholder-text"><em>placeholder</em></p>
+                                <strong>reform and revolution: china's 20th century (first year studies)</strong> 
+                                <p class="placeholder-text"><em>a continuation of the fall semester, this course further examined china's arduous path through the 20th century. we analyzed the oscillation between radical reform and revolution, encountering a rich cast of characters from fervent intellectuals to fanatical red guards who made and re-made modern china, equipping us with the historical context to make sense of china's role in our globalized world today.</em></p>
                             </li>
                             <li>
-                                <strong>art and society in the lands of islam:</strong> - <span>brief description of course.</span>
-                                <p class="placeholder-text"><em>placeholder</em></p>
+                                <strong>art and society in the lands of islam:</strong>
+                                <p class="placeholder-text"><em>this course explored the diverse visual arts and architecture of societies with a strong Islamic presence, from the 7th century to the contemporary world. Using case studies from Asia, Africa, Europe, and North America, we investigated how art helps define and express identity in multi-confessional societies, and how global politics and economics draw these artistic traditions into contemporary discourse.</em></p>
                             </li>
                             <li>
-                                <strong>a question of character: the art of the profile</strong> - <span>brief description of course.</span>
-                                <p class="placeholder-text"><em>placeholder</em></p>
+                                <strong>a question of character: the art of the profile</strong> 
+                                <p class="placeholder-text"><em>this course tackled the challenges of profile writing across biography, history, and journalism. we explored the complex dynamics between writer and subject, analyzed techniques for capturing personality in words, and studied the work of recognized practitioners to become better readers and writers of character.</em></p>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <h4>summer 2025 (anticipated)</h4>
+                        <h4>summer 2025</h4>
                         <ul class="course-list">
                             <li>
-                                <strong>mandarin chinese language learning</strong> - <span>continued study and practice.</span>
+                                <strong>mandarin chinese language learning</strong> - <span>intensive beginner study and practice.</span>
                                 <p class="placeholder-text"><a href="chinese.html" style="color: inherit; text-decoration: none;">explore my progress <u>here.</u></a></p>
                             </li>
                         </ul>
@@ -116,21 +126,23 @@
             </section>
 
             <section id="portfolio">
-                <h3>portfolio & downloads</h3> <p>more coming soon — samples of essays, code, and conference presentations related to my studies.</p>
+                <h3>portfolio & downloads</h3>
+                <p>more coming soon — samples of essays, code, and conference presentations related to my studies.</p>
                 <ul class="portfolio-items">
                     <li>
-                        <strong>[essay sample]:</strong> the impact of guanxi on modern chinese governance (fall 2024)
-                        <p class="placeholder-text"><em>(placeholder for a brief description or a download link when available)</em></p>
+                        <strong>[essay]:</strong> "Networking for Reform and Revolution: Guanxi in the Shift from Mao to Deng" (spring 2025)
+                        <p class="placeholder-text"><em>This paper explores the evolution of guanxi (关系), the Chinese cultural concept of informal networks, from a pre-existing social norm into an essential mechanism for survival during the Great Proletarian Cultural Revolution (GPCR). It argues that the institutional collapse and orchestrated chaos of the Mao era accelerated the importance of guanxi, entrenching it as a system of factionalism and reciprocity. Drawing on historical analysis of the Red Guards and literary reportage from the period, the paper traces how these informal networks, forged in turmoil, did not disappear but rather became deeply embedded within the bureaucracy, economy, and society of the post-Mao reform era. Ultimately, this research concludes that the legacy of the GPCR, expressed through the persistent influence of guanxi, endures as a quiet but powerful force shaping contemporary Chinese society.</em></p>
                     </li>
                     <li>
-                        <strong>[research paper]:</strong> ainu, ryukyuan, and taiwanese resistance (spring 2025)
-                        <p class="placeholder-text"><em>(placeholder for abstract or download link)</em></p>
+                        <strong>[conference paper]:</strong> "Imperialising, Inside-Out: Unravelling Imperial Japan's Indigenous Subjugation" (spring 2025)
+                        <p class="placeholder-text"><em>This paper argues that Imperial Japan’s subjugation of its Indigenous and colonized peoples was a multifaceted "imperialising, inside-out" process that fundamentally shaped not only the identities of the colonized but also the fabric of the modern Japanese nation-state. Using the critical frameworks of settler colonialism, colonial modernity, and postcolonial theory, this research analyzes and compares the assimilationist policies of dōka in Hokkaido and the imperialization movement of kōminka in Taiwan. Through these case studies, the paper demonstrates how Japan's colonial project deployed distinct strategies to dismantle native societies and manufacture imperial subjects, a process that ultimately transformed Japan itself. The conclusion asserts that contemporary Ainu resilience offers a significant revision to Japan’s national narrative and that a direct confrontation with this history is essential for building a more inclusive future.</em></p>
                     </li>
                 </ul>
             </section>
 
             <section id="related-work">
-                <h3>related work & connections</h3> <p>my academic pursuits often intersect with my other interests and service work. here are a few connections:</p>
+                <h3>related work & connections</h3>
+                <p>my academic pursuits often intersect with my other interests and service work. here are a few connections:</p>
                 <ul class="project-links">
                     <li><a href="internship-aaa.html">interning @ aaa: immigration support</a> (connects to public policy & service)</li>
                     <li><a href="chinese.html">mandarin learning journey</a> (supports history & future engagement)</li>
@@ -140,27 +152,27 @@
         </article>
     </main>
 
-        <footer class="site-footer">
-            <div class="footer-content">
-                <div class="footer-connect">
-                    <h4 class="footer-title">connect</h4>
-                    <p class="connect-text">
-                        connect with me to follow my arabic learning journey, message me histories of any region or era, or to explore the overlaps between technology and community!
-                    </p>
-                    <div class="footer-social-links">
-                        <a href="https://github.com/m4n4h1l" target="_blank" rel="noopener noreferrer" title="GitHub Profile">
-                            <i class="fa-brands fa-github fa-fw"></i> <span>github</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/manahil-awan" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile">
-                            <i class="fa-brands fa-linkedin fa-fw"></i> <span>linkedin</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-copyright">
-                    <p>&copy; <span id="current-year"></span> Manahil. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-connect">
+                <h4 class="footer-title">connect</h4>
+                <p class="connect-text">
+                    connect with me to follow my chinese learning journey, message me histories of any region or era, or to explore the overlaps between technology and community!
+                </p>
+                <div class="footer-social-links">
+                    <a href="https://github.com/m4n4h1l" target="_blank" rel="noopener noreferrer" title="GitHub Profile">
+                        <i class="fa-brands fa-github fa-fw"></i> <span>github</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/manahil-awan" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile">
+                        <i class="fa-brands fa-linkedin fa-fw"></i> <span>linkedin</span>
+                    </a>
                 </div>
             </div>
-        </footer>
+            <div class="footer-copyright">
+                <p>&copy; <span id="current-year"></span> Manahil. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js" defer></script>
     <button id="backToTopBtn" title="Go to top">🌸 Top</button>

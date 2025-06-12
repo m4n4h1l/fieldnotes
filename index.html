@@ -5,26 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>manahil's fieldnotes 🌸</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Beth+Ellen&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
     <header class="site-header">
-        <div class="site-branding">
-            <a href="index.html">🌸 manahil's fieldnotes 🌸</a>
-        </div>
+        <h1><a href="index.html" style="color: inherit; text-decoration: none;">🌸 manahil's fieldnotes 🌸</a></h1>
         <nav class="main-navigation">
             <ul>
-                <li><a href="#hero">home</a></li> <li><a href="#about">about</a></li>
-                <li><a href="#goals">goals</a></li>
-                <li><a href="#projects-showcase">projects</a></li>
-                </ul>
+                <li><a href="index.html#intro">home</a></li>
+                <li><a href="index.html#about">about</a></li>
+                <li><a href="index.html#goals">goals</a></li>
+                <li class="nav-item has-dropdown">
+                    <a href="index.html#projects-showcase">projects <span class="dropdown-arrow">▾</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="bachelors.html">bachelor's degree @ slc</a></li>
+                        <li><a href="chinese.html">mandarin learning</a></li>
+                        <li><a href="internship-aaa.html">internship @ aaa</a></li>
+                    </ul>
+                </li>
+                <li><a href="assets/manahil-resume.pdf" target="_blank" class="nav-resume-link">resumé</a></li>
+            </ul>
         </nav>
     </header>
 
@@ -32,22 +38,20 @@
         <section id="hero">
             <div class="hero-content">
                 <h1 class="hero-greeting">
-                    <b>hi! i'm manahil</b>
+                    hi! i'm manahil
                     <img src="assets/selfie.jpg" alt="A photo of Manahil" class="hero-selfie">
                 </h1>
-                <div>
                 <h2 class="hero-subheading"><em>& it's all...</em> <br>🌟 for the love of the game 🌟</h2>
                 <p class="hero-tagline">
-                    <p><em>a public record of service work, research and reflections, all grounded in non-zero days.</em></p>
-                    
-                    <div class="intro-connect-links">
-                        <a href="https://github.com/m4n4h1l" target="_blank" rel="noopener noreferrer" title="GitHub">
-                            <i class="fa-brands fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/manahil-awan" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                            <i class="fa-brands fa-linkedin"></i>
-                        </a>
-                    </div>
+                    <em>a public record of service work, research and reflections, all grounded in non-zero days.</em>
+                </p>
+                <div class="intro-connect-links">
+                    <a href="https://github.com/m4n4h1l" target="_blank" rel="noopener noreferrer" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/manahil-awan" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
                 </div>
             </div>
             <a href="#about" class="scroll-down-arrow" aria-label="scroll down to next section">
@@ -57,21 +61,22 @@
 
         <section id="about">
            <div class="about-text">
-            <h2>[💬] "yes, this is she"</h2>
-            <p class="anim-on-scroll"><b>my name is manahil.</b> I study history, computer science, and policy. yeah, I <em>like</em> systems, but I <b>love</b> people.</p>
-            <p class="anim-on-scroll" style="--delay: 0.1s;"><b>[🇵🇰 but 🇦🇪🇯🇵🇺🇸]</b> my life is spread across four countries. <em>if you could guide me on anything, it’d probably be how to stay still.</em></p>
-            <p class="anim-on-scroll" style="--delay: 0.2s;"><b>here's the origin story:</b></p>
-            <p class="anim-on-scroll origin-story" style="--delay: 0.3s;"><em>the day before my nineteenth birthday, I walked into my internship at a nonprofit with a quiet sense of dread. I didn’t want to spend another day doing data entry. updating a database from 9:30 am to 4:00 pm didn’t feel like real-world impact. I couldn’t feel the difference I was making. 
-                <br> <br> but something was different that day. the immigration specialist at the desk beside mine had just been assigned a new family, afghan refugees. normally, I wouldn’t have much to contribute. but this time, the family had spent years in pakistani refugee camps. the teen daughters were born and brought up in peshawar.
-                <br> <br> they spoke urdu.
-                <span class="pull-quote">suddenly, I had something to offer.</span>
-                <br> <br> translating that morning <b>changed my life.</b>
-                <br> <br> through that process I understood that if I want my life's work to be fulfilling, it has to be hands-on. I need to see results from my work, which could come in many ways. it could be... 
-                <br> <br> ⭐ the gratitude from the family who said I'd really helped that day. 
-                <br> ⭐ a sigh of relief from employees when I revamp the case management system. 
-                <br> <br> either way, it's something I carry as I move through life.</em></p>
-            </div>
-            <div class="polaroid-frame">
+                <h2>[💬] "yes, this is she"</h2>
+                <p class="anim-on-scroll" style="--delay: 0s;"><b>my name is manahil.</b> I study history, computer science, and policy. yeah, I <em>like</em> systems, but I <b>love</b> people.</p>
+                <p class="anim-on-scroll" style="--delay: 0.1s;"><b>[🇵🇰 but 🇦🇪🇯🇵🇺🇸]</b> my life is spread across four countries. <em>if you could guide me on anything, it’d probably be how to stay still.</em></p>
+                <p class="anim-on-scroll" style="--delay: 0.2s;"><b>here's the origin story:</b></p>
+                <div class="origin-story-text">
+                    <p class="anim-on-scroll origin-story" style="--delay: 0.3s;"><em>the day before my nineteenth birthday, I walked into my internship at a nonprofit with a quiet sense of dread. I didn’t want to spend another day doing data entry. I was a ghost in the machine, updating a database from 9:30 am to 4:00 pm. I could see the inefficiency of the system, but couldn’t feel the real-world impact.</em></p>
+                    <p class="anim-on-scroll" style="--delay: 0.4s;"><em>but something was different that day. the immigration specialist at the desk beside mine had just been assigned a new family, afghan refugees. normally, I wouldn’t have much to contribute. but this time, the family had spent years in pakistani refugee camps. the teen daughters were born and brought up in peshawar.</em></p>
+                    <p class="anim-on-scroll" style="--delay: 0.5s;"><em>they spoke urdu.</em></p>
+                    <p class="anim-on-scroll" style="--delay: 0.6s;"><em><span class="pull-quote">suddenly, I had something to offer.</span></em></p>
+                    <p class="anim-on-scroll" style="--delay: 0.7s;"><em>translating that morning <b>changed my life.</b> Through that process I understood that if I want my life's work to be fulfilling, it has to be hands-on. I need to see results from my work, which could come in many ways. it could be...</em></p>
+                    <p class="anim-on-scroll" style="--delay: 0.8s;"><em>⭐ the gratitude from the family who said I'd really helped that day. <br> ⭐ a sigh of relief from employees when I revamp the case management system.</em></p>
+                    <p class="anim-on-scroll" style="--delay: 0.9s;"><em>either way, it's something I carry as I move through life. That moment, where language and empathy became the most important tools in the room, is why I now build other kinds of tools. It’s why I study computer science alongside history: to build systems that see the people within them and to tell the stories that data alone can’t.</em></p>
+                    <p class="anim-on-scroll" style="--delay: 0.9s;"><em>today, my work is dedicated to that intersection- using data to illuminate the stories of transitional communities and building technology that serves humanity, one person at a time.</em></p>
+                </div>
+           </div>
+           <div class="polaroid-frame">
                 <img src="assets/selfie2.jpeg" alt="A photo of Manahil">
                 <p class="polaroid-caption">manahil, 2025</p>
             </div>
@@ -86,95 +91,123 @@
                 </div>
                 <div class="goal-nodes-container">
                     <div class="flowchart-node goal-node">
-                        <p class="node-title"><a href="#project-goal-1"><u>goal 1:</u> build deep, interdisciplinary knowledge</a></p> <p class="goal-subheading">commit to lifelong learning across history, technology, and policy to understand the systems that shape people’s lives.</p>
+                        <p class="node-title"><a href="#project-goal-1"><u>goal 1:</u> build deep, interdisciplinary knowledge</a></p>
+                        <p class="goal-subheading">commit to lifelong learning across history, technology, and policy to understand the systems that shape people’s lives.</p>
                     </div>
                     <div class="flowchart-node goal-node">
-                        <p class="node-title"><a href="#project-goal-2"><u>goal 2:</u> translate learning into public understanding</a></p> <p class="goal-subheading">communicate complex ideas clearly and accessibly through writing, teaching, or design.</p>
+                        <p class="node-title"><a href="#project-goal-2"><u>goal 2:</u> translate learning into public understanding</a></p>
+                        <p class="goal-subheading">communicate complex ideas clearly and accessibly through writing, teaching, or design.</p>
                     </div>
                     <div class="flowchart-node goal-node">
-                        <p class="node-title"><a href="#project-goal-3"><u>goal 3:</u> work in service of marginalized or transitional communities</a></p> <p class="goal-subheading">use your skills in research, storytelling, or systems-thinking to support those in flux: migrants, youth, stateless peoples.</p>
+                        <p class="node-title"><a href="#project-goal-3"><u>goal 3:</u> work in service of marginalized or transitional communities</a></p>
+                        <p class="goal-subheading">use your skills in research, storytelling, or systems-thinking to support those in flux: migrants, youth, stateless peoples.</p>
                     </div>
-                    </div>
+                </div>
             </div>
         </section>
 
         <section id="projects-showcase">
-            <h2>[🛠️] projects</h2> 
+            <h2>[🛠️] projects</h2>
             <p class="projects-intro-text">
                 <em>each project is an opportunity to learn, serve, and reflect.</em>
             </p>
-             <div class="goal-group">
-                <div class="flowchart-node goal-node goal-as-header" id="project-goal-1">
-                    <p class="node-title">~ 1 ~</p>
-                    <p class="goal-subheading">build deep, interdisciplinary knowledge</p>
-                </div>
-                <div class="projects-under-goal">
-                    <div class="project-item" id="project-interdisciplinary-research">
-                        <h3>bachelor's degree @ sarah lawrence</h3>
-                        <p>a look at academia in my life</p>
-                        <p><a href="bachelors.html">view progress & feed &raquo;</a></p>
-                    </div>
-                    <div class="project-item" id="project-systems-thinking-workshops">
-                        <h3>mandarin chinese language learning</h3>
-                        <p>my progress in learching mandarin chinese</p>
-                            <p><a href="chinese.html">explore my progress &raquo;</a></p>
-                    </div>
-                </div>
-             </div>
+                    <div class="goal-group">
+                        <div class="flowchart-node goal-node goal-as-header" id="project-goal-1">
+                            <p class="node-title">~ 1 ~</p>
+                            <p class="goal-subheading">build deep, interdisciplinary knowledge</p>
+                        </div>
 
-            <div class="goal-group">
-                <div class="flowchart-node goal-node goal-as-header" id="project-goal-2"> 
-                    <p class="node-title">~ 2 ~</p>
-                    <p class="goal-subheading">translate learning into public understanding</p>
-                </div>
-                <div class="projects-under-goal">
-                   <div class="project-item" id="project-fieldnotes-blog">
-                        <h3>"fieldnotes" public writing</h3>
-                        <p>this very website serves as a platform for sharing reflections and translating learnings into accessible narratives.</p>
-                        <p><a href="#intro">explore fieldnotes &raquo;</a></p>
+                        <div class="projects-under-goal">
+                            <div class="project-item" id="project-interdisciplinary-research">
+                                <h3>bachelor's degree @ sarah lawrence</h3>
+                                <p>a look at academia in my life</p>
+                                <p><a href="bachelors.html">view progress & feed &raquo;</a></p>
+                            </div>
+                            <div class="project-item" id="project-systems-thinking-workshops">
+                                <h3>mandarin chinese language learning</h3>
+                                <p>my progress in learching mandarin chinese</p>
+                                <p><a href="chinese.html">explore my progress &raquo;</a></p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    <div class="goal-group">
+                        <div class="flowchart-node goal-node goal-as-header" id="project-goal-2">
+                            <p class="node-title">~ 2 ~</p>
+                            <p class="goal-subheading">translate learning into public understanding</p>
+                        </div>
+                        <div class="projects-under-goal">
+                            <div class="project-item" id="project-fieldnotes-blog">
+                                <h3>"fieldnotes" public writing</h3>
+                                <p>this very website serves as a platform for sharing reflections and translating learnings into accessible narratives.</p>
+                                <p><a href="#intro">explore fieldnotes &raquo;</a></p>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="goal-group">
-                <div class="flowchart-node goal-node goal-as-header" id="project-goal-3">
-                    <p class="node-title">~ 3 ~</p>
-                    <p class="goal-subheading">work in service of marginalized or transitional communities</p>
-                </div>
-                <div class="projects-under-goal">
-                    <div class="project-item" id="project-migrant-support-initiative">
-                        <h3>interning @ alliance for african assistance</h3>
-                        <p>what have I done as an immigration support services intern @ the aaa?</p>
-                        <p><a href="internship-aaa.html">learn more &raquo;</a></p>
+                    <div class="goal-group">
+                        <div class="flowchart-node goal-node goal-as-header" id="project-goal-3">
+                            <p class="node-title">~ 3 ~</p>
+                            <p class="goal-subheading">work in service of marginalized or transitional communities</p>
+                        </div>
+                        <div class="projects-under-goal">
+                            <div class="project-item" id="project-migrant-support-initiative">
+                                <h3>interning @ alliance for african assistance</h3>
+                                <p>what have I done as an immigration support services intern @ the aaa?</p>
+                                <p><a href="internship-aaa.html">learn more &raquo;</a></p>
+                            </div>
+                        </div>
                     </div>
+                </section>
+            </p>
+         </section>
+
+        <section id="poetry">
+            <h2>[✒️] published poetry</h2>
+            <p class="projects-intro-text"> <a href="https://manahilra.substack.com/" target="_blank" rel="noopener noreferrer"><em>~ find me on substack here ~</em> </a> </p>
+            <div class="publications-grid">
+                <div class="publication-item">
+                    <h3>roam, girl child (a migrant is also an astronaut)</h3>
+                    <p class="publication-journal">published in <em>love & squalor</em>, fall 2024</p>
+                    <blockquote>
+                        <p>"it’s funny how small everything looks from space"</p>
+                    </blockquote>
+                    <p><a href="https://www.love-squalor.com/f24-manahil-rashid-awan" target="_blank" rel="noopener noreferrer">read full poem &raquo;</a></p>
+                </div>
+                <div class="publication-item">
+                    <h3>I’m done exploring, hold me again.</h3>
+                    <p class="publication-journal">featured in <em>love & squalor</em>, spring 2025</p>
+                    <blockquote>
+                        <p>"you are eighteen & don’t know when you’ll see your parents next"</p>
+                    </blockquote>
+                    <p><a href="https://drive.google.com/file/d/12m1X7x-aSmunH8FDL_4Pz-vmUnWh5lWU/view" target="_blank" rel="noopener noreferrer">read full poem &raquo;</a></p>
                 </div>
             </div>
             </section>
-        </main>
+    </main>
 
-        <footer class="site-footer">
-            <div class="footer-content">
-                <div class="footer-connect">
-                    <h4 class="footer-title">connect</h4>
-                    <p class="connect-text">
-                        connect with me to follow my arabic learning journey, message me histories of any region or era, or to explore the overlaps between technology and community!
-                    </p>
-                    <div class="footer-social-links">
-                        <a href="https://github.com/m4n4h1l" target="_blank" rel="noopener noreferrer" title="GitHub Profile">
-                            <i class="fa-brands fa-github fa-fw"></i> <span>github</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/manahil-awan" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile">
-                            <i class="fa-brands fa-linkedin fa-fw"></i> <span>linkedin</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-copyright">
-                    <p>&copy; <span id="current-year"></span> Manahil. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-connect">
+                <h4 class="footer-title">connect</h4>
+                <p class="connect-text">
+                    connect with me to follow my chinese learning journey, message me histories of any region or era, or to explore the overlaps between technology and community!
+                </p>
+                <div class="footer-social-links">
+                    <a href="https://github.com/m4n4h1l" target="_blank" rel="noopener noreferrer" title="GitHub Profile">
+                        <i class="fa-brands fa-github fa-fw"></i> <span>github</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/manahil-awan" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile">
+                        <i class="fa-brands fa-linkedin fa-fw"></i> <span>linkedin</span>
+                    </a>
                 </div>
             </div>
-        </footer>
+            <div class="footer-copyright">
+                <p>&copy; <span id="current-year"></span> Manahil. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js" defer></script>
     <button id="backToTopBtn" title="go to top">🌸 Top</button>
-    </body>
+</body>
 </html>

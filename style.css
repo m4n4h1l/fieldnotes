@@ -1,4 +1,7 @@
 /* =================================== */
+/* 0. GLOBAL SETTINGS & CUSTOM PROPERTIES
+/* =================================== */
+/* =================================== */
 /* 0. Global Settings & Custom Properties
 /* =================================== */
 
@@ -80,14 +83,23 @@ body {
 }
 
 /* =================================== */
-/* 2. Layout: Header, Nav, Main, Footer
+/* 1. LAYOUT & TYPOGRAPHY
 /* =================================== */
 
-header {
+.site-header { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: var(--color-bg-header-footer);
-    padding: 1.5em 2em;
+    padding: 1em 2em; 
     border-bottom: 2px solid var(--color-border-header-footer);
-    text-align: center;
+}
+
+.site-branding a { 
+    color: var(--color-text-white);
+    font-weight: bold; 
+    font-size: 1.2em; 
+    text-decoration: none;
 }
 
 header h1 {
@@ -97,48 +109,18 @@ header h1 {
     font-size: 2.5em;
 }
 
-nav ul {
+.main-navigation ul {
     list-style-type: none;
     padding: 0;
-    text-align: center;
-    margin-top: 0.75em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 1em;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 25px;
-}
-
-nav ul li:last-child {
-    margin-right: 0;
-}
-
-nav ul li a {
-    display: inline-block;
-    text-decoration: none;
-    color: var(--color-nav-link);
-    font-weight: normal;
-    padding: 0.5em 0.5em;
-    transition: color var(--transition-duration) ease, text-shadow var(--transition-duration) ease;
-}
-
-nav ul li a:hover,
-nav ul li a:focus {
-    color: var(--color-nav-link-hover);
-    border-bottom: 1px dashed var(--color-border-nav-hover);
-    text-shadow:
-        0 0 5px rgba(255, 255, 255, 0.9),
-        0 0 10px rgba(255, 255, 255, 0.8),
-        0 0 15px var(--color-text-accent-rgba, rgba(219, 112, 147, 0.7)), /* Using accent with alpha */
-        0 0 20px var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.6));
-    animation: wiggle var(--animation-wiggle-duration) ease-in-out 1;
-}
-
-/* Active link style - !important might be needed. Review if possible. */
-nav ul li a.active-link {
-    color: var(--color-text-white) !important;
-    font-weight: bold;
-    border-bottom: 2px solid var(--color-border-nav-active) !important;
+.main-navigation ul li {
+    display: block;
+    margin: 0;
 }
 
 main {
@@ -163,173 +145,249 @@ section h2 { /* Default style for H2 within sections */
     font-weight: normal;
 }
 
-footer {
-    text-align: center;
-    padding: 2em;
+.site-footer {
+    text-align: left;
+    padding: 3em 2em;
     background-color: var(--color-bg-header-footer);
-    color: var(--color-footer-text);
+    color: var(--color-text-light);
     font-size: 0.9em;
-    border-top: 2px solid var(--color-footer-border);
+    border-top: 2px solid var(--color-border-main);
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 /* =================================== */
-/* 3. Specific Page Sections & Components
-/* =================================== */
-/* In your style.css file */
-
-/* =================================== */
-/* 2. Layout: Header, Nav, Main, Footer
-/* (UPDATED HEADER STYLES)
+/* 2. NAVIGATION & LINKS
 /* =================================== */
 
-.site-header { /* Replaces 'header' selector for more specificity */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--color-bg-header-footer);
-    padding: 1em 2em; /* Adjusted padding */
-    border-bottom: 2px solid var(--color-border-header-footer);
-}
-
-.site-branding a { /* For "🌸 manahil's fieldnotes" */
+.site-branding a {
     color: var(--color-text-white);
-    font-weight: bold; /* Make it feel like a logo */
-    font-size: 1.2em;  /* Smaller font size */
+    font-weight: bold;
+    font-size: 1.2em;
     text-decoration: none;
 }
 
-.main-navigation nav ul { /* You might already have 'nav ul', this makes it specific */
-    /* Existing styles are fine */
+.main-navigation a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--color-link-nav);
+    font-weight: normal;
+    padding: 0.5em;
+    transition: color var(--transition-duration) ease, text-shadow var(--transition-duration) ease, background-color var(--transition-duration) ease;
+}
+
+.main-navigation a:hover,
+.main-navigation a:focus {
+    color: var(--color-text-white);
+    border-bottom: 1px dashed var(--color-text-white);
+}
+
+/* Specific hover effect for wiggle links, excluding dropdown items and resume link */
+.main-navigation > ul > li:not(.has-dropdown) > a:not(.nav-resume-link):hover,
+.main-navigation > ul > li:not(.has-dropdown) > a:not(.nav-resume-link):focus {
+    text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.9),
+        0 0 15px rgba(219, 112, 147, 0.7);
+    animation: wiggle 0.45s ease-in-out 1;
+}
+
+.main-navigation a.active-link {
+    color: var(--color-text-white) !important;
+    font-weight: bold;
+    border-bottom: 2px solid var(--color-border-main) !important;
+}
+
+/* Resumé Download Link */
+.nav-resume-link {
+    border: 1px solid var(--color-text-light);
+    border-radius: 15px;
+    padding: 0.4em 0.8em !important;
+}
+
+.nav-resume-link:hover,
+.nav-resume-link:focus {
+    background-color: var(--color-text-light);
+    color: var(--color-bg-header-footer);
+    border-bottom: 1px solid var(--color-text-light);
+}
+
+/* Dropdown Navigation */
+.nav-item.has-dropdown {
+    position: relative;
+}
+
+.dropdown-arrow {
+    font-size: 0.8em;
+    margin-left: 0.3em;
+    display: inline-block;
+    transition: transform 0.2s ease-in-out;
+}
+
+.nav-item.has-dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-bg-header-footer);
+    border: 1px solid var(--color-border-main);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 0.5em 0;
+    list-style-type: none;
+    margin: 0;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
+.nav-item.has-dropdown:hover .dropdown-menu,
+.nav-item.has-dropdown:focus-within .dropdown-menu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown-menu li {
+    display: block;
     margin: 0;
 }
 
-/* Remove or update old 'header h1' rule as h1 is no longer in the header */
+.dropdown-menu li a {
+    display: block;
+    padding: 0.6em 1.2em;
+    white-space: nowrap;
+    font-size: 0.95em;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li a:focus {
+    background-color: rgba(219, 112, 147, 0.2);
+    border-bottom: none;
+}
 
 
 /* =================================== */
-/* 3. Specific Page Sections & Components
-/* (NEW HERO SECTION STYLES)
+/* 3. COMPONENTS & PAGE-SPECIFIC STYLES
 /* =================================== */
 
+/* --- Hero & Intro Sections --- */
 section#hero {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Make the section take up the full viewport height */
+    height: 100vh;
     text-align: center;
-    background-color: var(--color-bg-body); /* Use your body background color */
-    
-    /* Remove the default section box styling */
+    background-color: var(--color-bg-body);
     padding: 2em;
     border: none;
     box-shadow: none;
-    border-radius: 0;
-    margin-bottom: 2.5em; /* Keep space before the next section */
-    position: relative; /* For positioning the scroll-down arrow */
+    position: relative;
 }
 
-.hero-content {
-    max-width: 70ch; /* Limit width for readability */
-}
-
-.hero-greeting { /* This is the new H1 */
-    font-size: 3em; /* Large and impactful */
+.hero-greeting {
+    font-size: 3em;
     color: var(--color-text-accent);
-    margin-bottom: 0.25em;
     font-weight: normal;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap; /* Allow selfie to wrap on small screens */
+    flex-wrap: wrap;
     gap: 0.5em;
+    margin: 0 0 0.25em 0;
 }
 
 .hero-selfie {
-    width: 2em; /* Size relative to the font size of the h1 */
-    height: 2em;
+    width: 2.4em;
+    height: 2.4em;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--color-border-selfie);
-    display: inline-block; /* Keep it inline with text */
     vertical-align: middle;
 }
 
-.hero-subheading { /* "& this is fieldnotes" */
+.hero-subheading {
     font-size: 1.8em;
-    color: var(--color-text-body);
-    font-weight: normal;
     margin: 0;
+    font-weight: normal;
 }
 
 .hero-tagline {
     font-size: 1.1em;
-    color: var(--color-text-body);
     margin-top: 1.5em;
     line-height: 1.6;
+    max-width: 65ch;
 }
 
 .hero-tagline em {
-    color: var(--color-text-accent); /* Make the "for the love of the game" part stand out */
+    color: var(--color-text-accent);
 }
 
-/* Scroll-Down Arrow */
 .scroll-down-arrow {
     position: absolute;
     bottom: 30px;
     left: 50%;
-    transform: translateX(-50%);
     color: var(--color-text-accent);
     font-size: 2em;
     text-decoration: none;
     animation: bounce 2s infinite ease-in-out;
 }
 
-/* =================================== */
-/* 4. Animations                     
-/* (NEW ARROW BOUNCE ANIMATION)
-/* =================================== */
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    40% {
-        transform: translateX(-50%) translateY(-20px);
-    }
-    60% {
-        transform: translateX(-50%) translateY(-10px);
-    }
+section#intro {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+    padding-top: 3em;
+    padding-bottom: 3em;
 }
 
-
-/* =================================== */
-/* 5. Responsive Adjustments         
-/* (UPDATES FOR HERO SECTION)
-/* =================================== */
-@media (max-width: 768px) {
-    .site-header {
-        flex-direction: column; /* Stack logo and nav on mobile */
-        gap: 1em;
-    }
-    .hero-greeting {
-        font-size: 2.5em;
-    }
-    .hero-subheading {
-        font-size: 1.5em;
-    }
+section#intro h2 {
+    display: inline-block;
 }
-/* About Me Section (index.html) */
+
+/* --- About Section & Story --- */
 section#about {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 25px;
 }
 
-/* In style.css, find and modify this rule */
-/* Add these new styles to your style.css */
-/* You can place them after your existing #about styles */
+.about-text {
+    flex: 1;
+}
 
+.origin-story::first-letter {
+    color: var(--color-text-accent);
+    font-weight: bold;
+    font-size: 4em;
+    float: left;
+    line-height: 0.8;
+    margin: 0.05em 0.05em 0 0;
+}
+
+.pull-quote {
+    display: block;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-style: italic;
+    color: var(--color-text-accent);
+    margin: 1.5em 0;
+}
+
+/* --- Polaroid Component --- */
 .polaroid-frame {
     background-color: var(--color-bg-section); /* Using your "Snow" background color */
     border: 2.5px solid var(--color-border-section); /* Using your "MistyRose" border color */
@@ -341,165 +399,110 @@ section#about {
 }
 
 .polaroid-frame:hover {
-    transform: rotate(0deg) scale(1.05); /* Straighten and lift on hover */
-    box-shadow: 5px 5px 12px var(--color-shadow-card);
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 5px 5px 12px var(--shadow-card);
     z-index: 10;
 }
 
 .polaroid-frame img {
-    width: 100%; /* Image fills the content area of the frame */
-    display: block; /* Removes any extra space below the image */
-    border: 1px solid #ddd; /* Optional thin inner border for the photo itself */
+    width: 100%;
+    display: block;
+    border: 1px solid #ddd;
 }
 
 .polaroid-caption {
     text-align: center;
-    font-size: 0.9em;
-    color: var(--color-text-body);
-    font-family: var(--font-handwritten); /* Or a cursive/handwritten font if you add one */
-    margin-top: 15px; /* Space between photo and caption */
-    margin-bottom: 0;
+    font-size: 1.1em;
+    margin: 15px 0 0 0;
+    font-family: var(--font-handwritten);
 }
 
-.about-text {
-    flex: 1;
-}
-
-.about-text h2 { /* Specific to about H2, though it also falls under general section h2 */
-    margin-top: 0;
-    /* Styling for [☎️] etc. will be inherited or can be made specific here */
-}
-
-/* Goals Flowchart Section (index.html) */
-section#goals h2 { /* Specific to goals H2 */
-    /* Styling for [🎯] etc. will be inherited or can be made specific here */
-    /* If you want it centered: text-align: center; margin-bottom: 0.5em; */
-}
-
+/* --- Flowchart, Project & Publication Cards --- */
 .goals-flowchart {
     display: flex;
-    align-items: flex-start;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
     padding: 2em 0;
-    width: 100%;
 }
 
-/* In style.css - Find the "Goals Flowchart Section" and replace with this */
-
-/* Goals Flowchart Section (index.html) - NEW VERTICAL LAYOUT */
-.goals-flowchart {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center;    /* Center them horizontally */
-    gap: 0;                 /* No gap needed, lines will create space */
-    padding: 2em 0;
-    width: 100%;
-}
-
-.flowchart-node { /* This base class is mostly the same, but we add states for animation */
+.flowchart-node {
     background-color: var(--color-bg-card);
     border: 2px dashed var(--color-border-card);
     border-radius: 10px;
     padding: 1em 1.5em;
-    box-shadow: 0 2px 4px var(--color-shadow-card);
+    box-shadow: 0 2px 4px var(--shadow-card);
     position: relative;
-    color: var(--color-card-h3);
-    color: var(--color-text-body);
-    width: 90%; /* Give nodes a consistent width */
-    max-width: 550px; /* Max width for readability */
-    margin-bottom: 2.5em; /* Space between nodes */
-
-    /* For Scroll Animation */
-    opacity: 0; /* Initially hidden */
-    transform: translateY(20px); /* Initially slightly lower */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Smooth transition */
+    width: 90%;
+    max-width: 550px;
+    margin-bottom: 2.5em;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition-delay: var(--delay, 0s);
 }
 
-/* The state when the element becomes visible */
 .flowchart-node.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-.flowchart-node .node-title {
-    /* Existing styles are fine */
-    font-weight: bold;
-    color: var(--color-text-accent);
-    font-size: 1.1em;
-    margin-bottom: 0.5em;
-}
-
-.flowchart-node .node-title a {
-    color: inherit; /* This is the key property */
-    text-decoration: none; /* This attempts to remove the underline */
-    display: block; /* Optional: Makes the entire paragraph area clickable */
+.flowchart-node .node-title a,
+.flowchart-node .node-title a:visited { 
+    color: var(--color-text-accent); 
+    text-decoration: none; 
+    display: block;
+    transition: color var(--transition-duration) ease;
 }
 
 .flowchart-node .node-title a:hover,
 .flowchart-node .node-title a:focus {
-    text-decoration: underline; /* Adds an underline on hover/focus */
-    color: var(--color-text-accent-darker); /* Optional: Darker shade on hover */
+    color: var(--color-text-accent-darker);
+    text-decoration: underline; 
 }
 
-.purpose-node { /* Was flex item, now just a block in a column */
+.goal-subheading {
+    font-style: italic;
+    font-size: 0.95em;
+    color: var(--color-text-subtle);
+    line-height: 1.6;
+    margin-top: 0.25em;
+}
+
+.purpose-node {
     text-align: center;
-    /* Removed old flex-basis and min-width */
 }
 
 .goal-nodes-container {
-    /* This container isn't strictly needed for layout anymore but is a good semantic wrapper */
-    display: contents; /* Makes the container "disappear" for layout purposes,
-                          so its children (.goal-node) are treated as direct children of .goals-flowchart */
+    display: contents;
 }
 
 .goal-node {
-    text-align: center; /* Center text in goal nodes */
-    /* Removed old width and padding-left rules */
+    text-align: center;
 }
 
-
-/* --- NEW Vertical Connecting Lines --- */
-
-/* Line coming DOWN from the Purpose node */
-.purpose-node::after {
+.purpose-node::after, .goal-node::before {
     content: '';
     position: absolute;
-    bottom: -1.5em; /* Position below the node */
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
-    height: 1.5em; /* Length of the line connecting to the next node */
     background-color: var(--color-flowchart-line);
 }
 
-/* Line going UP from each Goal node */
-.goal-node::before {
-    content: '';
-    position: absolute;
-    top: -1.25em; /* Position above the node */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 1.25em; /* Length of the line connecting to the node above */
-    background-color: var(--color-flowchart-line);
+.purpose-node::after { bottom: -1.5em; height: 1.5em; }
+.goal-node::before { top: -1.25em; height: 1.25em; }
+
+/* --- Projects & Poetry Showcase (index.html) --- */
+section#projects-showcase h2, section#poetry h2 {
+    text-align: center;
+    margin-bottom: 1.5em;
 }
 
-/* Projects Showcase Section (merged from projects.html) */
-section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" heading */
-    text-align: left;
-    margin-bottom: 1em; /* More space before the intro paragraph */
-    /* It inherits other styles from the general 'section h2' rule */
+.projects-intro-text a {
+    color: var(--color-text-accent);
 }
 
-.projects-intro-text {
-    text-align: left; /* Align text to the left */
-    max-width: 70ch;  /* Keep max-width for readability, it will now align left */
-    margin-bottom: 2em; /* Keep the bottom margin */
-    /* margin-left: 0; by default for left-aligned block */
-    /* margin-right: auto; or 0, by default for left-aligned block */
-}
-
-.goal-group { /* Container for a goal header + its projects */
+.goal-group, .publications-grid {
     margin-bottom: 3em;
 }
 
@@ -523,47 +526,141 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     color: #505050;
 }
 
-.projects-under-goal {
+.projects-under-goal, .publications-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5em;
-    padding: 0 1em; /* Optional padding for the group of project items */
+    padding: 0 1em;
 }
 
-.project-item {
-    background-color: var(--color-card-bg);
+.project-item, .publication-item {
+    background-color: var(--color-bg-card);
     padding: 1.5em;
-    border: 1px dashed var(--color-card-border);
+    border: 1px dashed var(--color-border-card);
     border-radius: 10px;
-    box-shadow: 0 2px 4px var(--color-shadow-card);
-    margin-bottom: 0; /* Grid gap handles spacing */
+    box-shadow: 0 2px 4px var(--shadow-card);
+    display: flex;
+    flex-direction: column;
 }
 
-.project-item h3 {
+.project-item h3, .publication-item h3 {
     margin-top: 0;
     color: var(--color-card-h3);
     font-size: 1.4em;
     font-weight: normal;
 }
 
-.project-item p {
-    font-size: 0.95em;
-    line-height: 1.6;
-}
-
-.project-item a {
+.project-item a, .publication-item a {
     color: var(--color-card-link);
     text-decoration: none;
     font-weight: bold;
 }
 
-.project-item a:hover,
-.project-item a:focus {
-    color: var(--color-card-link-hover);
+.project-item a:hover, .project-item a:focus,
+.publication-item a:hover, .publication-item a:focus {
+    color: var(--color-link-card-hover);
     text-decoration: underline;
 }
 
-/* Back to Top Button */
+.publication-journal {
+    font-size: 0.9em;
+    margin: -0.75em 0 1em 0;
+}
+
+.publication-item blockquote {
+    border-left: 3px solid var(--color-text-accent);
+    padding-left: 1em;
+    margin: 0 0 1em 0;
+    font-style: italic;
+    flex-grow: 1;
+}
+
+/* --- Connect Links & Footer --- */
+.intro-connect-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+    margin-top: 2em;
+}
+
+.intro-connect-links a {
+    color: var(--color-text-accent);
+    transition: transform 0.2s ease-out;
+}
+
+.intro-connect-links a:hover,
+.intro-connect-links a:focus {
+    color: var(--color-text-accent-darker);
+    transform: translateY(-3px);
+}
+
+.intro-connect-links .fa-brands, .footer-social-links .fa-brands {
+    font-size: 28px;
+}
+
+.footer-social-links .fa-brands {
+    font-size: 24px;
+}
+
+.footer-connect {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.footer-title {
+    font-size: 1.5em;
+    font-weight: normal;
+    color: var(--color-text-white);
+    margin: 0 0 0.75em 0;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+}
+
+.connect-text {
+    max-width: 65ch;
+    margin: 0 auto 1.5em auto;
+    line-height: 1.6;
+    font-size: 1.05em;
+    opacity: 0.9;
+}
+
+.footer-social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5em;
+}
+
+.footer-social-links a {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 0.5em 1.2em;
+    border: 1px solid rgba(219, 112, 147, 0.3);
+    border-radius: 20px;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.footer-social-links a:hover,
+.footer-social-links a:focus {
+    background-color: rgba(219, 112, 147, 0.2);
+    border-color: rgba(219, 112, 147, 0.5);
+}
+
+.footer-copyright {
+    text-align: center;
+    margin-top: 2.5em;
+    padding-top: 1.5em;
+    border-top: 1px solid rgba(219, 112, 147, 0.3);
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* --- Other Components --- */
 #backToTopBtn {
     display: none;
     position: fixed;
@@ -572,14 +669,14 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     z-index: 100;
     border: none;
     outline: none;
-    background-color: var(--color-button-btt-bg);
+    background-color: var(--color-bg-header-footer);
     color: var(--color-text-white);
     cursor: pointer;
     padding: 12px 15px;
     border-radius: 50%;
     font-family: var(--font-primary);
     font-size: 16px;
-    box-shadow: 0 4px 8px var(--color-shadow-button);
+    box-shadow: 0 4px 8px var(--shadow-button);
     transition: background-color var(--transition-duration) ease, opacity var(--transition-duration) ease;
 }
 
@@ -587,343 +684,18 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     background-color: var(--color-button-btt-bg-hover);
 }
 
-/* =================================== */
-/* 4. Animations                     */
-/* =================================== */
+/* --- Sticky Note To-Do List --- */
 
-@keyframes wiggle {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-4deg); }
-    75% { transform: rotate(4deg); }
-}
-
-@keyframes temporaryHighlight {
-    0% { box-shadow: 0 0 0 0 var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.4)); }
-    50% { box-shadow: 0 0 20px 8px var(--color-text-accent-rgba, rgba(219, 112, 147, 0.7)); }
-    100% { box-shadow: 0 0 0 0 var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0)); }
-}
-
-.project-item.highlighted-project,
-.flowchart-node.goal-as-header.highlighted-project {
-    animation: temporaryHighlight 2.5s ease-out;
-}
-
-/* =================================== */
-/* 5. Responsive Adjustments         */
-/* =================================== */
-
-@media (max-width: 768px) {
-    header { padding: 1em; }
-    header h1 { font-size: 2em; }
-    main { padding: 1em; }
-    section { padding: 1.5em 1em; margin-bottom: 1.5em; }
-    section h2 { font-size: 1.6em; }
-
-    nav ul li { display: block; margin-right: 0; margin-bottom: 12px; }
-    nav ul li a { padding: 0.5em 0; }
-
-    .project-item h3 { font-size: 1.3em; }
-
-    /* Flowchart on index.html - stacked */
-    .goals-flowchart { flex-direction: column; align-items: center; gap: 10px; }
-    .purpose-node { flex-basis: auto; width: 85%; max-width: 400px; margin-bottom: 40px; align-self: center; }
-    .goal-nodes-container { width: 100%; align-items: center; gap: 35px; }
-    .goal-node { /* For index.html flowchart nodes when stacked */
-        width: 85%; max-width: 400px; padding-left: 1.5em; padding-top: 30px; text-align: center;
-    }
-    .purpose-node::after { /* Line from purpose goes down */
-        top: auto; bottom: -20px; left: 50%; right: auto;
-        transform: translateX(-50%); width: 2px; height: 20px;
-    }
-    .goal-node::before { /* Line from goal goes up (index.html flowchart) */
-        top: -20px; left: 50%; transform: translateX(-50%); width: 2px; height: 20px;
-    }
-
-    /* Projects Showcase Section - Goal Headers */
-    .flowchart-node.goal-as-header { width: 95%; }
-    .projects-under-goal { padding: 0 0.5em; }
-}
-
-@media (max-width: 600px) { /* About Section Responsive */
-    section#about { flex-direction: column; align-items: center; text-align: center; }
-    .about-selfie { width: 120px; height: 120px; margin-bottom: 15px; }
-}
-
-@media (max-width: 480px) {
-    /* Flowchart nodes on index.html */
-    .purpose-node, .goal-node { width: 90%; padding: 0.8em 1em; }
-    .goal-node { padding-left: 1em; padding-top: 25px; }
-    .purpose-node::after, .goal-node::before { height: 15px; }
-    .purpose-node::after { bottom: -15px; }
-    .goal-node::before { top: -15px; }
-    .flowchart-node .node-title { font-size: 1em; }
-
-    /* Project cards on projects showcase */
-    .projects-under-goal { grid-template-columns: 1fr; }
-}
-
-/* ============================================= */
-/* Styles for Project Detail Pages (e.g., bachelors-degree-slc.html)
-/* Add these rules to your main style.css file
-/* ============================================= */
-
-.project-detail-page {
-    /* You can set a max-width for the main article content if desired */
-    /* Example:
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    */
-    margin-bottom: 2em; /* Space before the site footer */
-}
-
-.project-page-header {
+.sticky-note-section h3 {
     text-align: center;
-    margin-bottom: 2.5em;
-    padding-bottom: 1.5em;
-    border-bottom: 1px dashed var(--color-border-card); /* Using a theme color */
-}
-
-.project-title-main { /* This is the <h2> for the project title */
-    color: var(--color-section-h2); /* Match other main section titles */
-    font-size: 2em; /* Adjust as needed for project page title */
-    margin-bottom: 0.25em;
-    font-weight: normal;
-    /* Ensure it doesn't inherit the dotted border from general section h2 if not desired */
     border-bottom: none;
-    padding-bottom: 0;
-}
-
-.project-subheading {
-    font-size: 1.1em;
-    font-style: italic;
-    color: var(--color-text-body);
-    margin-bottom: 1em;
-}
-
-.back-link-container { /* Container for the "back to all projects" link */
-    margin-top: 1em;
-    font-size: 0.9em;
-}
-
-.back-to-projects-link {
-    color: var(--color-text-accent);
-    text-decoration: none;
-    font-weight: bold;
-}
-.back-to-projects-link:hover,
-.back-to-projects-link:focus {
-    color: var(--color-text-accent-darker);
-    text-decoration: underline;
-}
-
-/* Styling for sections within the project detail page */
-.project-detail-page section {
-    /* Override general section styles if you want them to look different */
-    /* For example, to make them less "boxed" than main page sections: */
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-    padding: 1.5em 0; /* More focused padding, less horizontal */
-    margin-bottom: 2em;
-    border-bottom: 1px solid var(--color-border-section); /* Separator line */
-}
-.project-detail-page section:last-of-type {
-    border-bottom: none; /* No border for the last section */
-}
-
-
-.project-detail-page section h3 { /* These are the main headings for subsections like Overview, Progress Feed */
-    color: var(--color-section-h2);
-    border-bottom: 1px dotted var(--color-border-section-h2); /* Thinner dotted line */
-    padding-bottom: 0.4em;
-    margin-top: 0;
-    margin-bottom: 1.2em;
-    font-size: 1.6em; /* Adjust size for these sub-section titles */
-    font-weight: normal;
-}
-
-/* Timeline styles for Progress Feed */
-.timeline {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.timeline > li { /* Represents a semester block */
-    margin-bottom: 2em;
-}
-
-.timeline h4 { /* Semester titles (e.g., "fall 2024") */
-    color: var(--color-text-accent);
-    font-size: 1.3em; /* Made slightly larger */
-    margin-bottom: 0.75em;
-    font-weight: normal; /* Consistent with other headings */
-}
-
-.course-list {
-    list-style-type: none; /* Removing default bullets for a cleaner look */
-    padding-left: 1em; /* Indent course items slightly */
-    margin-top: 0.5em;
-}
-
-.course-list li {
-    margin-bottom: 1em;
-    padding-left: 1.2em; /* Indent further for a cleaner look */
-    position: relative; /* For custom bullet/marker */
-}
-
-/* Custom "bullet" for course list items for a touch of the theme */
-.course-list li::before {
-    content: '🌸'; /* Or '▹', '▸', '•' etc. */
-    color: var(--color-text-accent);
-    position: absolute;
-    left: 0;
-    top: 0.1em; /* Adjust vertical alignment */
-    font-size: 0.8em; /* Size of the emoji/bullet */
-}
-
-
-.course-list li strong { /* Course titles */
-    color: var(--color-text-body);
-    font-weight: bold; /* Ensure it stands out */
-}
-
-.course-list li span { /* For "brief description of course" */
-    font-size: 0.9em;
-    color: #777; /* Lighter text */
-    font-style: italic;
-}
-
-.placeholder-text { /* You already have this, ensure it's styled as you like */
-    font-style: italic;
-    font-size: 0.9em;
-    color: #777;
-    margin-top: 0.3em;
-    padding-left: 0.5em; /* Align with course content if needed */
-}
-
-/* Portfolio items section */
-.portfolio-items {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.portfolio-items li {
-    margin-bottom: 1.2em;
-    padding-bottom: 1em;
-    border-bottom: 1px dotted var(--color-border-card); /* Thematic separator */
-}
-
-.portfolio-items li:last-child {
-    border-bottom: none;
-}
-
-.portfolio-items li strong { /* For "[Essay Sample]:" etc. */
-    color: var(--color-text-body);
-    display: block; /* Make it block to have description on new line easily */
-    margin-bottom: 0.25em;
-}
-
-/* Related work links */
-.project-links { /* Used in "Related Work" section */
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.project-links li {
     margin-bottom: 0.5em;
 }
 
-.project-links li a {
-    color: var(--color-card-link); /* Using card link color from your variables */
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.project-links li a:hover,
-.project-links li a:focus {
-    color: var(--color-card-link-hover);
-    text-decoration: underline;
-}
-
-/* Responsive adjustments for project detail page elements */
-@media (max-width: 768px) {
-    .project-title-main {
-        font-size: 1.8em; /* Adjust for smaller screens */
-    }
-    .project-detail-page section h3 {
-        font-size: 1.4em; /* Adjust for smaller screens */
-    }
-    .timeline h4 {
-        font-size: 1.15em;
-    }
-    .course-list {
-        padding-left: 0.5em;
-    }
-    .course-list li {
-        padding-left: 1em; /* Adjust for custom bullet */
-    }
-    .course-list li::before {
-        top: 0.15em; /* May need slight adjustment */
-    }
-}
-
-@media (max-width: 480px) {
-    .project-title-main {
-        font-size: 1.6em;
-    }
-    .project-detail-page section h3 {
-        font-size: 1.3em;
-    }
-    .project-subheading {
-        font-size: 1em;
-    }
-}
-
-/* Add to your style.css */
-
-/* Internship Page - Contributions & Skills Lists */
-.contributions-list,
-.skills-list {
-    list-style-type: none; /* Or your preferred bullet, e.g., 'disc' */
-    padding-left: 0;
-    margin-top: 0.5em;
-}
-
-.contributions-list li,
-.skills-list li {
-    margin-bottom: 1em;
-    padding-left: 1.5em; /* Indent for custom bullet or spacing */
-    position: relative;
-}
-
-/* Custom "bullet" for these lists */
-.contributions-list li::before,
-.skills-list li::before {
-    content: '▹'; /* Or '✔', '➔', '🌸' */
-    color: var(--color-text-accent);
-    position: absolute;
-    left: 0;
-    top: 0.05em; /* Adjust vertical alignment */
-    font-size: 1em;
-}
-
-.contributions-list li strong,
-.skills-list li strong { /* If you use <strong> within list items */
-    color: var(--color-text-body);
-    font-weight: bold;
-}
-
-/* =================================== */
-/* Sticky Note To-Do List Styles       */
-/* =================================== */
-
 .sticky-note-todo-container {
-    /* Use this if you want to center the sticky note or control its placement */
     display: flex;
-    justify-content: center; /* Example: centers the sticky note if it's narrower than container */
-    padding: 1em 0; /* Add some space around the sticky note area */
+    justify-content: center;
+    padding: 1em 0;
 }
 
 .sticky-note-todo {
@@ -933,10 +705,10 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     box-shadow: 3px 3px 8px var(--color-sticky-note-shadow);
     transform: rotate(-1.5deg);
     width: fit-content;
-    min-width: 260px; /* Ensure it has some presence */
+    min-width: 260px;
     max-width: 320px;
-    margin: 1em; /* Margin for the note itself, if not centered by container */
-    font-family: var(--font-handwritten);;
+    margin: 1em;
+    font-family: var(--font-handwritten);
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
     position: relative;
 }
@@ -954,7 +726,7 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     margin-top: 0;
     margin-bottom: 1em;
     padding-bottom: 0.5em;
-    border-bottom: 1px dashed var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.4));
+    border-bottom: 1px dashed rgba(219, 112, 147, 0.4);
     font-weight: bold;
 }
 
@@ -969,6 +741,7 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     display: flex;
     align-items: flex-start;
     font-size: 0.95em;
+    font-family: var(--font-primary); /* Use primary font for readability */
     color: var(--color-text-body);
     position: relative;
 }
@@ -977,8 +750,7 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
 .todo-checkbox {
     opacity: 0;
     position: absolute;
-    width: 1px;
-    height: 1px;
+    width: 1px; height: 1px;
 }
 
 .todo-list label {
@@ -1013,7 +785,7 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     color: var(--color-todo-label-checked);
 }
 
-.todo-checkbox:checked + label::before { /* Checked state box */
+.todo-checkbox:checked + label::before {
     background-color: var(--color-todo-checkmark);
     border-color: var(--color-todo-checkmark);
 }
@@ -1021,14 +793,14 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
 .todo-checkbox:checked + label::after { /* The checkmark itself */
     content: '✔';
     position: absolute;
-    left: 3px; /* Adjust for checkmark alignment in box */
-    top: 0.05em; /* Adjust for checkmark alignment in box */
+    left: 3px;
+    top: 0.05em;
     font-size: 13px;
     color: var(--color-text-white);
     font-weight: bold;
 }
 
-.todo-checkbox:focus + label::before { /* Accessibility */
+.todo-checkbox:focus + label::before {
     outline: 2px solid var(--color-todo-checkbox-focus-outline);
     outline-offset: 1px;
 }
@@ -1046,114 +818,84 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     border-color: var(--color-todo-checkbox-disabled-border);
     background-color: var(--color-todo-checkbox-disabled-bg);
 }
-/* Optional: Styling for the heading of the sticky note section */
-.sticky-note-section h3 {
-    text-align: center;
-    border-bottom: none; /* Overrides default section h3 border */
-    margin-bottom: 0.5em; /* Adjust spacing to the sticky note */
-}
 
-/* =================================== */
-/* Yellow Notepad Reflection Styles    */
-/* =================================== */
 
-.notepad-reflection-container { /* Optional: Use this to center the notepad or control its placement */
+/* --- Yellow Notepad Reflection Styles --- */
+.notepad-layout-container {
     display: flex;
-    justify-content: center;
-    padding: 1em 0;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2em;
+    margin-top: 1.5em;
+    margin-bottom: 2em;
 }
 
 .notepad-reflection {
     background-color: var(--color-bg-notepad);
-    border: 1px solid #E5E0C6; /* Softer border for the notepad */
-    border-top: 1px solid #DAD5BC; /* Slightly darker top edge */
-    padding: 1.5em; /* Overall padding */
-    padding-top: calc(var(--line-height-notepad) * 2.5); /* Extra top padding for "header space" */
+    border: 1px solid #E5E0C6;
+    border-top: 1px solid #DAD5BC;
+    padding: 1.5em;
+    padding-top: calc(var(--line-height-notepad) * 2.5);
     box-shadow: 2px 2px 7px var(--color-notepad-shadow);
-    width: 100%; /* Or fit-content */
-    max-width: 500px; /* Adjust as needed */
-    margin: 1.5em auto; /* Center it if it's a standalone element */
-    font-family: var(--font-primary); /* Or a more handwritten/monospaced font */
-    position: relative; /* For pseudo-elements (header/margin lines) */
-    line-height: var(--line-height-notepad); /* Crucial for aligning text with ruled lines */
+    max-width: 500px;
+    margin: 0; /* Let flexbox handle margins */
+    line-height: var(--line-height-notepad);
+    position: relative;
+    transition: transform var(--transition-duration) ease-out, box-shadow var(--transition-duration) ease-out;
 }
 
-/* Notepad "Binding" or top double red lines */
-.notepad-reflection::before {
+/* Specific rule for notepads inside the side-by-side container */
+.notepad-layout-container .notepad-reflection {
+    flex: 1 1 calc(50% - 2em);
+    min-width: 280px;
+}
+
+/* Specific rule for when a notepad is used as a single, centered element */
+.notepad-reflection-container .notepad-reflection {
+    margin: 1.5em auto;
+}
+
+.notepad-reflection:hover {
+    transform: scale(1.02) translateY(-4px);
+    box-shadow: 4px 6px 12px var(--color-notepad-shadow);
+    z-index: 10;
+}
+
+.notepad-reflection::before { /* Top double red lines */
     content: '';
     position: absolute;
-    top: calc(var(--line-height-notepad) * 1.2); /* Position the first red line */
+    top: calc(var(--line-height-notepad) * 1.2);
     left: 0;
     right: 0;
     height: 1px;
     background-color: var(--color-notepad-line-red);
-    box-shadow: 0 3px 0 var(--color-notepad-line-red); /* Creates the second red line below the first */
+    box-shadow: 0 3px 0 var(--color-notepad-line-red);
 }
 
-/* Add these new rules to your style.css */
-/* You can place them near your existing .notepad-reflection styles */
-
-.notepad-layout-container {
-    display: flex;
-    justify-content: space-around; /* Distributes space around notepads */
-    align-items: flex-start;    /* Aligns the tops of the notepads */
-    flex-wrap: wrap;            /* Allows notepads to wrap to the next line on smaller screens */
-    gap: 2em;                   /* Space between notepads if they wrap or if using space-between */
-    margin-top: 1.5em;          /* Space above the container */
-    margin-bottom: 2em;         /* Space below the container */
-}
-
-/* Adjustments for .notepad-reflection when inside the layout container */
-.notepad-layout-container .notepad-reflection {
-    flex: 1 1 calc(50% - 2em); /* Allows notepads to grow/shrink, aiming for two per row */
-                               /* calc(50% - 2em) accounts for the gap. Adjust if gap changes. */
-    min-width: 280px;          /* Minimum width before a notepad wraps or shrinks too much */
-    margin: 0;                 /* Remove the auto margins, as flexbox handles positioning */
-    /* max-width: 45%; */      /* Alternative to flex-basis if you prefer fixed percentage */
-                               /* The existing max-width: 500px on .notepad-reflection will still apply */
-}
-
-/* Responsive adjustments for the two-notepad layout */
-@media (max-width: 800px) { /* Adjust this breakpoint as needed */
-    .notepad-layout-container {
-        flex-direction: column; /* Stack notepads vertically */
-        align-items: center;    /* Center notepads when stacked */
-        gap: 0; /* Reset gap for column layout, margin on items will handle space */
-    }
-
-    .notepad-layout-container .notepad-reflection {
-        flex-basis: auto;    /* Reset flex-basis */
-        width: 90%;          /* Make notepads take more width when stacked */
-        max-width: 500px;    /* Ensure they don't get too wide on medium screens */
-        margin: 0 auto 2em auto; /* Center and add bottom margin */
-    }
-
-    .notepad-layout-container .notepad-reflection:last-child {
-        margin-bottom: 0; /* No bottom margin for the last stacked notepad */
-    }
-}
-
-/* Add this new rule for the hover effect */
-.notepad-reflection:hover {
-    transform: scale(1.02) translateY(-4px); /* Slight scale up and lift */
-    box-shadow: 4px 6px 12px var(--color-notepad-shadow); /* Slightly more pronounced shadow */
-    z-index: 10; /* Ensure it comes to the front if there are overlapping elements */
+.notepad-reflection::after { /* Vertical red margin line */
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 2.5em;
+    width: 1px;
+    background-color: var(--color-notepad-line-red);
 }
 
 .notepad-title {
     font-size: 1.2em;
     color: var(--color-text-body);
-    margin-top: calc(-1 * var(--line-height-notepad) * 0.5); /* Pull title slightly up into header space */
-    margin-bottom: var(--line-height-notepad); /* Space before first paragraph */
+    margin: calc(-1 * var(--line-height-notepad) * 0.5) 0 var(--line-height-notepad) 0;
     font-weight: bold;
     text-align: left;
-    padding-left: calc(2.5em + 10px); /* Ensure title is to the right of the margin line */
-    position: relative; /* To ensure it's above the ::before element */
+    padding-left: calc(2.5em + 10px);
+    position: relative;
+    font-family: var(--font-handwritten);
 }
 
 .notepad-content {
-    padding-left: calc(2.5em + 10px); /* Content starts to the right of the red margin line */
-                                     /* 2.5em for margin line, 10px for space */
+    padding-left: calc(2.5em + 10px);
     background-image: repeating-linear-gradient(
         var(--color-bg-notepad) 0,
         var(--color-bg-notepad) calc(var(--line-height-notepad) - 1px),
@@ -1161,96 +903,98 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
         var(--color-notepad-line-blue) var(--line-height-notepad)
     );
     background-size: 100% var(--line-height-notepad);
-    background-position-y: 0.4em; /* Fine-tune vertical position of lines relative to text */
+    background-position-y: 0.4em;
 }
 
 .notepad-content p {
-    margin-bottom: var(--line-height-notepad); /* Space between paragraphs, aligns with lines */
+    margin-bottom: var(--line-height-notepad);
     color: var(--color-text-body);
-    font-size: 1em; /* Or your preferred reading size */
+    font-size: 1em;
 }
 
 .notepad-content p:last-child {
     margin-bottom: 0;
 }
 
-/* In style.css */
+/* Responsive adjustments for notepads */
+@media (max-width: 800px) {
+    .notepad-layout-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
 
-/* Navigation Dropdown Styles */
-.nav-item.has-dropdown {
-    position: relative; /* Establishes a positioning context for the dropdown */
+    .notepad-layout-container .notepad-reflection {
+        flex-basis: auto;
+        width: 90%;
+        margin: 0 auto 2em auto;
+    }
+
+    .notepad-layout-container .notepad-reflection:last-child {
+        margin-bottom: 0;
+    }
 }
 
-.dropdown-arrow {
-    font-size: 0.8em;
-    margin-left: 0.3em;
-    display: inline-block;
-    transition: transform 0.2s ease-in-out;
-}
+/* Fixing any issues of unhighlighted links */
 
-.nav-item.has-dropdown:hover .dropdown-arrow {
-    transform: rotate(180deg); /* Flips arrow on hover */
-}
-
-.dropdown-menu {
-    display: none; /* Hidden by default */
-    position: absolute;
-    top: 100%; /* Position below the parent "projects" link */
-    left: 50%; /* Start from center of parent */
-    transform: translateX(-50%); /* Adjust to truly center under parent */
-    background-color: var(--color-bg-header-footer); /* Use header background color */
-    border: 1px solid var(--color-border-header-footer);
-    border-top: none; /* Avoid double border with parent's bottom border */
-    border-radius: 0 0 8px 8px; /* Rounded bottom corners */
-    padding: 0.5em 0;
-    list-style-type: none;
-    margin: 0; /* Reset margin */
-    min-width: 200px; /* Minimum width of the dropdown */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 1000; /* Ensure it's above other content */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
-}
-
-.nav-item.has-dropdown:hover .dropdown-menu,
-.nav-item.has-dropdown:focus-within .dropdown-menu { /* Show on hover or when an item inside is focused */
-    display: block;
-    opacity: 1;
-    visibility: visible;
-}
-
-.dropdown-menu li {
-    display: block; /* Make list items take full width */
-    margin-right: 0; /* Override general nav li margin */
-}
-
-.dropdown-menu li a {
-    display: block; /* Make the entire list item area clickable */
-    padding: 0.6em 1.2em;
-    color: var(--color-nav-link); /* Use your nav link color */
+.back-to-projects-link {
+    display: inline-block; /* Needed to apply padding and border correctly */
+    color: var(--color-text-accent);
+    background-color: transparent;
+    border: 1px solid var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.4)); /* A subtle border */
+    padding: 0.5em 1.2em; /* Padding to create the button shape */
+    border-radius: 20px;  /* This creates the pill shape */
     text-decoration: none;
-    white-space: nowrap; /* Prevent links from wrapping */
-    font-size: 0.95em; /* Slightly smaller font for dropdown items */
+    font-weight: bold;
     transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
 }
 
-.dropdown-menu li a:hover,
-.dropdown-menu li a:focus {
-    background-color: var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.2)); /* Subtle hover background */
-    color: var(--color-nav-link-hover); /* Use nav link hover color */
-    border-bottom: none; /* Remove main nav link hover border */
-    text-shadow: none; /* Remove main nav link text shadow */
-    animation: none; /* Remove main nav link wiggle animation */
+.back-to-projects-link:hover,
+.back-to-projects-link:focus {
+    background-color: var(--color-text-accent); /* Fill with accent color on hover */
+    border-color: var(--color-text-accent); /* Make border solid on hover */
+    color: var(--color-text-white); /* Make text white on hover */
+    text-decoration: none; /* No need for an underline with this effect */
 }
 
-/* Add near your other component styles */
-/* Animation state for any element that will fade in on scroll */
+.project-links a {
+    display: inline-block; 
+    color: var(--color-text-accent);
+    background-color: transparent;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* =================================== */
+/* 4. ANIMATIONS
+/* =================================== */
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-4deg); }
+    75% { transform: rotate(4deg); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-20px); }
+    60% { transform: translateX(-50%) translateY(-10px); }
+}
+
+@keyframes temporaryHighlight {
+    50% { box-shadow: 0 0 20px 8px rgba(219, 112, 147, 0.7); }
+}
+
+.project-item.highlighted-project,
+.flowchart-node.goal-as-header.highlighted-project {
+    animation: temporaryHighlight 2.5s ease-out;
+}
+
 .anim-on-scroll {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    transition-delay: var(--delay, 0s); /* Use delay variable from inline style */
+    transition-delay: var(--delay, 0s);
 }
 
 .anim-on-scroll.is-visible {
@@ -1258,145 +1002,65 @@ section#projects-showcase h2 { /* Styles for the main "[🛠️] projects" headi
     transform: translateY(0);
 }
 
-/* Add this to your style.css, e.g., in the "Specific Page Sections & Components" area */
 
-/* For the Pull Quote */
-.pull-quote {
-    display: block;
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: bold;
-    font-style: italic;
-    color: var(--color-text-accent);
-    margin: 1.5em 0;
-}
+/* =================================== */
+/* 5. RESPONSIVE ADJUSTMENTS
+/* =================================== */
 
-/* Responsive adjustments for these elements */
-@media (max-width: 600px) {
-    .pull-quote {
-        font-size: 1.1em;
-        margin: 1.2em 0;
+@media (max-width: 768px) {
+    /* General Layout */
+    main { padding: 1em; }
+    section { padding: 1.5em 1em; margin-bottom: 1.5em; }
+    section h2 { font-size: 1.6em; }
+
+    /* Header & Nav */
+    .site-header { flex-direction: column; gap: 1em; padding: 1em; }
+    .main-navigation ul { flex-wrap: wrap; justify-content: center; }
+    .nav-item.has-dropdown .dropdown-menu {
+        position: static;
+        display: none; /* Keep hidden on mobile, requires JS for toggle */
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0.5em 0 0 1.5em;
+        text-align: left;
     }
-}
-
-/* In style.css */
-
-/* =================================== */
-/* Connect Links & Enhanced Footer
-/* =================================== */
-
-/* Connect links under the Intro section on index.html */
-.intro-connect-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5em; /* Space between icons */
-    margin-top: 2em;
-}
-
-.intro-connect-links a {
-    color: var(--color-text-accent); /* Use your theme's accent color for the icons */
-    transition: transform 0.2s ease-out;
-}
-
-.intro-connect-links a:hover,
-.intro-connect-links a:focus {
-    color: var(--color-text-accent-darker);
-    transform: translateY(-3px); /* Slight lift on hover */
-}
-
-/* Enhanced Footer Styles */
-.site-footer { /* Replaces your old 'footer' selector for more specificity */
-    text-align: left; /* Change default alignment for the new structure */
-    padding: 3em 2em; /* More vertical padding */
-    background-color: var(--color-bg-header-footer);
-    color: var(--color-footer-text);
-    font-size: 0.9em;
-    border-top: 2px solid var(--color-footer-border);
-}
-
-.footer-content {
-    max-width: 800px; /* Constrain the width of footer content for readability */
-    margin: 0 auto; /* Center the content container */
-}
-
-.footer-connect {
-    text-align: center; /* Center the text and links within the connect section */
-    margin-bottom: 2em;
-}
-
-.footer-title {
-    font-size: 1.5em;
-    font-weight: normal;
-    color: var(--color-text-white);
-    margin: 0 0 0.75em 0;
-    text-transform: lowercase; /* Matches your aesthetic */
-    letter-spacing: 1px;
-}
-
-.connect-text {
-    max-width: 65ch;
-    margin: 0 auto 1.5em auto;
-    line-height: 1.6;
-    font-size: 1.05em; /* Make text slightly larger */
-    opacity: 0.9;
-}
-
-.footer-social-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Allow links to wrap on small screens */
-    gap: 1.5em;
-}
-
-.footer-social-links a {
-    display: flex;
-    align-items: center;
-    gap: 0.6em; /* Space between icon and text */
-    color: var(--color-footer-text);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1em;
-    padding: 0.5em 1.2em; /* Padding for the button-like link */
-    border: 1px solid var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.3));
-    border-radius: 20px; /* Pill shape */
-    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-}
-
-.footer-social-links a:hover,
-.footer-social-links a:focus {
-    background-color: var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.2));
-    border-color: var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.5));
-}
-
-.footer-social-links svg {
-    fill: var(--color-text-white); /* Ensure SVGs are the correct color */
-}
-
-.footer-copyright {
-    text-align: center;
-    margin-top: 2.5em;
-    padding-top: 1.5em;
-    border-top: 1px solid var(--color-text-accent-rgba-faint, rgba(219, 112, 147, 0.3));
-    font-size: 0.9em;
-    opacity: 0.8;
-}
-
-/* In style.css */
-
-/* Add these rules to prevent SVG distortion */
-
-/* For the icons in the intro section */
-.intro-connect-links svg {
-    width: 28px;  /* Explicitly set width */
-    height: 28px; /* Explicitly set height */
-}
-
-/* For the icons in the footer section */
-.footer-social-links svg {
-    width: 32px;  /* Explicitly set width */
-    height: 32px; /* Explicitly set height */
+    .nav-item.has-dropdown .dropdown-arrow { display: none; }
     
-    /* This is crucial for items in a flex container.
-       It prevents the SVG from being squished if space is tight. */
-    flex-shrink: 0; 
+    /* Hero */
+    .hero-greeting { font-size: 2.5em; }
+    .hero-subheading { font-size: 1.5em; }
+
+    /* Flowchart on index.html */
+    .goals-flowchart { gap: 10px; }
+    .purpose-node, .goal-node { width: 85%; max-width: 400px; }
+    .purpose-node { margin-bottom: 40px; }
+    .goal-node { padding: 1.5em; text-align: center; }
+    .purpose-node::after, .goal-node::before { height: 20px; }
+    .purpose-node::after { bottom: -20px; }
+    .goal-node::before { top: -20px; }
+    
+    /* Project/Publication Cards */
+    .project-item h3, .publication-item h3 { font-size: 1.3em; }
+    .projects-under-goal, .publications-grid { padding: 0 0.5em; }
+}
+
+@media (max-width: 600px) {
+    section#about {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .polaroid-frame {
+        margin: 1.5em 0;
+        transform: rotate(0deg); /* Straighten on mobile */
+    }
+
+    .origin-story::first-letter { font-size: 3.2em; }
+    .pull-quote { font-size: 1.1em; margin: 1.2em 0; }
+}
+
+@media (max-width: 480px) {
+    .purpose-node, .goal-node { width: 90%; }
+    .projects-under-goal, .publications-grid { grid-template-columns: 1fr; }
 }
