@@ -93,6 +93,7 @@ body {
     background-color: var(--color-bg-header-footer);
     padding: 1em 2em; 
     border-bottom: 2px solid var(--color-border-header-footer);
+    position: relative;
 }
 
 .site-branding a { 
@@ -163,6 +164,11 @@ section h2 { /* Default style for H2 within sections */
 /* 2. NAVIGATION & LINKS
 /* =================================== */
 
+/* Hide hamburger button on desktop */
+.nav-toggle {
+    display: none;
+}
+
 .site-branding a {
     color: var(--color-text-white);
     font-weight: bold;
@@ -170,11 +176,11 @@ section h2 { /* Default style for H2 within sections */
     text-decoration: none;
 }
 
+/* Base style for ALL links in the navigation */
 .main-navigation a {
     display: inline-block;
     text-decoration: none;
-    color: var(--color-link-nav);
-    font-weight: normal;
+    color: var(--color-text-white); /* Sets default color for all nav links */
     padding: 0.5em;
     transition: color var(--transition-duration) ease, text-shadow var(--transition-duration) ease, background-color var(--transition-duration) ease;
 }
@@ -185,7 +191,7 @@ section h2 { /* Default style for H2 within sections */
     border-bottom: 1px dashed var(--color-text-white);
 }
 
-/* Specific hover effect for wiggle links, excluding dropdown items and resume link */
+/* Wiggle animation */
 .main-navigation > ul > li:not(.has-dropdown) > a:not(.nav-resume-link):hover,
 .main-navigation > ul > li:not(.has-dropdown) > a:not(.nav-resume-link):focus {
     text-shadow:
@@ -195,7 +201,6 @@ section h2 { /* Default style for H2 within sections */
 }
 
 .main-navigation a.active-link {
-    color: var(--color-text-white) !important;
     font-weight: bold;
     border-bottom: 2px solid var(--color-border-main) !important;
 }
@@ -211,10 +216,10 @@ section h2 { /* Default style for H2 within sections */
 .nav-resume-link:focus {
     background-color: var(--color-text-light);
     color: var(--color-bg-header-footer);
-    border-bottom: 1px solid var(--color-text-light);
+    border-bottom: 1px solid var(--color-text-light) !important;
 }
 
-/* Dropdown Navigation */
+/* --- Desktop Dropdown Menu --- */
 .nav-item.has-dropdown {
     position: relative;
 }
@@ -237,7 +242,7 @@ section h2 { /* Default style for H2 within sections */
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--color-bg-header-footer);
-    border: 1px solid var(--color-border-main);
+    border: 1px solid var(--color-border-header-footer);
     border-top: none;
     border-radius: 0 0 8px 8px;
     padding: 0.5em 0;
@@ -263,10 +268,11 @@ section h2 { /* Default style for H2 within sections */
     margin: 0;
 }
 
+/* Links within the DESKTOP dropdown */
 .dropdown-menu li a {
     display: block;
     padding: 0.6em 1.2em;
-    white-space: nowrap;
+    white-space: nowrap; /* This rule now only affects the desktop dropdown */
     font-size: 0.95em;
 }
 
@@ -275,7 +281,6 @@ section h2 { /* Default style for H2 within sections */
     background-color: rgba(219, 112, 147, 0.2);
     border-bottom: none;
 }
-
 
 /* =================================== */
 /* 3. COMPONENTS & PAGE-SPECIFIC STYLES
@@ -1007,90 +1012,16 @@ section#projects-showcase h2, section#poetry h2 {
 /* 5. RESPONSIVE ADJUSTMENTS
 /* =================================== */
 
-/* In your style.css, inside the @media (max-width: 768px) block */
-
 @media (max-width: 768px) {
-    /* ... your other responsive styles for header, main, section, etc. ... */
+    /* --- Responsive Navigation --- */
     
+    /* Show and style the hamburger button on mobile */
     .nav-toggle {
-        display: block; /* Show the hamburger button on mobile */
-    }
-
-    .main-navigation {
-        /* Hide the navigation by default on mobile */
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: rgba(40, 40, 40, 0.95); /* Semi-transparent dark overlay */
-        backdrop-filter: blur(5px); /* Optional: blur content behind menu */
-        transform: translateX(100%); /* Move it off-screen */
-        transition: transform 0.3s ease-in-out;
-        z-index: 1000;
-    }
-
-    .nav-open .main-navigation {
-        transform: translateX(0); /* Slide it into view when menu is open */
-    }
-
-    /* Style the nav list for the mobile overlay */
-    .main-navigation ul {
-        display: flex;
-        flex-direction: column; /* Stack links vertically */
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        gap: 2em;
-    }
-
-    .main-navigation ul li a {
-        font-size: 1.5em; /* Make links larger and easier to tap */
-    }
-
-    /* Make dropdown items visible and styled for mobile */
-    .nav-item.has-dropdown .dropdown-menu {
-        position: static;
         display: block;
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        padding-top: 0.75em;
-        padding-left: 0; /* Align with parent */
-        text-align: center;
-        min-width: auto;
-        opacity: 1;
-        visibility: visible;
-        margin-top: 0.5em;
-    }
-
-    .nav-item.has-dropdown .dropdown-menu li a {
-        font-size: 0.8em; /* Make dropdown links a bit smaller than main links */
-        padding: 0.4em;
-        color: var(--color-nav-link);
-        opacity: 0.8;
-    }
-    
-    .nav-item.has-dropdown:hover .dropdown-arrow,
-    .dropdown-arrow {
-        display: none; /* Hide the dropdown arrow on mobile */
-    }
-
-    .site-branding a {
-    font-size: 1.1em; /* Reduce font size from 1.2em on smaller screens */
-    }
-}
-    
-    /* =================================== */
-    /* Responsive Navigation ("Hamburger" Menu)
-    /* =================================== */
-
-    .nav-toggle {
-        display: none; /* Hidden on desktop */
         position: absolute;
         top: 1.25em;
         right: 1.5em;
-        z-index: 2000; /* Ensure it's on top of everything */
+        z-index: 2000;
         background: transparent;
         border: 0;
         padding: 0.5em;
@@ -1117,48 +1048,77 @@ section#projects-showcase h2, section#poetry h2 {
         transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease, opacity 0.3s ease;
     }
 
-    .hamburger::before {
-        top: -8px;
+    .hamburger::before { top: -8px; }
+    .hamburger::after { bottom: -8px; }
+
+    .nav-open .hamburger { transform: rotate(45deg); }
+    .nav-open .hamburger::before { top: 0; transform: rotate(90deg); }
+    .nav-open .hamburger::after { bottom: 0; opacity: 0; }
+    
+    body.nav-open {
+        overflow: hidden;
+    }
+    
+    /* Hide the desktop nav list */
+    .main-navigation ul {
+        display: none;
+    }
+    
+    /* Show the mobile nav list as a dropdown when open */
+    .nav-open .main-navigation ul {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--color-bg-header-footer);
+        padding: 0.5em 0;
+        border-top: 1px solid var(--color-border-header-footer);
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+    
+    /* Main links in the mobile dropdown */
+    .main-navigation ul li a {
+        display: block;
+        text-align: center;
+        padding: 0.8em 1em;
+        font-size: 1.1em;
     }
 
-    .hamburger::after {
-        bottom: -8px;
+    /* The container for the "Projects" submenu on mobile */
+    .nav-item.has-dropdown .dropdown-menu {
+        position: relative;
+        left: 95px;
+        display: block;
+        background: rgba(0, 0, 0, 0.1); /* Adds the slightly darker background */
+        border: none;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
     }
 
-    /* --- Mobile Menu Open State --- */
-    /* This class will be toggled by JavaScript on the <body> */
-
-    .nav-open .hamburger {
-        transform: rotate(45deg);
+    /* Links inside the "Projects" submenu on mobile */
+    .dropdown-menu li a {
+        white-space: normal;
+        text-align: center; /* This is the missing property that centers the text */
+        font-size: 0.9em;
+        color: var(--color-text-light);
+        padding: 0.6em 1em; /* This adds comfortable spacing around the text */
     }
 
-    .nav-open .hamburger::before {
-        top: 0;
-        transform: rotate(90deg);
+    .dropdown-arrow { display: none; }
+    
+    /* --- Other General Responsive Styles --- */
+    
+    .site-branding a {
+        font-size: 1.1em;
     }
 
-    .nav-open .hamburger::after {
-        bottom: 0;
-        opacity: 0; /* Hide bottom bar to form an 'X' */
-    }
-
-    /* Hero */
     .hero-greeting { font-size: 2.5em; }
     .hero-subheading { font-size: 1.5em; }
-
-    /* Flowchart on index.html */
-    .goals-flowchart { gap: 10px; }
-    .purpose-node, .goal-node { width: 85%; max-width: 400px; }
-    .purpose-node { margin-bottom: 40px; }
-    .goal-node { padding: 1.5em; text-align: center; }
-    .purpose-node::after, .goal-node::before { height: 20px; }
-    .purpose-node::after { bottom: -20px; }
-    .goal-node::before { top: -20px; }
-    
-    /* Project/Publication Cards */
-    .project-item h3, .publication-item h3 { font-size: 1.3em; }
-    .projects-under-goal, .publications-grid { padding: 0 0.5em; }
-
+}
 
 @media (max-width: 600px) {
     section#about {
