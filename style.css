@@ -1007,26 +1007,141 @@ section#projects-showcase h2, section#poetry h2 {
 /* 5. RESPONSIVE ADJUSTMENTS
 /* =================================== */
 
-@media (max-width: 768px) {
-    /* General Layout */
-    main { padding: 1em; }
-    section { padding: 1.5em 1em; margin-bottom: 1.5em; }
-    section h2 { font-size: 1.6em; }
+/* In your style.css, inside the @media (max-width: 768px) block */
 
-    /* Header & Nav */
-    .site-header { flex-direction: column; gap: 1em; padding: 1em; }
-    .main-navigation ul { flex-wrap: wrap; justify-content: center; }
+@media (max-width: 768px) {
+    /* ... your other responsive styles for header, main, section, etc. ... */
+    
+    .nav-toggle {
+        display: block; /* Show the hamburger button on mobile */
+    }
+
+    .main-navigation {
+        /* Hide the navigation by default on mobile */
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(40, 40, 40, 0.95); /* Semi-transparent dark overlay */
+        backdrop-filter: blur(5px); /* Optional: blur content behind menu */
+        transform: translateX(100%); /* Move it off-screen */
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    .nav-open .main-navigation {
+        transform: translateX(0); /* Slide it into view when menu is open */
+    }
+
+    /* Style the nav list for the mobile overlay */
+    .main-navigation ul {
+        display: flex;
+        flex-direction: column; /* Stack links vertically */
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        gap: 2em;
+    }
+
+    .main-navigation ul li a {
+        font-size: 1.5em; /* Make links larger and easier to tap */
+    }
+
+    /* Make dropdown items visible and styled for mobile */
     .nav-item.has-dropdown .dropdown-menu {
         position: static;
-        display: none; /* Keep hidden on mobile, requires JS for toggle */
+        display: block;
         background: transparent;
         border: none;
         box-shadow: none;
-        padding: 0.5em 0 0 1.5em;
-        text-align: left;
+        padding-top: 0.75em;
+        padding-left: 0; /* Align with parent */
+        text-align: center;
+        min-width: auto;
+        opacity: 1;
+        visibility: visible;
+        margin-top: 0.5em;
     }
-    .nav-item.has-dropdown .dropdown-arrow { display: none; }
+
+    .nav-item.has-dropdown .dropdown-menu li a {
+        font-size: 0.8em; /* Make dropdown links a bit smaller than main links */
+        padding: 0.4em;
+        color: var(--color-nav-link);
+        opacity: 0.8;
+    }
     
+    .nav-item.has-dropdown:hover .dropdown-arrow,
+    .dropdown-arrow {
+        display: none; /* Hide the dropdown arrow on mobile */
+    }
+
+    .site-branding a {
+    font-size: 1.1em; /* Reduce font size from 1.2em on smaller screens */
+    }
+}
+    
+    /* =================================== */
+    /* Responsive Navigation ("Hamburger" Menu)
+    /* =================================== */
+
+    .nav-toggle {
+        display: none; /* Hidden on desktop */
+        position: absolute;
+        top: 1.25em;
+        right: 1.5em;
+        z-index: 2000; /* Ensure it's on top of everything */
+        background: transparent;
+        border: 0;
+        padding: 0.5em;
+        cursor: pointer;
+    }
+
+    .hamburger {
+        display: block;
+        position: relative;
+        width: 24px;
+        height: 2px;
+        background: var(--color-text-white);
+        transition: transform 0.3s ease;
+    }
+
+    .hamburger::before,
+    .hamburger::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--color-text-white);
+        transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease, opacity 0.3s ease;
+    }
+
+    .hamburger::before {
+        top: -8px;
+    }
+
+    .hamburger::after {
+        bottom: -8px;
+    }
+
+    /* --- Mobile Menu Open State --- */
+    /* This class will be toggled by JavaScript on the <body> */
+
+    .nav-open .hamburger {
+        transform: rotate(45deg);
+    }
+
+    .nav-open .hamburger::before {
+        top: 0;
+        transform: rotate(90deg);
+    }
+
+    .nav-open .hamburger::after {
+        bottom: 0;
+        opacity: 0; /* Hide bottom bar to form an 'X' */
+    }
+
     /* Hero */
     .hero-greeting { font-size: 2.5em; }
     .hero-subheading { font-size: 1.5em; }
@@ -1043,7 +1158,7 @@ section#projects-showcase h2, section#poetry h2 {
     /* Project/Publication Cards */
     .project-item h3, .publication-item h3 { font-size: 1.3em; }
     .projects-under-goal, .publications-grid { padding: 0 0.5em; }
-}
+
 
 @media (max-width: 600px) {
     section#about {

@@ -1,28 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Smooth Scrolling for internal links
-    const internalLinks = document.querySelectorAll('a[href^="#"]');
-    internalLinks.forEach(link => {
-        // Ensure this link is meant for same-page scrolling
-        const linkTarget = link.getAttribute('href');
-        if (linkTarget && linkTarget.startsWith('#') && !link.href.includes('.html')) {
-            link.addEventListener('click', function(event) {
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+    // 1. Smooth Scrolling for internal links on the same page
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            // Check if the link is meant for the current page
+            if (this.hash !== "") {
+                const targetElement = document.querySelector(this.hash);
                 if (targetElement) {
-                    event.preventDefault();
+                    e.preventDefault();
                     targetElement.scrollIntoView({
                         behavior: 'smooth'
                     });
                 }
-            });
-        }
+            }
+        });
     });
 
     // 2. "Back to Top" Button
     const backToTopButton = document.getElementById('backToTopBtn');
     if (backToTopButton) {
-        const scrollThreshold = 300; // Show button after scrolling this many pixels
+        const scrollThreshold = 300;
         window.addEventListener('scroll', () => {
             if (window.scrollY > scrollThreshold) {
                 backToTopButton.style.display = 'block';
@@ -31,98 +28,81 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
     // 3. Active Navigation Link Highlighting (for index.html)
-    // Only run this logic if we're on the main page with the sections to track
-    if (document.querySelector('#hero') && document.querySelector('#goals')) {
-        const navLinks = document.querySelectorAll('header nav ul li a[href*="#"]');
-        const sections = [];
-        let headerOffset = 0;
-        const header = document.querySelector('.site-header'); // Use class for consistency
-
-        if (header) {
-            headerOffset = header.offsetHeight + 20;
-        }
-
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href.includes('#')) {
-                const targetId = href.substring(href.indexOf('#'));
-                const section = document.querySelector(targetId);
-                if (section) {
-                    sections.push({ link: link, element: section });
+    const sections = document.querySelectorAll('main > section[id]');
+    const navLinks = document.querySelectorAll('.main-navigation a[href*="#"]');
+    if (sections.length > 0 && navLinks.length > 0 && (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html'))) {
+        const headerOffset = document.querySelector('.site-header')?.offsetHeight + 20 || 70;
+        const highlightActiveLink = () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - headerOffset) {
+                    current = section.getAttribute('id');
                 }
-            }
-        });
+            });
 
-        if (sections.length > 0) {
-            const highlightActiveLink = () => {
-                let currentSectionId = null;
-                const scrollPosition = window.scrollY + headerOffset;
-
-                sections.forEach(sectionObj => {
-                    if (scrollPosition >= sectionObj.element.offsetTop &&
-                        scrollPosition < sectionObj.element.offsetTop + sectionObj.element.offsetHeight) {
-                        currentSectionId = sectionObj.element.id;
-                    }
-                });
-
-                sections.forEach(sectionObj => {
-                    if (sectionObj.element.id === currentSectionId) {
-                        sectionObj.link.classList.add('active-link');
-                    } else {
-                        sectionObj.link.classList.remove('active-link');
-                    }
-                });
-            };
-
-            window.addEventListener('scroll', highlightActiveLink);
-            window.addEventListener('resize', highlightActiveLink);
-            highlightActiveLink(); // Initial call
-        }
+            navLinks.forEach(link => {
+                link.classList.remove('active-link');
+                if (link.href.includes(current)) {
+                    link.classList.add('active-link');
+                }
+            });
+        };
+        window.addEventListener('scroll', highlightActiveLink);
+        window.addEventListener('resize', highlightActiveLink);
+        highlightActiveLink();
     }
 
-    // 4. Highlight section/element if linked via hash on page load
+    // 4. Highlight element if linked via hash on page load
     if (window.location.hash) {
-        const elementId = window.location.hash.substring(1);
-        const targetElement = document.getElementById(elementId);
-
+        const targetElement = document.getElementById(window.location.hash.substring(1));
         if (targetElement) {
             setTimeout(() => {
                 targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 100); // Small delay to ensure smooth scroll after page jump
-
-            targetElement.classList.add('highlighted-project'); // This class triggers CSS animation
+            }, 100);
+            targetElement.classList.add('highlighted-project');
             setTimeout(() => {
                 targetElement.classList.remove('highlighted-project');
-            }, 2500); // Remove class after animation (2.5s)
+            }, 2500);
         }
     }
 
-    // 5. Animate elements on scroll (for flowchart nodes)
-    const animatedElements = document.querySelectorAll('.flowchart-node, .anim-on-scroll');
+    // 5. Animate elements on scroll
+    const animatedElements = document.querySelectorAll('.anim-on-scroll, .flowchart-node');
     if (animatedElements.length > 0) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    // Optional: unobserve the element after it has animated in
-                    // This prevents the animation from re-triggering if the user scrolls up and down
                     observer.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.1 // Trigger when 10% of the element is visible
-        });
-
-        // Tell the observer to watch each of the flowchart nodes
+        }, { threshold: 0.1 });
         animatedElements.forEach(el => observer.observe(el));
     }
 
+    // 6. Responsive Navigation Toggle (Hamburger Menu)
+    const navToggle = document.querySelector('.nav-toggle');
+    const mainNav = document.querySelector('.main-navigation');
+    if (navToggle && mainNav) {
+        navToggle.addEventListener('click', () => {
+            document.body.classList.toggle('nav-open');
+        });
+        mainNav.addEventListener('click', (event) => {
+            if (event.target.tagName === 'A') {
+                document.body.classList.remove('nav-open');
+            }
+        });
+    }
+
+    // Set current year in footer
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
 });
