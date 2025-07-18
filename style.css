@@ -1087,7 +1087,17 @@ section#projects-showcase h2, section#poetry h2 {
         font-size: 1.1em;
     }
 
+    section#portfolio ul li a {
+        display: inline-block; 
+        color: #5D5D5D;
+        background-color: transparent;
+        text-decoration: none !important;
+        font-weight: bold;
+    }
+
+    
     /* The container for the "Projects" submenu on mobile */
+
     .nav-item.has-dropdown .dropdown-menu {
         position: relative;
         left: 95px;
